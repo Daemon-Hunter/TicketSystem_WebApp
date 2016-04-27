@@ -14,12 +14,10 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <p> ${debugOne}  </p>
-        <c:forEach items="${eventList}" var="venue">
-            <p>
-                ${venue.name}
-                
-            </p>
+        <p> ${eventVenue.name}  </p>
+        
+        <c:forEach var="child" items="${childEvents}">
+            ${child.name}
         </c:forEach>
         
         

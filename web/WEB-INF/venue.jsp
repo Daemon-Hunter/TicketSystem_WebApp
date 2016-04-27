@@ -191,17 +191,18 @@
                         <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
 
 
+                            <c:forEach var="event" items="${venueEvents}">
+                                <div class="col-lg-8">
 
-                            <div class="col-lg-8">
+                                    <div class="eventRow" style="border: 4px; border-color: red;">
+                                        <div class="col-lg-1" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> <c:out value="${event.startDateTime}">/</div>
+                                                   <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> <c:out value="${event.name}">/</div>
+                                                   <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> <c:out value="${event["venue"].name}">/</div>
+                                                   <div class="col-lg-2" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Buy</div>
+                                                </div>
 
-                                <div class="eventRow" style="border: 4px; border-color: red;">
-                                               <div class="col-lg-1" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Date</div>
-                                               <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Title </div>
-                                               <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Location/Venue </div>
-                                               <div class="col-lg-2" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Buy</div>
-                                            </div>
-
-                            </div>
+                                </div>
+                            </c:forEach>
                         </div>
 
                     </div>
@@ -209,7 +210,7 @@
                 
                 <c:when test="${currentEvent eq false}">
                     
-                    <div class="noTickets">
+                    <div class="col-lg-8 noTickets">
                         Currently no scheduled events
                     </div>
                     

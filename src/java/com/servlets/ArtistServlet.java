@@ -67,13 +67,15 @@ public class ArtistServlet extends HttpServlet {
        String twitter = displayArtist.getTwitter();
        
        Boolean currentEvent = false;
-        if (displayArtist.getChildEvents().size() >= 1)
+       List<IChildEvent> children = displayArtist.getChildEvents();
+        if (children.size() >= 1)
         {
-            ChildToParent ctp = new ChildToParent(displayArtist);
+            currentEvent = true;
+           /* ChildToParent ctp = new ChildToParent(displayArtist);
             List<IParentEvent> pEvents = ctp.getParents();
-            request.setAttribute("parentEvents", pEvents);
+            request.setAttribute("parentEvents", pEvents);*/
         }
-        
+       request.setAttribute("childList", children);
        request.setAttribute("multiple", currentEvent);
        request.setAttribute("currentArtist", displayArtist);
        request.setAttribute("twitter", twitter);

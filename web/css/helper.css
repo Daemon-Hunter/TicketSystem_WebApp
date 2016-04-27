@@ -233,5 +233,13 @@ img{
     display: block;
 }
 
+.noTickets{
+    border: #555555 solid thin;
+    padding: 20px;
+    font-size: 40px;
+    color : whitesmoke;
+    margin-bottom: 40px;
+}
+
 
 

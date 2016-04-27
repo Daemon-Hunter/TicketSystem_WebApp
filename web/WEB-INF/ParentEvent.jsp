@@ -143,7 +143,7 @@
                         <span class="pageHeading">
                             <c:out value="${event.name}" />
                         </span>
-                        <c:set var="cVenue" value="${childEvents[0].venue}" />
+                            <c:set var="cVenue" value="${childEvents[0].venue}" />
                         <p> @<c:out value="${cVenue.name}" default="Venue not available"/> </p>
                     </div>
                     <div class="panel-body panelBodyBox">
@@ -174,10 +174,19 @@
             </div>
                 
                     
-           
-                    <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
-                        
+                    <div class="availableTickets">
+                                <div class="row" style ="margin-top: 20px;">
+                                    <div class="col-lg-8">
+                                        <div class="panel" style="font-family: Impact, Charcoal, sans-serif; font-size: 25px;"> 
+                                                 <div class="panel-heading">
+                                                     Available Tickets
 
+                                                </div>
+                                             </div>
+                                    </div>
+                                </div>  
+                        
+                    <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
                         
                         <div class="col-lg-8">
             
@@ -185,32 +194,25 @@
                                 <c:choose>    
                                     <c:when test="${multipleChildren eq 'true'}">
                                         
-                                        <div class="availableTickets">
-                                            <div class="row" style ="margin-top: 20px;">
-                                                <div class="col-lg-8">
-                                                    <div class="panel" style="font-family: Impact, Charcoal, sans-serif; font-size: 25px;"> 
-                                                             <div class="panel-heading">
-                                                                 Available Tickets
-
-                                                            </div>
-                                                         </div>
-                                                </div>
-                                            </div>  
-                                        <c:forEach items="${childEvents}" var="childEvent" varStatus="loop">
+                                        
+                                        <c:forEach items="${childEvents}" var="child" varStatus="loop">
                                             
                                             <div class="col-lg-1"  style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;"> 
-                                                <c:set var="child" value="${childEvents[loop.index]}"></c:set>
-                                                ${child[loop.index].startDateTime}
+                                                <c:set var="venue" value="${child.venue}"></c:set>
+                                                <c:out value="${child.startDateTime}"/>
                                             </div>
-                                            <div class="col-lg-3" style="background-color: white; padding: 10px; font-family:  cursive  font-size: 20px;"> ${event.name} </div>
-                                            <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;">  ${child["venue"].name} </div>
+                                            <div class="col-lg-3" style="background-color: white; padding: 10px; font-family:  cursive  font-size: 20px;"> <c:out value="${child.name}"/> </div>
+                                            <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;"> <c:out value="${venue.name}"/> </div>
                                             <div class="col-lg-2" style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;">  <a href="/ticketOptions.do?id=${child.ID}"><img src="images/buyTicket.png"></a> </div>
 
                                         </c:forEach>
                                     </c:when>
 
-                                    <c:when test="${multipleChildren eq 'true'}">
+                                    <c:when test="${multipleChildren eq 'false'}">
 
+                                        <div class="col-lg-8 noTickets">
+                                        Currently no scheduled events 
+                                        </div>  
                                         
                                     </c:when>
                                             

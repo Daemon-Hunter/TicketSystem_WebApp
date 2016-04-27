@@ -5,9 +5,11 @@
  */
 package com.servlets;
 
+import events.IChildEvent;
 import events.IVenue;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -67,6 +69,13 @@ public class VenueServlet extends HttpServlet {
         
         String venueID = request.getParameter("venuedata");
         IVenue venue = UserWrapper.getInstance().getVenueSearch(Integer.parseInt(venueID));
+        try {
+            List<IChildEvent> venueEvents = venue.getChildEvents();
+            request.setAttribute("venueEvents", venueEvents);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
        
         String facebook = venue.getFacebook();
         String twitter = venue.getTwitter();

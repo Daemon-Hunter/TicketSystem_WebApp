@@ -7,6 +7,7 @@ package com.servlets;
 
 import events.IChildEvent;
 import events.IParentEvent;
+import events.IVenue;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -69,20 +70,22 @@ public class EventServlet extends HttpServlet {
         
         String id = request.getParameter("eventdata");
         int integerID = Integer.parseInt(id);
-        IParentEvent event = UserWrapper.getInstance().getParentEvent(integerID);
+        IParentEvent event = UserWrapper.getInstance().getParentEventSearch(integerID);
         List<IChildEvent> childEvents = event.getChildEvents();
         
+        
         Boolean multiple;
-        multiple = childEvents.size() > 1;
-        
-        
-        
-        
+        if (childEvents.size() > 0)
+            multiple = true;
+        else 
+            multiple = false;
+  
         request.setAttribute("event", event);
         request.setAttribute("childEvents", childEvents);
         request.setAttribute("multipleChildren", multiple);
+        //request.setAttribute("eventVenue", venue);
         
-        RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/ParentEvent.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/ParentEvent.jsp"); // /WEB-INF/ParentEvent.jsp
         view.forward(request, response);
     }
 

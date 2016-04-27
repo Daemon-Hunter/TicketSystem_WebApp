@@ -151,10 +151,10 @@
                         </span>
                         <hr>
                         <span class="social">
-                            <i class="fa fa-facebook fa-2x"> <c:out value="${currentArtist.facebook}" default="Not available for this artist"/> </i><br>
-                            <i class="fa fa-twitter fa-2x"> <c:out value="${currentArtist.twitter}" default="Not available for this artist"/> </i><br>
-                                <i class="fa fa-spotify fa-2x"> <c:out value="${currentArtist.spotify}" default="Not available for this artist"/></i><br>
-                                    <i class="fa fa-instagram fa-2x"> <c:out value="${currentArtist.instagram}" default="Not available for this artist"/></i><br>
+                            <i class="fa fa-facebook fa-2x"></i> <c:out value="${currentArtist.facebook}" default="Not available for this artist"/><br>
+                            <i class="fa fa-twitter fa-2x"></i> <c:out value="${currentArtist.twitter}" default="Not available for this artist"/> <br>
+                                <i class="fa fa-spotify fa-2x"></i> <c:out value="${currentArtist.spotify}" default="Not available for this artist"/><br>
+                                    <i class="fa fa-instagram fa-2x"></i> <c:out value="${currentArtist.instagram}" default="Not available for this artist"/><br>
                         </span>
                         <hr>
                         
@@ -186,27 +186,30 @@
                         <div class="col-lg-8">
             
                             <div class="eventRow" style="border: 4px; border-color: red;">
-                                           s
-                                <c:forEach items="${ParenteventList}" var="event" varStatus="loop">
+                                           
+                                <c:forEach items="${childList}" var="event" varStatus="loop">
                                     
                                     <div class="col-lg-1"  style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;"> 
-                                        <c:set var="child" value="${childLists[loop.index]}"></c:set>
-                                        ${child[loop.index].startDateTime}
+                                        <c:set var="eventVenue" value="${event.venue}"/>
+                                        DATE 
                                     </div>
-                                    <div class="col-lg-3" style="background-color: white; padding: 10px; font-family:  cursive  font-size: 20px;"> ${event.name} </div>
-                                    <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;">  ${child[loop.index].venue} </div>
-                                    <div class="col-lg-2" style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;">  <a href="BuyTicketServlet"><img src="images/buyTicket.png"></a> </div>
+                                            <div class="col-lg-3" style="background-color: white; padding: 10px; font-family:  cursive  font-size: 20px;"> <c:out value="${event.name}"/> </div>
+                                            <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;">  <c:out value="${eventVenue.name}"/> </div>
+                                            <div class="col-lg-2" style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;">  <a href="BuyTicketServlet"><img src="images/buyTicket.png"></a> </div>
                                     
                                 </c:forEach>
                                 
-                                        </div>
+                            </div>
 
                         </div>
                     </div>
                     </c:when>
                     
                     <c:when test="${multiple eq false}">
-                        
+                         
+                         <div class="col-lg-8 noTickets">
+                        Currently no scheduled events 
+                        </div>  
                         
                     </c:when>
                         

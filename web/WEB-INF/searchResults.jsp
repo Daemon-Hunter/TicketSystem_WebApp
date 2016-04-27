@@ -157,7 +157,10 @@
                             <a href="event.do?eventdata=${event.ID}">
                                 <div class="col-lg-3 newEventGallery" id="${loop.index}"> 
                                      <img src="/Image?type=event&id=${event.ID}">
+                                           
                                      <div>${event.name} </div>
+                                     
+                                    
                                 </div>
                             </a>
                         </c:forEach>
