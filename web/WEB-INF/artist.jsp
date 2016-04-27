@@ -5,8 +5,8 @@
 --%>
 
 
-<%@page import="datamodel.ChildEvent"%>
-<%@page import="java.util.List"%>
+
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -141,17 +141,20 @@
                  <div class="col-lg-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <span id="heading">
-                            ${currentArtist.name}
+                        <span class="pageHeading">
+                            <c:out value="${currentArtist.name}"/>
                         </span>
                     </div>
                     <div class="panel-body panelBodyBox">
-                        <span class="address">
-                            Artist details
+                        <span class="description">
+                            <c:out value="${currentArtist.description}" default="No description for this artist"/>
                         </span>
                         <hr>
-                        <span class="googleMap">
-                            Artist details
+                        <span class="social">
+                            <i class="fa fa-facebook fa-2x"> <c:out value="${currentArtist.facebook}" default="Not available for this artist"/> </i><br>
+                            <i class="fa fa-twitter fa-2x"> <c:out value="${currentArtist.twitter}" default="Not available for this artist"/> </i><br>
+                                <i class="fa fa-spotify fa-2x"> <c:out value="${currentArtist.spotify}" default="Not available for this artist"/></i><br>
+                                    <i class="fa fa-instagram fa-2x"> <c:out value="${currentArtist.instagram}" default="Not available for this artist"/></i><br>
                         </span>
                         <hr>
                         
@@ -175,10 +178,11 @@
                              </div>
                     </div>
                 </div>
+                
+                
+                <c:choose>
+                    <c:when test="${multiple eq true}">
                     <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
-                        
-
-                        
                         <div class="col-lg-8">
             
                             <div class="eventRow" style="border: 4px; border-color: red;">
@@ -199,7 +203,14 @@
 
                         </div>
                     </div>
-
+                    </c:when>
+                    
+                    <c:when test="${multiple eq false}">
+                        
+                        
+                    </c:when>
+                        
+                </c:choose>
                 </div>
             </div>
                  

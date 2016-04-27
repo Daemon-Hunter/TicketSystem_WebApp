@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import wrappers.DesktopWrapper;
+import wrappers.UserWrapper;
 
 /**
  *
@@ -66,7 +66,7 @@ public class TicketOptionsServlet extends HttpServlet {
         
         String id = request.getParameter("id");
         int intID = Integer.parseInt(id);
-        IChildEvent child = DesktopWrapper.getInstance().get
+        IChildEvent child = UserWrapper.getInstance().get
         
     }
 

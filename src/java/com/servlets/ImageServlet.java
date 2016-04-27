@@ -23,7 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import wrappers.DesktopWrapper;
+import wrappers.UserWrapper;
 
 /**
  *
@@ -67,7 +67,7 @@ public class ImageServlet extends HttpServlet {
         
         if (type.equals("event"))
         {
-            ISocial soc = DesktopWrapper.getInstance().getParentEvent(Integer.parseInt(id));
+            ISocial soc = UserWrapper.getInstance().getParentEvent(Integer.parseInt(id));
             BufferedImage image = soc.getImage(0);
             
             ByteArrayOutputStream byteStream = new ByteArrayOutputStream();

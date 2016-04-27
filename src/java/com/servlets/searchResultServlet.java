@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import wrappers.DesktopWrapper;
+import wrappers.UserWrapper;
+import wrappers.UserWrapper;
 
 
 /**
@@ -70,9 +71,9 @@ public class searchResultServlet extends HttpServlet {
             throws ServletException, IOException {
        
         String userInput = request.getParameter("user_search");
-        List<IArtist> artistList = DesktopWrapper.getInstance().searchArtists(userInput);
-        List<IVenue> venueList = DesktopWrapper.getInstance().searchVenues(userInput);
-        List<IParentEvent> eventList = DesktopWrapper.getInstance().searchParentEvents(userInput);
+        List<IArtist> artistList = UserWrapper.getInstance().searchArtists(userInput);
+        List<IVenue> venueList = UserWrapper.getInstance().searchVenues(userInput);
+        List<IParentEvent> eventList = UserWrapper.getInstance().searchParentEvents(userInput);
         
         // Retrieve list of ArrayLists which match the users search
        

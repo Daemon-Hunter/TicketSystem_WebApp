@@ -16,7 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import wrappers.DesktopWrapper;
+import wrappers.UserWrapper;
 
 /**
  *
@@ -69,7 +69,7 @@ public class EventServlet extends HttpServlet {
         
         String id = request.getParameter("eventdata");
         int integerID = Integer.parseInt(id);
-        IParentEvent event = DesktopWrapper.getInstance().getParentEvent(integerID);
+        IParentEvent event = UserWrapper.getInstance().getParentEvent(integerID);
         List<IChildEvent> childEvents = event.getChildEvents();
         
         Boolean multiple;

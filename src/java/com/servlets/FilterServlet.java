@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import utilities.DateFilter;
-import wrappers.DesktopWrapper;
+import wrappers.UserWrapper;
 
 /**
  *
@@ -99,18 +99,18 @@ public class FilterServlet extends HttpServlet {
         Date date = df.getDate(dateString);
       
        if (artist.equals("artist")) {
-            List<IArtist> artists = DesktopWrapper.getInstance().searchArtists(search);
+            List<IArtist> artists = UserWrapper.getInstance().searchArtists(search);
             request.setAttribute("fArtists", artists);
         }
         
         if (venue.equals("venue")){
-            List<IVenue> venues = DesktopWrapper.getInstance().searchVenues(search);
+            List<IVenue> venues = UserWrapper.getInstance().searchVenues(search);
             request.setAttribute("fVenues", venues);
         }
         
         if(event.equals("event")){
             List<IParentEvent> events = new LinkedList();
-            for (IParentEvent e : DesktopWrapper.getInstance().searchParentEvents(search))
+            for (IParentEvent e : UserWrapper.getInstance().searchParentEvents(search))
             {
                 if (e.getChildEvents().get(0).getStartDateTime().after(date))
                     events.add(e);

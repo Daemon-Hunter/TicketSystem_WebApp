@@ -18,8 +18,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utilities.ChildToParent;
 
-import wrappers.DesktopWrapper;
+import wrappers.UserWrapper;
 
 /**
  *
@@ -61,13 +62,19 @@ public class ArtistServlet extends HttpServlet {
        String artistIndex = request.getParameter("artistdata");
        int artistIntIndex = Integer.parseInt(artistIndex);
        
-       IArtist displayArtist = DesktopWrapper.getInstance().getArtist(artistIntIndex);
+       IArtist displayArtist = UserWrapper.getInstance().getArtistSearch(artistIntIndex);
        String facebook = displayArtist.getFacebook();
        String twitter = displayArtist.getTwitter();
-      
        
-      /* request.setAttribute("ParenteventList", eventList);
-       request.setAttribute("childLists", childLists); */
+       Boolean currentEvent = false;
+        if (displayArtist.getChildEvents().size() >= 1)
+        {
+            ChildToParent ctp = new ChildToParent(displayArtist);
+            List<IParentEvent> pEvents = ctp.getParents();
+            request.setAttribute("parentEvents", pEvents);
+        }
+        
+       request.setAttribute("multiple", currentEvent);
        request.setAttribute("currentArtist", displayArtist);
        request.setAttribute("twitter", twitter);
        request.setAttribute("facebook", facebook);

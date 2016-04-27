@@ -151,8 +151,8 @@
                         <span class="googleMap">
                             
                             <iframe
-                                width="600"
-                                height="450"
+                                width="320"
+                                height="350"
                                 frameborder="0" style="border:0"
                                 src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCnCjhuB-7cFDL9ZdArYQSq1qlOEtU1IOQ&q=${venue.name}+${venue.postcode}
                                   &q=Space+Needle,Seattle+WA" allowfullscreen>
@@ -174,35 +174,47 @@
             </div>
                 
                     
-            <%-- buy tickets --%>
-            <div class="availableTickets">
-                <div class="row" style ="margin-top: 20px;">
-                    <div class="col-lg-8">
-                        <div class="panel" style="font-family: Impact, Charcoal, sans-serif; font-size: 25px;"> 
-                                 <div class="panel-heading">
-                                     Available Tickets
-
-                                </div>
-                             </div>
-                    </div>
-                </div>
-                    <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
-                        
-
-                        
+            <c:choose>
+                <c:when test="${currentEvent eq 'true'}">
+                <%-- buy tickets --%>
+                <div class="availableTickets">
+                    <div class="row" style ="margin-top: 20px;">
                         <div class="col-lg-8">
-            
-                            <div class="eventRow" style="border: 4px; border-color: red;">
-                                           <div class="col-lg-1" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Date</div>
-                                           <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Title </div>
-                                           <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Location/Venue </div>
-                                           <div class="col-lg-2" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Buy</div>
-                                        </div>
+                            <div class="panel" style="font-family: Impact, Charcoal, sans-serif; font-size: 25px;"> 
+                                     <div class="panel-heading">
+                                         Tickets available at <c:out value="${venue.name}" default="venue"/>
 
+                                    </div>
+                                 </div>
                         </div>
                     </div>
+                        <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
 
-                </div>
+
+
+                            <div class="col-lg-8">
+
+                                <div class="eventRow" style="border: 4px; border-color: red;">
+                                               <div class="col-lg-1" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Date</div>
+                                               <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Title </div>
+                                               <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Location/Venue </div>
+                                               <div class="col-lg-2" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Buy</div>
+                                            </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </c:when>
+                
+                <c:when test="${currentEvent eq false}">
+                    
+                    <div class="noTickets">
+                        Currently no scheduled events
+                    </div>
+                    
+                </c:when>
+                </c:choose>
             </div>
                  
                

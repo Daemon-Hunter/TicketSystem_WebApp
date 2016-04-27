@@ -229,5 +229,9 @@ img{
   padding-left:7px;
 }
 
+.span i{
+    display: block;
+}
+
 
 

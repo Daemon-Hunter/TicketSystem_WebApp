@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import wrappers.DesktopWrapper;
+import wrappers.UserWrapper;
 
 /**
  *
@@ -66,14 +66,20 @@ public class VenueServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String venueID = request.getParameter("venuedata");
-        IVenue venue = DesktopWrapper.getInstance().getVenue(Integer.parseInt(venueID));
+        IVenue venue = UserWrapper.getInstance().getVenueSearch(Integer.parseInt(venueID));
        
         String facebook = venue.getFacebook();
         String twitter = venue.getTwitter();
+       
+        //check if venue has any current events
+        Boolean currentEvent = false;
+        if (venue.getChildEvents().size() >= 1)
+            currentEvent = true;
         
         request.setAttribute("twitter", twitter);
         request.setAttribute("facebook", facebook);
         request.setAttribute("venue", venue);
+        request.setAttribute("currentEvent", currentEvent);
         RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/venue.jsp");
         view.forward(request, response);
         
