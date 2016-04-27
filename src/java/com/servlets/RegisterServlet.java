@@ -5,33 +5,21 @@
  */
 package com.servlets;
 
-import events.IArtist;
-import events.IParentEvent;
-import events.IVenue;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import utilities.DateFilter;
-import wrappers.DesktopWrapper;
+import people.Customer;
+import utilities.Validator;
 
 /**
  *
  * @author Ruth
  */
-@WebServlet(name = "FilterServlet", urlPatterns = {"/filter.do"})
-public class FilterServlet extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,21 +33,7 @@ public class FilterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet FilterServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet FilterServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -89,39 +63,67 @@ public class FilterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String artist = request.getParameter("artist");
-        String venue = request.getParameter("venue");
-        String event = request.getParameter("event");
-        String search = request.getParameter("user_search");
-        String dateString = request.getParameter("dater");
         
-        DateFilter df = new DateFilter();
-        Date date = df.getDate(dateString);
-      
-       if (artist.equals("artist")) {
-            List<IArtist> artists = DesktopWrapper.getInstance().searchArtists(search);
-            request.setAttribute("fArtists", artists);
+        String firstName = "";
+        String secondName = "";
+        String address = "";
+        String postcode = "";
+        String userName = "";
+        String password = "";
+        String passwordConfirm = "";
+        
+        
+        firstName = request.getParameter("firstName");
+        secondName = request.getParameter("surname");
+        address = request.getParameter("address");
+        postcode = request.getParameter("postcode");
+        userName = request.getParameter("email");
+        password = request.getParameter("password");
+        passwordConfirm = request.getParameter("passwordConfirm");
+        
+        
+        
+        // Check for empty inputs
+        if (firstName.isEmpty() || secondName.isEmpty() || address.isEmpty() || postcode.isEmpty() 
+                ||userName.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty())
+        {
+            request.setAttribute("errorMessage", "Plese fill in all fields");
+            RequestDispatcher view = request.getRequestDispatcher("/register.jsp");
+            view.forward(request, response);
         }
         
-        if (venue.equals("venue")){
-            List<IVenue> venues = DesktopWrapper.getInstance().searchVenues(search);
-            request.setAttribute("fVenues", venues);
+        // Check for non matching passwords
+        else if (!password.equals(passwordConfirm))
+        {
+            request.setAttribute("errorMessage", "Passwords do not match");
+            RequestDispatcher view = request.getRequestDispatcher("/register.jsp");
+            view.forward(request, response);
         }
         
-        if(event.equals("event")){
-            List<IParentEvent> events = new LinkedList();
-            for (IParentEvent e : DesktopWrapper.getInstance().searchParentEvents(search))
+        
+        else {
+            Validator v = new Validator();
+            boolean good = v.emailValidator(userName);
+            if (!good)
             {
-                if (e.getChildEvents().get(0).getStartDateTime().after(date))
-                    events.add(e);
+                request.setAttribute("errorMessage", "Email address is already registered");
+                RequestDispatcher view = request.getRequestDispatcher("/register.jsp");
+                view.forward(request, response);
             }
-            request.setAttribute("fEvents", events);
+            
+            else {
+                       
+                //Customer c = new Customer();
+                
+                request.setAttribute("username", userName);
+                request.setAttribute("name", firstName);
+                RequestDispatcher view = request.getRequestDispatcher("/registerComplete.jsp");
+                view.forward(request, response);
+            }
+            
         }
         
-       
-        RequestDispatcher view = request.getRequestDispatcher("/searchResult");
-        view.forward(request, response);
-                
+        
         
         
     }

@@ -1,0 +1,233 @@
+
+
+
+
+
+.headerDivider {
+     border-left:1px solid #38546d; 
+     border-right:1px solid #16222c; 
+     height:20px;
+     
+}
+
+
+.navbar{
+    margin-bottom:  0 !important;
+}
+
+body{
+    background: url("../images/background.jpg") no-repeat;
+    background-size: cover;
+    
+} 
+
+
+
+.leftSearch {
+   padding-bottom: 15px;
+    border-bottom-right-radius: 70px;
+    border-bottom-left-radius: 70px;
+    background-image: 
+        linear-gradient(#2E2E2E, #555555);
+    
+}
+.blueGradientBG
+{
+	background-image:
+		linear-gradient(#2E2E2E, #555555);
+}
+
+.blue
+{
+	background-image:
+		linear-gradient(
+                to bottom,
+                #0000ff, #000066);
+}     
+
+.leftPadding{
+    padding-left: 300px;
+}
+
+.rounded{
+    border-radius: 15px;
+    border: 10px;
+}
+
+label, input{
+    display: block;
+}
+
+label{
+    padding-top: 15px;
+    
+}
+
+img.padding {
+	padding: 30px;
+}
+
+.topPadding{
+    padding-top: 60px;
+}
+
+.padd
+{
+	padding: 20px;
+        float: right;
+}
+
+.loginBtnPadding
+{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    
+}
+
+button.right {
+    margin-right: auto;
+}
+
+.right  {
+    float: right;
+}
+
+.text30{
+    font-size: 22px;
+    font-family:sans-serif;
+    font-weight: bold;
+    color: white;
+}
+
+#searchBarLeft{
+   
+    text-align: center;
+    padding-top:  10px;
+  
+}
+
+.divider-vertical {
+height: 55px;
+margin: 0 9px;
+border-left: 1px solid #31b0d5;
+border-right: 1px solid #31b0d5;
+}
+
+
+
+/*For positioning content in page within container*/
+.contentPosition{
+    margin-top: 150px !important;
+    
+}
+
+.imgGallery{
+    max-width:100%;
+    max-height:70%;
+    
+}
+
+/* set image size to full*/
+img{
+    max-height: 100%;
+    max-width: 100%;
+    text-align: center;
+    
+}
+
+/* Register form display */
+.formContainer{
+    background-color: white;
+    border-radius: 100px;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 50px;
+    padding-top: 20px;
+    padding-bottom: 90px;
+}
+
+
+
+
+
+.socialLinkBackground{
+    background-color: #fff
+}
+
+.socialLinkTopRadius{
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+}
+
+/* for month text on ticket availability */
+.col-lg-8 .dateGroup {
+    font-family: Impact, Charcoal, sans-serif; 
+    font-size: 25px;
+}
+
+/* not working.... */
+.newEventGallery{
+    border: 3px #fff solid;
+    height: 180px;
+    margin: 5px;
+    background-color: gray;
+    
+}
+
+.eventBoxInfo{
+    background-color: white;
+    font-family: Impact, Charcoal, sans-serif; 
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.eventImage{
+    max-height: 60%;
+    max-width: 100%;
+}
+
+/* buy ticket page text formatting */
+.panel-body .row .col-lg-12 .ticketDetailText{
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 30px;
+}
+
+.row .col-lg-12 .newEventHeader {
+    color: white;
+    font-size: 40px;
+    border: 2px;
+    border-color: #fff;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+/* For display error messages */
+.errorMessage {
+    color: red;
+}
+
+.ticketDetailsSmall{
+    font-family: cursive; 
+    font-size: 30px;
+}
+
+.filterBox{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: sans-serif ;
+    font-weight: bold;
+    font-size: 15px;
+    height: 400px;
+}
+
+.pageHeading{
+    font-size: 30px;
+}
+
+.col {
+  padding-right:7px;
+  padding-left:7px;
+}
+
+
+

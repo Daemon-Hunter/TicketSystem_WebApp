@@ -5,33 +5,27 @@
  */
 package com.servlets;
 
-import events.IArtist;
-import events.IParentEvent;
-import events.IVenue;
+import events.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import utilities.DateFilter;
+import javax.servlet.http.HttpSession;
 import wrappers.DesktopWrapper;
+
 
 /**
  *
  * @author Ruth
  */
-@WebServlet(name = "FilterServlet", urlPatterns = {"/filter.do"})
-public class FilterServlet extends HttpServlet {
+@WebServlet(name = "searchResultServlet", urlPatterns = {"/searchResult"})
+public class searchResultServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,21 +39,7 @@ public class FilterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet FilterServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet FilterServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -88,42 +68,26 @@ public class FilterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String artist = request.getParameter("artist");
-        String venue = request.getParameter("venue");
-        String event = request.getParameter("event");
-        String search = request.getParameter("user_search");
-        String dateString = request.getParameter("dater");
-        
-        DateFilter df = new DateFilter();
-        Date date = df.getDate(dateString);
-      
-       if (artist.equals("artist")) {
-            List<IArtist> artists = DesktopWrapper.getInstance().searchArtists(search);
-            request.setAttribute("fArtists", artists);
-        }
-        
-        if (venue.equals("venue")){
-            List<IVenue> venues = DesktopWrapper.getInstance().searchVenues(search);
-            request.setAttribute("fVenues", venues);
-        }
-        
-        if(event.equals("event")){
-            List<IParentEvent> events = new LinkedList();
-            for (IParentEvent e : DesktopWrapper.getInstance().searchParentEvents(search))
-            {
-                if (e.getChildEvents().get(0).getStartDateTime().after(date))
-                    events.add(e);
-            }
-            request.setAttribute("fEvents", events);
-        }
-        
        
-        RequestDispatcher view = request.getRequestDispatcher("/searchResult");
-        view.forward(request, response);
-                
+        String userInput = request.getParameter("user_search");
+        List<IArtist> artistList = DesktopWrapper.getInstance().searchArtists(userInput);
+        List<IVenue> venueList = DesktopWrapper.getInstance().searchVenues(userInput);
+        List<IParentEvent> eventList = DesktopWrapper.getInstance().searchParentEvents(userInput);
+        
+        // Retrieve list of ArrayLists which match the users search
+       
+        // Seperate into lists of appropriate objects
+        
+        request.setAttribute("user_search", userInput);
+        request.setAttribute("artistList", artistList);
+        request.setAttribute("venueList", venueList);
+        request.setAttribute("eventList", eventList);
         
         
+        
+        // Send re-direct to search result page
+        RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/searchResults.jsp");
+        req.forward(request, response);
     }
 
     /**

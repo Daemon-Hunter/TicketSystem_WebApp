@@ -5,33 +5,25 @@
  */
 package com.servlets;
 
-import events.IArtist;
+import events.IChildEvent;
 import events.IParentEvent;
-import events.IVenue;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import utilities.DateFilter;
 import wrappers.DesktopWrapper;
 
 /**
  *
  * @author Ruth
  */
-@WebServlet(name = "FilterServlet", urlPatterns = {"/filter.do"})
-public class FilterServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/event.do"})
+public class EventServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,10 +43,10 @@ public class FilterServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FilterServlet</title>");            
+            out.println("<title>Servlet EventServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet FilterServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EventServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
@@ -74,7 +66,24 @@ public class FilterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String id = request.getParameter("eventdata");
+        int integerID = Integer.parseInt(id);
+        IParentEvent event = DesktopWrapper.getInstance().getParentEvent(integerID);
+        List<IChildEvent> childEvents = event.getChildEvents();
+        
+        Boolean multiple;
+        multiple = childEvents.size() > 1;
+        
+        
+        
+        
+        request.setAttribute("event", event);
+        request.setAttribute("childEvents", childEvents);
+        request.setAttribute("multipleChildren", multiple);
+        
+        RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/ParentEvent.jsp");
+        view.forward(request, response);
     }
 
     /**
@@ -88,42 +97,7 @@ public class FilterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String artist = request.getParameter("artist");
-        String venue = request.getParameter("venue");
-        String event = request.getParameter("event");
-        String search = request.getParameter("user_search");
-        String dateString = request.getParameter("dater");
-        
-        DateFilter df = new DateFilter();
-        Date date = df.getDate(dateString);
-      
-       if (artist.equals("artist")) {
-            List<IArtist> artists = DesktopWrapper.getInstance().searchArtists(search);
-            request.setAttribute("fArtists", artists);
-        }
-        
-        if (venue.equals("venue")){
-            List<IVenue> venues = DesktopWrapper.getInstance().searchVenues(search);
-            request.setAttribute("fVenues", venues);
-        }
-        
-        if(event.equals("event")){
-            List<IParentEvent> events = new LinkedList();
-            for (IParentEvent e : DesktopWrapper.getInstance().searchParentEvents(search))
-            {
-                if (e.getChildEvents().get(0).getStartDateTime().after(date))
-                    events.add(e);
-            }
-            request.setAttribute("fEvents", events);
-        }
-        
-       
-        RequestDispatcher view = request.getRequestDispatcher("/searchResult");
-        view.forward(request, response);
-                
-        
-        
+        processRequest(request, response);
     }
 
     /**
