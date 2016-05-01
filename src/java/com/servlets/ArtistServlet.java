@@ -62,7 +62,7 @@ public class ArtistServlet extends HttpServlet {
        String artistIndex = request.getParameter("artistdata");
        int artistIntIndex = Integer.parseInt(artistIndex);
        
-       IArtist displayArtist = UserWrapper.getInstance().getArtistSearch(artistIntIndex);
+       IArtist displayArtist = UserWrapper.getInstance().getArtist(artistIntIndex);
        String facebook = displayArtist.getFacebook();
        String twitter = displayArtist.getTwitter();
        

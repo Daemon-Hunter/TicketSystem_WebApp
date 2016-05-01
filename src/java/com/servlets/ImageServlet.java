@@ -64,11 +64,17 @@ public class ImageServlet extends HttpServlet {
         //get the current artist and its its social id
         String type = request.getParameter("type");
         String id = request.getParameter("id");
+        ISocial soc = null;
         
         if (type.equals("event"))
-        {
-            ISocial soc = UserWrapper.getInstance().getParentEvent(Integer.parseInt(id));
+            soc = UserWrapper.getInstance().getParentEvent(Integer.parseInt(id));
+        else if(type.equals("artist"))
+            soc = UserWrapper.getInstance().getArtist(Integer.parseInt(id));
+        else if(type.equals("venue")) 
+            soc = UserWrapper.getInstance().getVenue(Integer.parseInt(id));
+        
             BufferedImage image = soc.getImage(0);
+          
             
             ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
             ImageIO.write(image, "jpg", byteStream);
@@ -81,11 +87,8 @@ public class ImageServlet extends HttpServlet {
             stream.write(bytes);
            // ImageIO.write(image, "jpeg", stream);
             
-        }
         
-        
-        
-        
+      
     }
 
     /**

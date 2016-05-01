@@ -69,7 +69,6 @@ public class IndexServlet extends HttpServlet {
         RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/index.jsp");
         view.forward(request, response);
     }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *

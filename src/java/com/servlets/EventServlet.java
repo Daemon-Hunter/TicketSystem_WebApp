@@ -70,7 +70,7 @@ public class EventServlet extends HttpServlet {
         
         String id = request.getParameter("eventdata");
         int integerID = Integer.parseInt(id);
-        IParentEvent event = UserWrapper.getInstance().getParentEventSearch(integerID);
+        IParentEvent event = UserWrapper.getInstance().getParentEvent(integerID);
         List<IChildEvent> childEvents = event.getChildEvents();
         
         

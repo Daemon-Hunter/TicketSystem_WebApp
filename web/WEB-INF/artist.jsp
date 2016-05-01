@@ -105,7 +105,7 @@
                    
              </div>
                 <div class="col-lg-8">
-                    <img src="Image?id=${currentArtist.ID}" class="imgSize">
+                    <img src="Image?type=artist&id=${currentArtist.ID}" class="imgSize">
                     
                     
                     

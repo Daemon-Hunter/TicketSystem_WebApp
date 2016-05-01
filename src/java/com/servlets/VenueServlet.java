@@ -68,7 +68,7 @@ public class VenueServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String venueID = request.getParameter("venuedata");
-        IVenue venue = UserWrapper.getInstance().getVenueSearch(Integer.parseInt(venueID));
+        IVenue venue = UserWrapper.getInstance().getVenue(Integer.parseInt(venueID));
         try {
             List<IChildEvent> venueEvents = venue.getChildEvents();
             request.setAttribute("venueEvents", venueEvents);

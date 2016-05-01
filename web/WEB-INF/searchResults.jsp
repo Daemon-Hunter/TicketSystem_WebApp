@@ -134,8 +134,12 @@
                          
                                 <a href="artist?artistdata=${artist.ID}" >
                                     <div class="col-lg-3 newEventGallery" id="${loop.index}"> 
-                                        <img src="/Image?type=artist&id=${artist.ID}">
-                                        <div>  ${artist.name} </div>
+                                        <img src="Image?type=artist&id=${artist.ID}">
+                                        <div class="underImageInfo">
+                                            <div class="boxName"> ${artist.name} </div> 
+
+                                            <div class="boxChildren">  </div>
+                                        </div>
                                     </div>
                                 </a>                 
                     </c:forEach> 
@@ -145,8 +149,12 @@
                         <c:forEach items="${venueList}" var="venue" varStatus="loop">
                             <a href="venue.do?venuedata=${venue.ID}">
                                 <div class="col-lg-3 newEventGallery" id="${loop.index}"> 
-                                     <img src="/Image?type=venue&id=${venue.ID}">
-                                     <div>${venue.name} </div>
+                                     <img src="Image?type=venue&id=${venue.ID}">
+                                     <div class="underImageInfo">
+                                        <div class="boxName"> ${venue.name} </div> 
+
+                                        <div class="boxChildren">  </div>
+                                    </div>
                                 </div>
                                
                                 
@@ -156,9 +164,13 @@
                         <c:forEach items="${eventList}" var="event" varStatus="loop">
                             <a href="event.do?eventdata=${event.ID}">
                                 <div class="col-lg-3 newEventGallery" id="${loop.index}"> 
-                                     <img src="/Image?type=event&id=${event.ID}">
-                                           
-                                     <div>${event.name} </div>
+                                     <img class="eventImage" src="Image?type=event&id=${event.ID}">
+                 
+                                     <div class="underImageInfo">
+                                        <div class="boxName"> ${event.name} </div> 
+
+                                        <div class="boxChildren">  </div>
+                                    </div>
                                      
                                     
                                 </div>

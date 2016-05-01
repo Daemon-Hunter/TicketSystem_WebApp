@@ -5,13 +5,18 @@
  */
 package com.servlets;
 
+import events.IChildEvent;
+import events.IParentEvent;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import tickets.ITicket;
 import wrappers.UserWrapper;
 
 /**
@@ -64,10 +69,20 @@ public class TicketOptionsServlet extends HttpServlet {
             throws ServletException, IOException {
        
         
-        String id = request.getParameter("id");
-        int intID = Integer.parseInt(id);
-        IChildEvent child = UserWrapper.getInstance().get
+        String parent = request.getParameter("parent");
+        String child = request.getParameter("child");
+        int parentID = Integer.parseInt(parent);
+        int childID = Integer.parseInt(child);
+        IParentEvent parentEvent = UserWrapper.getInstance().getParentEvent(parentID);
+        IChildEvent purchaseEvent = parentEvent.getChildEvent(childID);
         
+        List<ITicket> tickets = purchaseEvent.getTickets();
+        
+        request.setAttribute("ticketList", tickets);
+        request.setAttribute("childEvent", purchaseEvent);
+        
+        RequestDispatcher view = request.getRequestDispatcher("WEB-INF/buyTickets.jsp");
+        view.forward(request, response);
     }
 
     /**

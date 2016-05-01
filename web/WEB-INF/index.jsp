@@ -108,35 +108,25 @@
                 <div class="col-lg-12">
                     <div class="newEventHeader"> New Events <hr></div>
                     
-                    <c:forEach items="${eventList}" var="event">
-                        <div class="col-lg-3 newEventGallery"> 
-                            <img src="Image?type=event&id=${event.ID}">
-                            <div class="ENAME"> ${event.name} </div> 
+                    <c:forEach end="15" items="${eventList}" var="event" varStatus="index" >
+                        
+                            <div class="col-lg-2  newEventGallery"> 
+                                <a href="event.do?eventdata=${event.ID}">
+                                <img class="eventImage" src="Image?type=event&id=${event.ID}">
+                                <div class="underImageInfo">
+                                    <div class="boxName"> ${event.name} </div> 
+
+                                    <div class="boxChildren">  </div>
+                                </div>
+                                </a>
+                            
                         </div>
                     </c:forEach>
-                    
-                    <%-- <div class="col-lg-3 newEventGallery"><div class="eventImage"><img src="images/ed.jpg"></div>
-                        <div class="eventBoxInfo"> Name: ...  Price:  <hr> Dates:</div> 
-                    </div>
-                    <div class="col-lg-3 newEventGallery"><img src="images/voodoo.jpg"></div>
-                    <div class="col-lg-3 newEventGallery"><img src="images/ticket.png" ></div>
-                    <div class="col-lg-3 newEventGallery"> </div>
-                    
-                    <div class="col-lg-3 newEventGallery"> </div>
-                    <div class="col-lg-3 newEventGallery"> </div>
-                    <div class="col-lg-3 newEventGallery"> </div>
-                    <div class="col-lg-3 newEventGallery"> </div>
-                    
-                    <div class="col-lg-3 newEventGallery"> </div>
-                    <div class="col-lg-3 newEventGallery"> </div>
-                    <div class="col-lg-3 newEventGallery"> </div>
-                    <div class="col-lg-3 newEventGallery"> </div> --%>
-                    
-                    
-                    
+               
                 </div>
                 
-                
+                <a href="loadMore.do"><div class="loadMoreButton"> Load more </div> </a>
+                    
             </div>
                 
                 

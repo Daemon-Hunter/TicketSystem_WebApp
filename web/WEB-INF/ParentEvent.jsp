@@ -104,8 +104,9 @@
                    
              </div>
                 <div class="col-lg-8">
-                    <img src="Image?id=${event.ID}" class="imgSize">
-                    
+                    <div class="largeImageBox">
+                    <img src="Image?type=event&id=${event.ID}" class="imgSize">
+                    </div>
                     
                     
                     <div class="row">
@@ -143,7 +144,7 @@
                         <span class="pageHeading">
                             <c:out value="${event.name}" />
                         </span>
-                            <c:set var="cVenue" value="${childEvents[0].venue}" />
+                            <c:set var="cVenue" value="${childEvents[0]}" />
                         <p> @<c:out value="${cVenue.name}" default="Venue not available"/> </p>
                     </div>
                     <div class="panel-body panelBodyBox">
@@ -153,15 +154,15 @@
                         <hr>
                         <span class="googleMap">
                             
-                            
+                            <%--
                             <c:out value="${cVenue.address}"/>
                             <c:out value="${cVenue.postcode}"/>
-                            
+                            --%>
                             <iframe
                                 width="320"
                                 height="350"
                                 frameborder="0" style="border:0"
-                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCnCjhuB-7cFDL9ZdArYQSq1qlOEtU1IOQ&q=${event.name}+${cVenue.postcode}" allowfullscreen>
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCnCjhuB-7cFDL9ZdArYQSq1qlOEtU1IOQ&q=${event.name}<%--+${cVenue.postcode}--%>" allowfullscreen>
                             </iframe>
                         </span>
                         <hr>
@@ -184,56 +185,46 @@
                                                 </div>
                                              </div>
                                     </div>
-                                </div>  
+                                </div>      
+                         </div>
                         
+                   
+            
+                           
+            <c:choose>
+                <c:when test="${multipleChildren eq 'true'}">
+                <%-- buy tickets --%>
+                
                     <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
-                        
-                        <div class="col-lg-8">
-            
-                            <div class="eventRow" style="border: 4px; border-color: red;">
-                                <c:choose>    
-                                    <c:when test="${multipleChildren eq 'true'}">
-                                        
-                                        
-                                        <c:forEach items="${childEvents}" var="child" varStatus="loop">
-                                            
-                                            <div class="col-lg-1"  style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;"> 
-                                                <c:set var="venue" value="${child.venue}"></c:set>
-                                                <c:out value="${child.startDateTime}"/>
-                                            </div>
-                                            <div class="col-lg-3" style="background-color: white; padding: 10px; font-family:  cursive  font-size: 20px;"> <c:out value="${child.name}"/> </div>
-                                            <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;"> <c:out value="${venue.name}"/> </div>
-                                            <div class="col-lg-2" style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;">  <a href="/ticketOptions.do?id=${child.ID}"><img src="images/buyTicket.png"></a> </div>
-
-                                        </c:forEach>
-                                    </c:when>
-
-                                    <c:when test="${multipleChildren eq 'false'}">
-
-                                        <div class="col-lg-8 noTickets">
-                                        Currently no scheduled events 
-                                        </div>  
-                                        
-                                    </c:when>
-                                            
-                                </c:choose>
+                        <c:forEach var="cEvent" items="${childEvents}">
+                            <%--<c:set var="venue" value="${event.venue}"/> --%>
+                            <div class="col-lg-8 eventRow">
                                 
-                                        </div>
+                                <div class="col-lg-2 eventRowSegment"> <c:out value="${cEvent.startDateTime}"/></div>
+                                <div class="col-lg-2 eventRowSegment"> <c:out value="${cEvent.name}"/></div>
+                                <div class="col-lg-2 eventRowSegment"> <c:out value="Venue name, fix null pointer.."/></div>
+                                <div class="col-lg-2 eventRowSegment"> <a href="ticketOption.do?parent=${event.ID}&child=${cEvent.ID}"><img class="eventImage" src="images/buyTicket.png"></a></div>
+                               
+                            </div>
 
-                        </div>
+                        </c:forEach>
                     </div>
+                </c:when>
+                
+                <c:when test="${multipleChildren eq false}">
+                    
+                    <div class="col-lg-8 noTickets">
+                        Currently no scheduled events
+                    </div>
+                    
+                </c:when>
+                </c:choose>
+                        
+                    
 
-                </div>
-            </div>
-                 
-               
-            
-              
-            
-               
-            
-            
-        
+                
+           
+          
         
       <%-- footer --%>          
     <div class="container">

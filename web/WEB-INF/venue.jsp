@@ -103,7 +103,7 @@
                    
              </div>
                 <div class="col-lg-8">
-                    <img src="/Images?type=venue$id=${venue.ID}" class="imgSize">
+                    <img src="Images?type=venue$id=${venue.ID}" class="imgSize">
                     
                     
                     
@@ -173,12 +173,9 @@
                 
             </div>
                 
-                    
-            <c:choose>
-                <c:when test="${currentEvent eq 'true'}">
-                <%-- buy tickets --%>
-                <div class="availableTickets">
-                    <div class="row" style ="margin-top: 20px;">
+                            
+                            
+             <div class="row" style ="margin-top: 20px;">
                         <div class="col-lg-8">
                             <div class="panel" style="font-family: Impact, Charcoal, sans-serif; font-size: 25px;"> 
                                      <div class="panel-heading">
@@ -187,7 +184,13 @@
                                     </div>
                                  </div>
                         </div>
-                    </div>
+                    </div>               
+                    
+            <c:choose>
+                <c:when test="${currentEvent eq 'true'}">
+                <%-- buy tickets --%>
+                <div class="availableTickets">
+                    
                         <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
 
 
@@ -195,9 +198,9 @@
                                 <div class="col-lg-8">
 
                                     <div class="eventRow" style="border: 4px; border-color: red;">
-                                        <div class="col-lg-1" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> <c:out value="${event.startDateTime}">/</div>
-                                                   <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> <c:out value="${event.name}">/</div>
-                                                   <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> <c:out value="${event["venue"].name}">/</div>
+                                        <div class="col-lg-1" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> <c:out value="${event.startDateTime}"/></div>
+                                                   <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> <c:out value="${event.name}"/></div>
+                                                   <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> <c:out value="VENUE NAME HERE"/></div>
                                                    <div class="col-lg-2" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Buy</div>
                                                 </div>
 
@@ -205,7 +208,7 @@
                             </c:forEach>
                         </div>
 
-                    </div>
+                    
                 </c:when>
                 
                 <c:when test="${currentEvent eq false}">

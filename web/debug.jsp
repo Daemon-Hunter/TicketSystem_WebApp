@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <p> ${eventVenue.name}  </p>
+        <p> ${multipleChildren}  </p>
         
         <c:forEach var="child" items="${childEvents}">
             ${child.name}

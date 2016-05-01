@@ -16,7 +16,7 @@
             .nav-tabs li a {font-size : 30px; color: white; font-family: sans-serif; font-weight: bold;}
         </style>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Register</title>
+        <title>Buy Tickets</title>
     </head>
     <body>
         
@@ -94,9 +94,10 @@
                             <div class="row">
                                 
                                 <div class="col-lg-12">
-                                    <div id="ticketTitle" class="ticketDetailText"> Title:</div>
-                                    <div id="ticketDate" class="ticketDetailText">  Date:</div>
-                                    <div id="ticketDoors" class=ticketDetailText"> Doors Open: </div>
+                                    <div  class="ticketDetailText"> ${purchaseEvent.name}</div>
+                                    <div  class="ticketDetailText">  Start: ${purchaseEvent.startDateTime}</div>
+                                    <div  class="ticketDetailText">  End: ${purchaseEvent.endDateTime}  </div>
+                                    <div  class="ticketDetailText">  End: ${purchaseEvent.description}  </div>
                                     <hr>
                                 </div>
                             </div>
