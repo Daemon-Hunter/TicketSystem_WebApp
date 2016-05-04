@@ -103,7 +103,9 @@
                    
              </div>
                 <div class="col-lg-8">
-                    <img src="Images?type=venue$id=${venue.ID}" class="imgSize">
+                    <div class="largeImageBox">
+                    <img class="largeImage" src="Images?type=venue$id=${venue.ID}">
+                    </div>
                     
                     
                     
@@ -198,10 +200,10 @@
                                 <div class="col-lg-8">
 
                                     <div class="eventRow" style="border: 4px; border-color: red;">
-                                        <div class="col-lg-1" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> <c:out value="${event.startDateTime}"/></div>
-                                                   <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> <c:out value="${event.name}"/></div>
-                                                   <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> <c:out value="VENUE NAME HERE"/></div>
-                                                   <div class="col-lg-2" style="background-color: white; padding: 10px; font-family: Impact, Charcoal, sans-serif; font-size: 20px;"> Buy</div>
+                                        <div class="col-lg-1 eventRowSegment"> <c:out value="${event.startDateTime}"/></div>
+                                                   <div class="col-lg-3 eventRowSegment"> <c:out value="${event.name}"/></div>
+                                                   <div class="col-lg-3 eventRowSegment"> <c:out value="VENUE NAME HERE"/></div>
+                                                   <div class="col-lg-2 eventRowSegment"> <a href="event.do?eventdata=${event.ID}"><img class="eventImage" src="images/buyTicket.png"></a> </div>
                                                 </div>
 
                                 </div>

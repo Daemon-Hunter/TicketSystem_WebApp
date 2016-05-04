@@ -63,10 +63,7 @@ public class ArtistServlet extends HttpServlet {
        int artistIntIndex = Integer.parseInt(artistIndex);
        
        IArtist displayArtist = UserWrapper.getInstance().getArtist(artistIntIndex);
-       String facebook = displayArtist.getFacebook();
-       String twitter = displayArtist.getTwitter();
-       
-       Boolean currentEvent = false;
+        Boolean currentEvent = false;
        List<IChildEvent> children = displayArtist.getChildEvents();
         if (children.size() >= 1)
         {
@@ -75,11 +72,29 @@ public class ArtistServlet extends HttpServlet {
             List<IParentEvent> pEvents = ctp.getParents();
             request.setAttribute("parentEvents", pEvents);*/
         }
+       
+       
+       try {
+        String facebook = displayArtist.getFacebook();
+       String twitter = displayArtist.getTwitter();
+        request.setAttribute("twitter", twitter);
+       request.setAttribute("facebook", facebook);
+       }
+       catch(NullPointerException ex){
+            request.setAttribute("childList", children);
+       request.setAttribute("multiple", currentEvent);
+       request.setAttribute("currentArtist", displayArtist);
+      
+        
+       RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/artist.jsp");
+       view.forward(request, response);
+       }
+       
+      
        request.setAttribute("childList", children);
        request.setAttribute("multiple", currentEvent);
        request.setAttribute("currentArtist", displayArtist);
-       request.setAttribute("twitter", twitter);
-       request.setAttribute("facebook", facebook);
+      
         
        RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/artist.jsp");
        view.forward(request, response);

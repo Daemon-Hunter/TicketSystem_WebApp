@@ -108,7 +108,7 @@
                 <div class="col-lg-12">
                     <div class="newEventHeader"> New Events <hr></div>
                     
-                    <c:forEach end="15" items="${eventList}" var="event" varStatus="index" >
+                    <c:forEach end="11" items="${eventList}" var="event" varStatus="index" >
                         
                             <div class="col-lg-2  newEventGallery"> 
                                 <a href="event.do?eventdata=${event.ID}">
@@ -122,10 +122,14 @@
                             
                         </div>
                     </c:forEach>
+                    
+                    <div class="moreData">
+                        
+                    </div>
                
                 </div>
                 
-                <a href="loadMore.do"><div class="loadMoreButton"> Load more </div> </a>
+                <a href="#" class="loadMoreButton"> Load more</a>
                     
             </div>
                 

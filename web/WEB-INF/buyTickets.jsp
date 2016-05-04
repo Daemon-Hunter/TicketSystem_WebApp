@@ -3,7 +3,7 @@
     Created on : 13-Mar-2016, 20:45:01
     Author     : Ruth
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -94,10 +94,10 @@
                             <div class="row">
                                 
                                 <div class="col-lg-12">
-                                    <div  class="ticketDetailText"> ${purchaseEvent.name}</div>
-                                    <div  class="ticketDetailText">  Start: ${purchaseEvent.startDateTime}</div>
-                                    <div  class="ticketDetailText">  End: ${purchaseEvent.endDateTime}  </div>
-                                    <div  class="ticketDetailText">  End: ${purchaseEvent.description}  </div>
+                                    <div  class="ticketDetailText"> Event: </div> ${childEvent.name} <hr>
+                                    <div  class="ticketDetailText"> Start:</div> ${childEvent.startDateTime}
+                                    <div  class="ticketDetailText"> End: </div> ${childEvent.endDateTime}  <hr>
+                                    <div  class="ticketDetailText"> Description:</div> ${childEvent.description}  
                                     <hr>
                                 </div>
                             </div>
@@ -105,13 +105,13 @@
                             <%-- ticket option headings --%>
                             <div class="row" style="padding-bottom: 15px;">
                                 
-                                <div class="col-lg-4" id="ticketOptions">
-                                    <div class="ticketDetailText"> Ticket Options</div>
+                                <div class="col-lg-4">
+                                    <div class="ticketDetailText"> Ticket Type</div>
                                 </div>
-                                <div class="col-lg-4" id="ticketCost">
+                                <div class="col-lg-4">
                                     <div class="ticketDetailText"> Cost</div>
                                 </div>
-                                <div class="col-lg-4" id="ticketQty">
+                                <div class="col-lg-4">
                                     <div class="ticketDetailText"> Quantity</div>
                                     
                                 </div>
@@ -120,21 +120,21 @@
                             
                             <%-- Ticket options data --%>
                             <div class="row">
-                                
-                                <div class="col-lg-4" id="ticketOptions">
-                                    <div class="ticketDetailText">  Early bird or sumin</div>
-                                </div>
-                                <div class="col-lg-4" id="ticketCost">
-                                    <div class="ticketDetailText"> £4</div>
-                                </div>
-                                <div class="col-lg-4" id="ticketQty">
-                                    <select class="form-control" style="width: 5em" placeholder="Location">
-                                <option value=one">1</option>
-                                 <option value=two">2</option>
-                                  <option value=three">3</option>
-                            </select>
-                                </div>
- 
+                                <c:forEach items="${ticketList}" var="ticket">
+                                    <div class="col-lg-4" class="ticketOptions">
+                                        <div class="ticketDetailText">  ${ticket.type}</div>
+                                    </div>
+                                    <div class="col-lg-4" class="ticketOptions">
+                                        <div class="ticketDetailText"> ${ticket.price}</div>
+                                    </div>
+                                    <div class="col-lg-4" class="ticketOptions">
+                                        <select class="form-control" style="width: 5em" placeholder="Location">
+                                    <option value=one">1</option>
+                                     <option value=two">2</option>
+                                      <option value=three">3</option>
+                                </select>
+                                    </div>
+                                </c:forEach>
                             </div>
                             <button class="btn btn-lg btn-primary" style="margin-top: 30px;"> Buy ></button>
                         </div>

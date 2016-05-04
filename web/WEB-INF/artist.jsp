@@ -105,8 +105,9 @@
                    
              </div>
                 <div class="col-lg-8">
-                    <img src="Image?type=artist&id=${currentArtist.ID}" class="imgSize">
-                    
+                    <div class="largeImageBox">
+                    <img class="largeImage" src="Image?type=artist&id=${currentArtist.ID}">
+                    </div>
                     
                     
                     <div class="row">
@@ -151,8 +152,8 @@
                         </span>
                         <hr>
                         <span class="social">
-                            <i class="fa fa-facebook fa-2x"></i> <c:out value="${currentArtist.facebook}" default="Not available for this artist"/><br>
-                            <i class="fa fa-twitter fa-2x"></i> <c:out value="${currentArtist.twitter}" default="Not available for this artist"/> <br>
+                            <i class="fa fa-facebook fa-2x"></i> <c:out value="${facebook}" default="Not available for this artist"/><br>
+                            <i class="fa fa-twitter fa-2x"></i> <c:out value="${twitter}" default="Not available for this artist"/> <br>
                                 <i class="fa fa-spotify fa-2x"></i> <c:out value="${currentArtist.spotify}" default="Not available for this artist"/><br>
                                     <i class="fa fa-instagram fa-2x"></i> <c:out value="${currentArtist.instagram}" default="Not available for this artist"/><br>
                         </span>
@@ -170,7 +171,7 @@
             <div class="availableTickets">
                 <div class="row" style ="margin-top: 20px;">
                     <div class="col-lg-8">
-                        <div class="panel" style="font-family: Impact, Charcoal, sans-serif; font-size: 25px;"> 
+                        <div class="panel availableTickets"> 
                                  <div class="panel-heading">
                                      Available Tickets
 
@@ -178,31 +179,31 @@
                              </div>
                     </div>
                 </div>
-                
+            </div>
                 
                 <c:choose>
                     <c:when test="${multiple eq true}">
-                    <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
-                        <div class="col-lg-8">
-            
-                            <div class="eventRow" style="border: 4px; border-color: red;">
-                                           
-                                <c:forEach items="${childList}" var="event" varStatus="loop">
-                                    
-                                    <div class="col-lg-1"  style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;"> 
-                                        <c:set var="eventVenue" value="${event.venue}"/>
-                                        DATE 
-                                    </div>
-                                            <div class="col-lg-3" style="background-color: white; padding: 10px; font-family:  cursive  font-size: 20px;"> <c:out value="${event.name}"/> </div>
-                                            <div class="col-lg-3" style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;">  <c:out value="${eventVenue.name}"/> </div>
-                                            <div class="col-lg-2" style="background-color: white; padding: 10px; font-family: cursive  font-size: 20px;">  <a href="BuyTicketServlet"><img src="images/buyTicket.png"></a> </div>
-                                    
-                                </c:forEach>
-                                
+                    
+                         <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
+                        <c:forEach var="event" items="${childList}">
+                            <%--<c:set var="venue" value="${event.venue}"/> --%>
+                            
+                            <div class="col-lg-8 eventRow">
+                                <c:set var="eventVenue" value="${event.venue}"/>
+                                <div class="col-lg-2 eventRowSegment"> <c:out value="${event.startDateTime}"/></div>
+                                <div class="col-lg-2 eventRowSegment"> <c:out value="${event.name}"/></div>
+                                <div class="col-lg-2 eventRowSegment"> <c:out value="${eventVenue.name}."/></div>
+                                <div class="col-lg-2 eventRowSegment"> <a href="event.do?eventdata=${event.ID}"><img src="images/buyTicket.png"></a></div>
+                               
                             </div>
 
-                        </div>
+                        </c:forEach>
                     </div>
+            
+                            
+
+                        
+                    
                     </c:when>
                     
                     <c:when test="${multiple eq false}">
@@ -214,7 +215,7 @@
                     </c:when>
                         
                 </c:choose>
-                </div>
+                
             </div>
                  
                

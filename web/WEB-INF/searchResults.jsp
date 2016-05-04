@@ -134,7 +134,7 @@
                          
                                 <a href="artist?artistdata=${artist.ID}" >
                                     <div class="col-lg-3 newEventGallery" id="${loop.index}"> 
-                                        <img src="Image?type=artist&id=${artist.ID}">
+                                        <img class="eventImage" src="Image?type=artist&id=${artist.ID}">
                                         <div class="underImageInfo">
                                             <div class="boxName"> ${artist.name} </div> 
 
@@ -149,7 +149,7 @@
                         <c:forEach items="${venueList}" var="venue" varStatus="loop">
                             <a href="venue.do?venuedata=${venue.ID}">
                                 <div class="col-lg-3 newEventGallery" id="${loop.index}"> 
-                                     <img src="Image?type=venue&id=${venue.ID}">
+                                     <img class="eventImage" src="Image?type=venue&id=${venue.ID}">
                                      <div class="underImageInfo">
                                         <div class="boxName"> ${venue.name} </div> 
 

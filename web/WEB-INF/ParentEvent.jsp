@@ -105,14 +105,14 @@
              </div>
                 <div class="col-lg-8">
                     <div class="largeImageBox">
-                    <img src="Image?type=event&id=${event.ID}" class="imgSize">
+                    <img  class="largeImage" src="Image?type=event&id=${event.ID}">
                     </div>
                     
                     
                     <div class="row">
                         <div class="col-lg-6">
                              <div class="socialLinkBackground">
-                                 <a href="" class="btn btn-group-justified">
+                                 <a href="${facebook}" class="btn btn-group-justified">
                                     <i class="fa fa-facebook fa-2x"></i>
                                     ${facebook}
                                  </a>
@@ -120,7 +120,7 @@
                         </div>
                         <div class="col-lg-6">
                              <div class="socialLinkBackground">
-                                <a href="" class="btn btn-group-justified" style="background-color: white;">
+                                <a href="${twitter}" class="btn btn-group-justified" style="background-color: white;">
                                     <i class="fa fa-twitter fa-2x"> </i>
                                     ${twitter}
                                  </a>
@@ -178,7 +178,7 @@
                     <div class="availableTickets">
                                 <div class="row" style ="margin-top: 20px;">
                                     <div class="col-lg-8">
-                                        <div class="panel" style="font-family: Impact, Charcoal, sans-serif; font-size: 25px;"> 
+                                        <div class="panel"> 
                                                  <div class="panel-heading">
                                                      Available Tickets
 
@@ -198,6 +198,7 @@
                     <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
                         <c:forEach var="cEvent" items="${childEvents}">
                             <%--<c:set var="venue" value="${event.venue}"/> --%>
+                            
                             <div class="col-lg-8 eventRow">
                                 
                                 <div class="col-lg-2 eventRowSegment"> <c:out value="${cEvent.startDateTime}"/></div>

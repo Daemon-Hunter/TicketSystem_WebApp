@@ -20,6 +20,10 @@
         <servlet-name>BuyTicketServlet</servlet-name>
         <servlet-class>com.servlets.BuyTicketServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadMoreServlet</servlet-name>
+        <servlet-class>com.servlets.LoadMoreServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignIn</servlet-name>
         <url-pattern>/SignIn</url-pattern>
@@ -43,11 +47,13 @@
         <servlet-name>BuyTicketServlet</servlet-name>
         <url-pattern>/BuyTickets.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadMoreServlet</servlet-name>
+        <url-pattern>/loadMore.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
-    
 </web-app>

@@ -69,6 +69,12 @@ public class VenueServlet extends HttpServlet {
         
         String venueID = request.getParameter("venuedata");
         IVenue venue = UserWrapper.getInstance().getVenue(Integer.parseInt(venueID));
+        
+         //check if venue has any current events
+        Boolean currentEvent = false;
+        if (venue.getChildEvents().size() >= 1)
+            currentEvent = true;
+        
         try {
             List<IChildEvent> venueEvents = venue.getChildEvents();
             request.setAttribute("venueEvents", venueEvents);
@@ -77,16 +83,23 @@ public class VenueServlet extends HttpServlet {
             ex.printStackTrace();
         }
        
+        try {
         String facebook = venue.getFacebook();
         String twitter = venue.getTwitter();
-       
-        //check if venue has any current events
-        Boolean currentEvent = false;
-        if (venue.getChildEvents().size() >= 1)
-            currentEvent = true;
-        
         request.setAttribute("twitter", twitter);
         request.setAttribute("facebook", facebook);
+        }
+        catch(NullPointerException e)
+        {
+            request.setAttribute("venue", venue);
+        request.setAttribute("currentEvent", currentEvent);
+        RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/venue.jsp");
+        view.forward(request, response);
+        
+        }
+       
+       
+        
         request.setAttribute("venue", venue);
         request.setAttribute("currentEvent", currentEvent);
         RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/venue.jsp");
