@@ -95,15 +95,26 @@ public class FilterServlet extends HttpServlet {
         String search = request.getParameter("user_search");
         String dateString = request.getParameter("dater");
         
+        request.setAttribute("artist", artist);
+        request.setAttribute("venue", venue);
+        request.setAttribute("event", event);
+        request.setAttribute("search", search);
+        request.setAttribute("date", dateString);
+        
+        RequestDispatcher view = request.getRequestDispatcher("debug.jsp");
+        //view.forward(request, response);
+        
         DateFilter df = new DateFilter();
         Date date = df.getDate(dateString);
       
        if (artist.equals("artist")) {
             List<IArtist> artists = UserWrapper.getInstance().searchArtists(search);
             request.setAttribute("fArtists", artists);
+            
+            view.forward(request, response);
         }
-        
-        if (venue.equals("venue")){
+        /*
+       if (venue.equals("venue")){
             List<IVenue> venues = UserWrapper.getInstance().searchVenues(search);
             request.setAttribute("fVenues", venues);
         }
@@ -121,8 +132,8 @@ public class FilterServlet extends HttpServlet {
        
         RequestDispatcher view = request.getRequestDispatcher("/searchResult");
         view.forward(request, response);
-                
-        
+         
+        */
         
     }
 

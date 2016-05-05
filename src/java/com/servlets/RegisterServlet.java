@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import people.Customer;
+import people.IUser;
+import utilities.HashString;
 import utilities.Validator;
+import wrappers.UserWrapper;
 
 /**
  *
@@ -64,22 +67,16 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         
         
-        String firstName = "";
-        String secondName = "";
-        String address = "";
-        String postcode = "";
-        String userName = "";
-        String password = "";
-        String passwordConfirm = "";
         
         
-        firstName = request.getParameter("firstName");
-        secondName = request.getParameter("surname");
-        address = request.getParameter("address");
-        postcode = request.getParameter("postcode");
-        userName = request.getParameter("email");
-        password = request.getParameter("password");
-        passwordConfirm = request.getParameter("passwordConfirm");
+        
+        String firstName = request.getParameter("firstName");
+        String secondName = request.getParameter("surname");
+        String address = request.getParameter("address");
+        String postcode = request.getParameter("postcode");
+        String userName = request.getParameter("email");
+        String password = request.getParameter("password");
+        String passwordConfirm = request.getParameter("passwordConfirm");
         
         
         
@@ -112,13 +109,21 @@ public class RegisterServlet extends HttpServlet {
             }
             
             else {
-                       
-                //Customer c = new Customer();
                 
+                //try{
+                IUser user = new Customer(firstName, secondName, userName, address, postcode, password);
+                UserWrapper.getInstance().registerUser(user);
                 request.setAttribute("username", userName);
                 request.setAttribute("name", firstName);
                 RequestDispatcher view = request.getRequestDispatcher("/registerComplete.jsp");
                 view.forward(request, response);
+                //}
+                //catch(Exception ex)
+                //{
+                    request.setAttribute("errorMessage", "An undefined error has occured");
+                //RequestDispatcher view = request.getRequestDispatcher("/register.jsp");
+                view.forward(request, response);
+                //}
             }
             
         }

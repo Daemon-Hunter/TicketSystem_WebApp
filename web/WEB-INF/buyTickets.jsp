@@ -46,7 +46,7 @@
         <div class="row">
             <div class="blue col-lg-12"> 
                 <div id="logoImage">
-                <a href="index.jsp">
+                <a href="index.do">
                 <img class="padding" src="images/Drawing.png">
                     </a>
                 </div>
@@ -94,10 +94,10 @@
                             <div class="row">
                                 
                                 <div class="col-lg-12">
-                                    <div  class="ticketDetailText"> Event: </div> ${childEvent.name} <hr>
-                                    <div  class="ticketDetailText"> Start:</div> ${childEvent.startDateTime}
-                                    <div  class="ticketDetailText"> End: </div> ${childEvent.endDateTime}  <hr>
-                                    <div  class="ticketDetailText"> Description:</div> ${childEvent.description}  
+                                    <div  class="ticketDetailText"> Event: </div> <span class="ticketActualDetails"> ${childEvent.name} </span> <hr>
+                                    <div  class="ticketDetailText"> Start:</div> <span class="ticketActualDetails"> ${childEvent.startDateTime} </span>
+                                    <div  class="ticketDetailText"> End: </div> <span class="ticketActualDetails"> ${childEvent.endDateTime} </span> <hr>
+                                    <div  class="ticketDetailText"> Description:</div> <span class="ticketActualDetails"> ${childEvent.description}  </span>
                                     <hr>
                                 </div>
                             </div>

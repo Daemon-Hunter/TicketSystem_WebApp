@@ -61,9 +61,20 @@ public class IndexServlet extends HttpServlet {
             throws ServletException, IOException {
         
         List<IParentEvent> list = UserWrapper.getInstance().getParentEvents();
+        List<IParentEvent> shortList = new LinkedList();
+        int elementAmount = 0;
+        if (list.size() > 11)
+        {
+            for(int i = 0; i < 12; i++)
+            {
+                elementAmount++;
+                IParentEvent toAdd = list.get(i);
+                shortList.add(toAdd);
+            }
+        }
         
-       
-        request.setAttribute("eventList", list);
+       request.setAttribute("amount", elementAmount);
+        request.setAttribute("eventList", shortList);
         
         //Forward request to index JSP page
         RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/index.jsp");

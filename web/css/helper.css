@@ -305,11 +305,23 @@ img{
 .availableTickets{
     font-family: Impact, Charcoal, sans-serif; 
     font-size: 25px;
-    margin-bottom: 25px;
-    margin-top: 20px;
+    padding-bottom: 25px;
+    padding-top: 20px;
 }
 
 .ticketOptions{
     font-size: 20px;
+}
+
+.ticketActualDetails{
+    font-size: 20px; 
+}
+
+.newEventGallery:hover {
+    background-color:  #000066;
+  -webkit-animation-name: greenPulse;
+  -webkit-animation-duration: 4s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-box-shadow: 0 0 18px #91bd09;
 }
 

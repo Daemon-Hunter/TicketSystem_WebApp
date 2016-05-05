@@ -13,14 +13,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <p> ${childEvent.name}  </p>
+        ${event}
+        ${artist}
+        ${venue}
+        ${search}
+        ${date}
         
-        <c:forEach var="child" items="${ticketList}">
-            ${child.type}
+        
+        <c:forEach items="${fArtists}" var="a">
+            ${a.name}
         </c:forEach>
-        
-        
-        
     </body>
 </html>

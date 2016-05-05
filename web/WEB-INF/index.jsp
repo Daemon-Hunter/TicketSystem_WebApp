@@ -17,6 +17,22 @@
         </style>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home</title>
+        
+        <script type="text/javascript"> 
+            $(document).ready(function() {
+                $('#loadMoreButton').click(function(event) {  
+                    var amount = $('#listIndex').val();
+                    $.ajax( {
+                        type: "GET",
+                        url: "/loadMore.do",
+                        data: {indexamount: amount}
+                    }).done(function(data){
+                    
+                 });
+                });
+            }); 
+            
+        </script>
     </head>
     <body>
         
@@ -46,8 +62,8 @@
         <div class="row">
             <div class="blue col-lg-12"> 
                 <div id="logoImage"> 
-                    <a href="index.jsp">
-                <img class="padding" src="images/Drawing.png">
+                    <a href="index.do">
+                <img class="padding" src="images/LogoWhite.png">
                     </a>
                 </div>
             </div>
@@ -88,7 +104,7 @@
                  
                 <div class="col-lg-12 "> 
                     <form action="searchResult" method="POST" class="topPadding form-inline">
-                         
+                        <lavel class="errorMessage">${ErrorMessage}</label>
                         <h1 style="font-size: 60px; font-family: Impact, Charcoal, sans-serif;" id="searchBarLeft"><span class="label">Complete Listings</span></h1>    
                                 
                                 <div class="input-group-addon" id="mainSearchBar">    
@@ -108,22 +124,26 @@
                 <div class="col-lg-12">
                     <div class="newEventHeader"> New Events <hr></div>
                     
-                    <c:forEach end="11" items="${eventList}" var="event" varStatus="index" >
+                    <c:forEach end="11" items="${eventList}" var="event">
                         
-                            <div class="col-lg-2  newEventGallery"> 
-                                <a href="event.do?eventdata=${event.ID}">
+                        <div class="col-lg-2  newEventGallery"> 
+                            <a href="event.do?eventdata=${event.ID}">
                                 <img class="eventImage" src="Image?type=event&id=${event.ID}">
-                                <div class="underImageInfo">
-                                    <div class="boxName"> ${event.name} </div> 
+                                 <div class="underImageInfo">
+                                     <div class="boxName"> ${event.name} </div> 
 
-                                    <div class="boxChildren">  </div>
+                                <div class="boxChildren">  </div>
                                 </div>
-                                </a>
-                            
+                            </a>  
                         </div>
                     </c:forEach>
                     
+                    <input type="hidden" id="listIndex" value="${amount}">
                     <div class="moreData">
+                        
+                        <div class="content">
+                            
+                        </div>
                         
                     </div>
                

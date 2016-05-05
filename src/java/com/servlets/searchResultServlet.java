@@ -71,10 +71,18 @@ public class searchResultServlet extends HttpServlet {
             throws ServletException, IOException {
        
         String userInput = request.getParameter("user_search");
+        
+        if (userInput.equals(""))
+        {
+            response.sendRedirect(request.getHeader("referer"));
+         
+        }
+        else {
+        
         List<IArtist> artistList = UserWrapper.getInstance().searchArtists(userInput);
         List<IVenue> venueList = UserWrapper.getInstance().searchVenues(userInput);
         List<IParentEvent> eventList = UserWrapper.getInstance().searchParentEvents(userInput);
-        
+       
         // Retrieve list of ArrayLists which match the users search
        
         // Seperate into lists of appropriate objects
@@ -83,12 +91,11 @@ public class searchResultServlet extends HttpServlet {
         request.setAttribute("artistList", artistList);
         request.setAttribute("venueList", venueList);
         request.setAttribute("eventList", eventList);
-        
-        
-        
+    
         // Send re-direct to search result page
         RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/searchResults.jsp");
         req.forward(request, response);
+        }
     }
 
     /**

@@ -50,7 +50,7 @@
         <div class="row">
             <div class="blue col-lg-12"> 
                 <div id="logoImage">
-                <a href="/com.servlets/index.do">
+                <a href="index.do">
                 <img class="padding" src="images/Drawing.png">
                     </a>
                 </div>
