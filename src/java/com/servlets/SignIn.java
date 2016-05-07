@@ -77,6 +77,7 @@ public class SignIn extends HttpServlet {
         catch(IllegalArgumentException ex)
         {
             request.setAttribute("loginFail", "Invalid username or password");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 

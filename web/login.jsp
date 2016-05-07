@@ -60,7 +60,7 @@
         
        <div class="container">
            <div class="paymentBox">
-               <form class="form-horizontal" role="form" action="signIn" method="post">
+               <form class="form-horizontal" role="form" action="SignIn" method="post">
     <fieldset>
         <legend> Login</legend>
         <label class="errorMessage"> <c:out value="${loginFail}" default=""/> </label>
