@@ -111,13 +111,13 @@
                                     </div>
                                     
                                      <div class="form-group">
-                                        <label for="email"> Address: </label>
-                                        <input type="text" class="form-control" name="address" placeholder="Enter email">
+                                        <label for="address"> Address: </label>
+                                        <input type="text" class="form-control" name="address" placeholder="Enter address">
                                     </div>
                                     
                                      <div class="form-group">
-                                        <label for="email"> PostcodeL </label>
-                                        <input type="text" class="form-control" name="postcode" placeholder="Enter email">
+                                        <label for="postcode"> Postcode </label>
+                                        <input type="text" class="form-control" name="postcode" placeholder="Enter postcode">
                                     </div>
 
                                     <div class="form-group">

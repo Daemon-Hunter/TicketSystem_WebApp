@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import people.IUser;
 import wrappers.UserWrapper;
 
 /**
@@ -66,8 +68,13 @@ public class SignIn extends HttpServlet {
         
         try {
             Boolean loggedIn = UserWrapper.getInstance().loginUser(username, password);
-            if (loggedIn)
-                request.getRequestDispatcher("MyJunction.jsp").forward(request, response);
+            if (loggedIn){
+                IUser currentUser = UserWrapper.getInstance().getUser();
+                HttpSession session = request.getSession();
+                session.setAttribute("currentUser", currentUser);
+                session.setAttribute("loggedIn", loggedIn);
+                request.getRequestDispatcher("WEB-INF/MyJunction.jsp").forward(request, response);
+            }
             else
             {
                  request.setAttribute("loginFail", "Invalid username or password");
