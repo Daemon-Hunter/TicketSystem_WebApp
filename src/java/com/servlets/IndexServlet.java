@@ -9,6 +9,7 @@ package com.servlets;
 
 import events.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -55,7 +56,15 @@ public class IndexServlet extends HttpServlet {
             throws ServletException, IOException {
         
         List<IParentEvent> list = UserWrapper.getInstance().getParentEvents();
-        List<IParentEvent> shortList = new LinkedList();
+        ArrayList<Integer> childEventAmount = new ArrayList();
+        for (IParentEvent parent: list)
+        {
+            List<IChildEvent> child = parent.getChildEvents();
+            int size = child.size();
+            childEventAmount.add(size);
+        }
+        
+        /*List<IParentEvent> shortList = new LinkedList();
         int elementAmount = 0;
         if (list.size() > 14)
         {
@@ -69,10 +78,11 @@ public class IndexServlet extends HttpServlet {
         else {
             request.setAttribute("eventList", list);
             request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-        }
+        }*/
         
-        request.setAttribute("amount", elementAmount);
-        request.setAttribute("eventList", shortList);
+        //request.setAttribute("amount", elementAmount);
+        request.setAttribute("eventList", list);
+        request.setAttribute("childAmount", childEventAmount);
         
         //Forward request to index JSP page
         RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/index.jsp");//

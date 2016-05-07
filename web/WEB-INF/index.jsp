@@ -114,7 +114,7 @@
                 <div class="col-lg-12">
                     <div class="newEventHeader"> New Events <hr></div>
                     
-                    <c:forEach items="${eventList}" var="event">
+                    <c:forEach items="${eventList}" var="event" varStatus="loop">
                         
                         <div class="col-lg-2  newEventGallery"> 
                             <a href="event.do?eventdata=${event.ID}">
@@ -122,7 +122,10 @@
                                  <div class="underImageInfo">
                                      <div class="boxName"> ${event.name} </div> 
 
-                                <div class="boxChildren">  </div>
+                                <div class="boxChildren"> 
+                                    ${childAmount[loop.index]} shows
+            
+                                </div>
                                 </div>
                             </a>  
                         </div>
