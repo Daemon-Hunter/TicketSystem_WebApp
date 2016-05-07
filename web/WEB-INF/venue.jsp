@@ -92,25 +92,23 @@
            
             
             <div class="row contentPosition">
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                     <div class="socialLinkBackground socialLinkTopRadius">
-                    <a href="" class="btn btn-group-justified">
-                        <i class="fa fa-plus-circle fa-2x"> Track</i>
-                        <span class=""> and receive updates</span>
-                    </a>
+                     <div class="infoPageTitle"> ${venue.name}</div>
                     </div>
                     
                    
              </div>
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <div class="largeImageBox">
+                        <c:set value="largeImage" var="imageSize"/>
                     <img class="largeImage" src="Images?type=venue$id=${venue.ID}">
                     </div>
                     
                     
                     
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                              <div class="socialLinkBackground">
                                  <a href="${facebook}" class="btn btn-group-justified">
                                     <i class="fa fa-facebook fa-2x"></i>
@@ -118,7 +116,7 @@
                                  </a>
                              </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                              <div class="socialLinkBackground">
                                 <a href="${twitter}" class="btn btn-group-justified" style="background-color: white;">
                                     <i class="fa fa-twitter fa-2x"> </i>
@@ -126,23 +124,27 @@
                                  </a>
                              </div>
                         </div>
+                                 
+                                   <div class="col-lg-4">
+                             <div class="">
+                    <a href="" class="btn btn-group-justified">
+                        <i class="fa fa-plus-circle fa-2x"> Track</i>
+                        
+                    </a>
+                    </div>
+                        </div>
                     </div>
                     
                     
-                     <%-- soundCloud 
-                <div class="col-lg-2">
-                     <a href="" class="btn btn-group-justified" style="background-color: white;">
-                        <i class="fa fa-soundcloud fa-2x"> </i>
-                    </a>
-                </div>
-                --%>
+                     
+                
                 </div>
                 
                  <div class="col-lg-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <span id="heading">
-                            ${venue.name}
+                            <p>Venue Information</p>
                         </span>
                     </div>
                     <div class="panel-body panelBodyBox">
@@ -176,34 +178,37 @@
             </div>
                 
                             
-                            
-             <div class="row" style ="margin-top: 20px;">
-                        <div class="col-lg-8">
-                            <div class="panel" style="font-family: Impact, Charcoal, sans-serif; font-size: 25px;"> 
-                                     <div class="panel-heading">
-                                         Tickets available at <c:out value="${venue.name}" default="venue"/>
+                                               
+                                         
+             <div class="availableTickets">
+                <div class="row" style ="margin-top: 20px;">
+                    <div class="col-lg-10">
+                        <div class="panel"> 
+                                 <div class="panel-heading">
+                                     Available Tickets
 
-                                    </div>
-                                 </div>
-                        </div>
-                    </div>               
-                    
+                                </div>
+                             </div>
+                    </div>
+                </div>
+            </div>                            
+                                         
             <c:choose>
                 <c:when test="${currentEvent eq 'true'}">
                 <%-- buy tickets --%>
-                <div class="availableTickets">
+                
                     
                         <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
 
 
                             <c:forEach var="event" items="${venueEvents}">
-                                <div class="col-lg-8">
+                                <div class="col-lg-10">
 
                                     <div class="eventRow" style="border: 4px; border-color: red;">
-                                        <div class="col-lg-1 eventRowSegment"> <c:out value="${event.startDateTime}"/></div>
+                                                    <div class="col-lg-3 eventRowSegment"> <c:out value="${event.startDateTime}"/></div>
                                                    <div class="col-lg-3 eventRowSegment"> <c:out value="${event.name}"/></div>
                                                    <div class="col-lg-3 eventRowSegment"> <c:out value="VENUE NAME HERE"/></div>
-                                                   <div class="col-lg-2 eventRowSegment"> <a href="event.do?eventdata=${event.ID}"><img class="eventImage" src="images/buyTicket.png"></a> </div>
+                                                   <div class="col-lg-3 eventRowBuy"> <a href="event.do?eventdata=${event.ID}"><img src="images/buyTicket.png"></a> </div>
                                                 </div>
 
                                 </div>
@@ -221,7 +226,7 @@
                     
                 </c:when>
                 </c:choose>
-            </div>
+            
                  
                
             

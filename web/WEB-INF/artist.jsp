@@ -24,10 +24,10 @@
         <title> ${currentArtist.name}</title>
     </head>
     <body>
-        
+
         <nav class="navbar navbar-inverse navbar-static-top">
             <ul class="nav navbar-nav pull-right" style="margin-right: 15%; font-size: 23px;">
-                
+
                 <li>
                     <a class="nav-link" href="register.jsp" >Register <span class="sr-only">(current)</span></a>
                   </li>
@@ -44,10 +44,10 @@
                                  </form>
                             </div>
                         </li>
-                  
+
                 </ul> 
         </nav>
-        
+
         <div class="row">
             <div class="blue col-lg-12"> 
                 <div id="logoImage">
@@ -56,9 +56,9 @@
                     </a>
                 </div>
             </div>
-                      
+
         </div>
-        
+
         <%-- Left top search bar --%>
         <div class="row">
             <div class="col-lg-3 leftSearch col-lg-offset-1">
@@ -78,72 +78,75 @@
                                   <option value=plymouth">Pooplop</option>
                             </select>
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                     </div>
                 </div>
              </div>
         </div>
-        
-         
-        
+
+
+
         <%-- content --%>
         <div class="container" style="position:relative;">
-           
-           
-            
+
+
+
             <div class="row contentPosition">
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                     <div class="socialLinkBackground socialLinkTopRadius">
-                    <a href="" class="btn btn-group-justified">
-                        <i class="fa fa-plus-circle fa-2x"> Track</i>
-                        <span class=""> and receive updates</span>
-                    </a>
+                     <div class="infoPageTitle"> ${currentArtist.name}</div>
                     </div>
-                    
-                   
+
+
              </div>
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <div class="largeImageBox">
+                        <c:set value="largeImage" var="imageSize"/>
                     <img class="largeImage" src="Image?type=artist&id=${currentArtist.ID}">
+
+
                     </div>
-                    
-                    
-                    <div class="row">
-                        <div class="col-lg-6">
-                             <div class="socialLinkBackground">
-                                 <a href="" class="btn btn-group-justified">
+
+
+                    <div class="row socialLinkBackground">
+                        <div class="col-lg-4">
+                             <div class="">
+                                 <a href="${facebook}" class="btn btn-group-justified">
                                     <i class="fa fa-facebook fa-2x"></i>
-                                    ${facebook}
+                                    
                                  </a>
                              </div>
                         </div>
-                        <div class="col-lg-6">
-                             <div class="socialLinkBackground">
-                                <a href="" class="btn btn-group-justified" style="background-color: white;">
+                        <div class="col-lg-4">
+                             <div class="">
+                                <a href=" ${twitter}" class="btn btn-group-justified" style="background-color: white;">
                                     <i class="fa fa-twitter fa-2x"> </i>
-                                    ${twitter}
+                                   
                                  </a>
                              </div>
+                        </div>
+                                 
+                        <div class="col-lg-4">
+                             <div class="">
+                                <a href="" class="btn btn-group-justified">
+                                    <i class="fa fa-plus-circle fa-2x"> Track</i>
+                        
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    
-                    
-                     <%-- soundCloud 
-                <div class="col-lg-2">
-                     <a href="" class="btn btn-group-justified" style="background-color: white;">
-                        <i class="fa fa-soundcloud fa-2x"> </i>
-                    </a>
+
+
+
                 </div>
-                --%>
-                </div>
-                
+
                  <div class="col-lg-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <span class="pageHeading">
-                            <c:out value="${currentArtist.name}"/>
+                            <p>Artist Information</p>
                         </span>
                     </div>
                     <div class="panel-body panelBodyBox">
@@ -158,20 +161,20 @@
                                     <i class="fa fa-instagram fa-2x"></i> <c:out value="${currentArtist.instagram}" default="Not available for this artist"/><br>
                         </span>
                         <hr>
-                        
+
 
                     </div>
                 </div>
             </div>
-                
+
             </div>
-                
-                    
+
+
             <%-- buy tickets --%>
             <div class="availableTickets">
                 <div class="row" style ="margin-top: 20px;">
-                    <div class="col-lg-8">
-                        <div class="panel availableTickets"> 
+                    <div class="col-lg-10">
+                        <div class="panel"> 
                                  <div class="panel-heading">
                                      Available Tickets
 
@@ -180,71 +183,61 @@
                     </div>
                 </div>
             </div>
-                
+
                 <c:choose>
                     <c:when test="${multiple eq true}">
-                    
+
                          <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
                         <c:forEach var="event" items="${childList}">
                             <%--<c:set var="venue" value="${event.venue}"/> --%>
-                            
-                            <div class="col-lg-8 eventRow">
+
+                            <div class="col-lg-10 eventRow">
                                 <c:set var="eventVenue" value="${event.venue}"/>
-                                <div class="col-lg-2 eventRowSegment"> <c:out value="${event.startDateTime}"/></div>
-                                <div class="col-lg-2 eventRowSegment"> <c:out value="${event.name}"/></div>
-                                <div class="col-lg-2 eventRowSegment"> <c:out value="${eventVenue.name}."/></div>
-                                <div class="col-lg-2 eventRowSegment"> <a href="event.do?eventdata=${event.ID}"><img src="images/buyTicket.png"></a></div>
-                               
+                                <div class="col-lg-3 eventRowSegment"> <c:out value="${event.startDateTime}"/></div>
+                                <div class="col-lg-3 eventRowSegment"> <c:out value="${event.name}"/></div>
+                                <div class="col-lg-3 eventRowSegment"> <c:out value="${eventVenue.name}."/></div>
+                                <div class="col-lg-3 eventRowBuy"> <a href="event.do?eventdata=${event.ID}"><img src="images/buyTicket.png"></a></div>
+
                             </div>
 
                         </c:forEach>
                     </div>
-            
-                            
 
-                        
-                    
+
+
+
+
                     </c:when>
-                    
+
                     <c:when test="${multiple eq false}">
-                         
+
                          <div class="col-lg-8 noTickets">
                         Currently no scheduled events 
                         </div>  
-                        
+
                     </c:when>
-                        
+
                 </c:choose>
-                
+
             </div>
-                 
-               
-            
-              
-            
-               
-            
-            
-        
-        
       <%-- footer --%>          
     <div class="container">
         <nav class="navbar navbar-inverse navbar-fixed-bottom">
-            
+
             <ul class="nav navbar-nav">
                 <li><a href="">Contact us</a></li>
                 <li class="divider"></li>
                 <li><a href=""> API</a></li>
                 <li class="divider"> </li>
                 <li><a href=""> About</a></li>
-            
+
             </ul>
-            
+
         </nav>
     </div>
-        
-       
-       
+
+
+
         <script src ="http://code.jquery.com/jquery.js"></script>
         <script src ="js/bootstrap.min.js"></script>
         <script src ="js/less.js"></script>
@@ -253,4 +246,4 @@
 </html>
 
 
- 
+

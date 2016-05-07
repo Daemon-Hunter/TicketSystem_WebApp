@@ -15,9 +15,6 @@
     <body>
        
         
-    
-        <c:forEach items="${tickets}" var="t">
-            ${t.type}
-        </c:forEach>
+    ${id}
     </body>
 </html>

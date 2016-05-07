@@ -93,38 +93,48 @@
            
             
             <div class="row contentPosition">
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                     <div class="socialLinkBackground socialLinkTopRadius">
-                    <a href="" class="btn btn-group-justified">
-                        <i class="fa fa-plus-circle fa-2x"> Track</i>
-                        <span class=""> and receive updates</span>
-                    </a>
+                    
+                        
+                        <div class="infoPageTitle"> ${event.name}</div>
+                    
                     </div>
                     
                    
              </div>
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <div class="largeImageBox">
-                    <img  class="largeImage" src="Image?type=event&id=${event.ID}">
+                        <c:set value="largeImage" var="imageSize"/>
+                         <img class="largeImage" src="Image?type=event&id=${event.ID}">
                     </div>
                     
                     
-                    <div class="row">
-                        <div class="col-lg-6">
-                             <div class="socialLinkBackground">
+                    <div class="row socialLinkBackground">
+                        <div class="col-lg-4">
+                             <div class="">
                                  <a href="${facebook}" class="btn btn-group-justified">
                                     <i class="fa fa-facebook fa-2x"></i>
                                     ${facebook}
                                  </a>
                              </div>
                         </div>
-                        <div class="col-lg-6">
-                             <div class="socialLinkBackground">
+                        <div class="col-lg-4">
+                             <div class="">
                                 <a href="${twitter}" class="btn btn-group-justified" style="background-color: white;">
                                     <i class="fa fa-twitter fa-2x"> </i>
                                     ${twitter}
                                  </a>
                              </div>
+                        </div>
+                                 
+                                  <div class="col-lg-4">
+                             <div class="">
+                    <a href="" class="btn btn-group-justified">
+                        <i class="fa fa-plus-circle fa-2x"> Track</i>
+                        
+                    </a>
+                    </div>
                         </div>
                     </div>
                     
@@ -133,10 +143,10 @@
                 </div>
                 
                  <div class="col-lg-4">
-                <div class="panel panel-default">
+                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <span class="pageHeading">
-                            <c:out value="${event.name}" />
+                            <p>Event Information</p>
                         </span>
                             <c:set var="cVenue" value="${childEvents[0]}" />
                         <p> @<c:out value="${cVenue.name}" default="Venue not available"/> </p>
@@ -164,6 +174,7 @@
 
                     </div>
                 </div>
+                            
             </div>
                 
             </div>
@@ -171,7 +182,7 @@
                     
                     <div class="availableTickets">
                                 <div class="row" style ="margin-top: 20px;">
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-10">
                                         <div class="panel"> 
                                                  <div class="panel-heading">
                                                      Available Tickets
@@ -193,11 +204,11 @@
                         <c:forEach var="cEvent" items="${childEvents}">
                             <%--<c:set var="venue" value="${event.venue}"/> --%>
                             
-                            <div class="col-lg-8 eventRow"> 
-                                <div class="col-lg-2 eventRowSegment"> <c:out value="${cEvent.startDateTime}"/></div>
-                                <div class="col-lg-2 eventRowSegment"> <c:out value="${cEvent.name}"/></div>
-                                <div class="col-lg-2 eventRowSegment"> <c:out value="Venue name, fix null pointer.."/></div>
-                                <div class="col-lg-6 "> <a href="ticketOption.do?parent=${event.ID}&child=${cEvent.ID}"><img class="eventImage" src="images/buyTicket.png"></a></div>
+                            <div class="col-lg-10 eventRow"> 
+                                <div class="col-lg-3 eventRowSegment"> <c:out value="${cEvent.startDateTime}"/></div>
+                                <div class="col-lg-3 eventRowSegment"> <c:out value="${cEvent.name}"/></div>
+                                <div class="col-lg-3 eventRowSegment"> <c:out value="Venue name, fix null pointer.."/></div>
+                                <div class="col-lg-3 eventRowBuy"> <a href="ticketOption.do?parent=${event.ID}&child=${cEvent.ID}"><img class="ticketImage" src="images/buyTicket.png"></a></div>
                                
                             </div> 
 

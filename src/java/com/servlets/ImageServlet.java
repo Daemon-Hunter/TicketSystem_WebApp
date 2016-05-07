@@ -6,18 +6,11 @@
 package com.servlets;
 
 import events.*;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -67,13 +60,19 @@ public class ImageServlet extends HttpServlet {
         ISocial soc = null;
         
         if (type.equals("event"))
-            soc = UserWrapper.getInstance().getParentEvent(Integer.parseInt(id));
+            soc = UserWrapper.getInstance().getParentEvent(Integer.parseInt(id)).getSocialMedia();
         else if(type.equals("artist"))
-            soc = UserWrapper.getInstance().getArtist(Integer.parseInt(id));
+            soc = UserWrapper.getInstance().getArtist(Integer.parseInt(id)).getSocialMedia();
         else if(type.equals("venue")) 
-            soc = UserWrapper.getInstance().getVenue(Integer.parseInt(id));
+            soc = UserWrapper.getInstance().getVenue(Integer.parseInt(id)).getSocialMedia();
         
-            BufferedImage image = soc.getImage(0);
+        BufferedImage image;
+        if ("largeImage".equals(request.getParameter("imageSize")))
+        {
+            image = soc.getImage(0);
+        }
+        else
+            image = soc.getImage(0);
           
             
             ByteArrayOutputStream byteStream = new ByteArrayOutputStream();

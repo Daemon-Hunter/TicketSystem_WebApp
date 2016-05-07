@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+         <script src ="js/myQuery.js"></script>
         <link href="css/helper.css" type="text/css" rel="stylesheet">
         <link href="less/myLess.less" type="text/css" rel="stylesheet/less">
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -18,15 +19,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home</title>
         
-        <script type="text/javascript"> 
-            
-                    function loadMore() {        // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
-                    $.get("/loadMore.do", function(responseXml) {                // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response XML...
-                         $(".moreData").html($(responseXml).find("data").html()); // Parse XML, find <data> element and append its HTML to HTML DOM element with ID "somediv".
-                    });
-                };
-            
-        </script>
+        
     </head>
     <body>
         
@@ -118,7 +111,7 @@
                 <div class="col-lg-12">
                     <div class="newEventHeader"> New Events <hr></div>
                     
-                    <c:forEach end="11" items="${eventList}" var="event">
+                    <c:forEach items="${eventList}" var="event">
                         
                         <div class="col-lg-2  newEventGallery"> 
                             <a href="event.do?eventdata=${event.ID}">
@@ -140,7 +133,7 @@
                
                 </div>
                 
-                    <a id="loadMoreButton" onclick="loadMore();"> Load more </a>
+                    <a class="loadMoreButton"> Load more </a>
                     
             </div>
                 
