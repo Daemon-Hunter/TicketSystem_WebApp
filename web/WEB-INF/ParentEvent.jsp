@@ -128,14 +128,8 @@
                         </div>
                     </div>
                     
-                    
-                     <%-- soundCloud 
-                <div class="col-lg-2">
-                     <a href="" class="btn btn-group-justified" style="background-color: white;">
-                        <i class="fa fa-soundcloud fa-2x"> </i>
-                    </a>
-                </div>
-                --%>
+                   
+                
                 </div>
                 
                  <div class="col-lg-4">
@@ -195,21 +189,20 @@
                 <c:when test="${multipleChildren eq 'true'}">
                 <%-- buy tickets --%>
                 
-                    <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
+                <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
                         <c:forEach var="cEvent" items="${childEvents}">
                             <%--<c:set var="venue" value="${event.venue}"/> --%>
                             
-                            <div class="col-lg-8 eventRow">
-                                
+                            <div class="col-lg-8 eventRow"> 
                                 <div class="col-lg-2 eventRowSegment"> <c:out value="${cEvent.startDateTime}"/></div>
                                 <div class="col-lg-2 eventRowSegment"> <c:out value="${cEvent.name}"/></div>
                                 <div class="col-lg-2 eventRowSegment"> <c:out value="Venue name, fix null pointer.."/></div>
-                                <div class="col-lg-2 eventRowSegment"> <a href="ticketOption.do?parent=${event.ID}&child=${cEvent.ID}"><img class="eventImage" src="images/buyTicket.png"></a></div>
+                                <div class="col-lg-6 "> <a href="ticketOption.do?parent=${event.ID}&child=${cEvent.ID}"><img class="eventImage" src="images/buyTicket.png"></a></div>
                                
-                            </div>
+                            </div> 
 
                         </c:forEach>
-                    </div>
+                </div> 
                 </c:when>
                 
                 <c:when test="${multipleChildren eq false}">

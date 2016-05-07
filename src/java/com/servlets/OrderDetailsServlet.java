@@ -5,34 +5,33 @@
  */
 package com.servlets;
 
-import events.IArtist;
-import events.IChildEvent;
-import events.IParentEvent;
-import events.IVenue;
+import bookings.GuestBooking;
+import bookings.IBooking;
+import bookings.IOrder;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import utilities.DateFilter;
+import javax.servlet.http.HttpSession;
+import people.Guest;
+import people.IGuest;
+import tickets.ITicket;
+import utilities.Validator;
 import wrappers.UserWrapper;
 
 /**
  *
  * @author Ruth
  */
-@WebServlet(name = "FilterServlet", urlPatterns = {"/filter.do"})
-public class FilterServlet extends HttpServlet {
+@WebServlet(name = "OrderDetailsServlet", urlPatterns = {"/orderDetails.do"})
+public class OrderDetailsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,10 +51,10 @@ public class FilterServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FilterServlet</title>");            
+            out.println("<title>Servlet OrderDetailsServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet FilterServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet OrderDetailsServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
@@ -90,62 +89,41 @@ public class FilterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String artist = request.getParameter("artist");
-        String venue = request.getParameter("venue");
-        String event = request.getParameter("event");
-        String search = request.getParameter("user_search");
-        String dateString = request.getParameter("dater");
+        HttpSession session = request.getSession();
+        List<List<ITicket>> ticketList = (List)session.getAttribute("tickets");
+        String guestEmail = request.getParameter("email");
+        String guestAddress = request.getParameter("address");
+        String guestPostcode = request.getParameter("postcode");
         
-        request.setAttribute("artist", artist);
-        request.setAttribute("venue", venue);
-        request.setAttribute("event", event);
-        request.setAttribute("user_search", search);
-        request.setAttribute("date", dateString);
-        
-        
-        
-        DateFilter df = new DateFilter();
-        Date date = df.getDate(dateString);
-       if (artist != null){
-            if (artist.equals("artist")) {
-                 List<IArtist> artists = UserWrapper.getInstance().searchArtists(search);
-                 request.setAttribute("fArtists", artists); 
-                 request.setAttribute("displayArtist", "true");
-             }
-       }
-       
-       if (venue != null){
-            if (venue.equals("venue")){
-                 List<IVenue> venues = UserWrapper.getInstance().searchVenues(search);
-                 request.setAttribute("fVenues", venues);
-                 request.setAttribute("displayVenue", "true");
-             }
-       }
-       
-
-       
-       
-        if (event != null){
-            if(event.equals("event")){
-                List<IParentEvent> events = new LinkedList();
-                for (IParentEvent e : UserWrapper.getInstance().searchParentEvents(search))
-                {
-                    if (e.getChildEvents().size() > 0)
-                        {
-                            IChildEvent child = e.getChildEvents().get(0);
-                            if (child.getStartDateTime().after(date))
-                                events.add(e);
-                        }
-                }
-                request.setAttribute("fEvents", events);
-                request.setAttribute("displayEvent", "true");
-            }
+        if (!Validator.postcodeValidator(guestPostcode)){
+            request.setAttribute("error", "Please enter a valid postcode");
+            request.getRequestDispatcher("Payment.jsp").forward(request, response);
+        }
+        if (!Validator.emailValidator(guestEmail)){
+            request.setAttribute("error", "Please enter a valid email");
+            request.getRequestDispatcher("Payment.jsp").forward(request, response);
+        }
+        if (!Validator.addressValidator(guestAddress)){
+            request.setAttribute("error", "Please enter a valid address");
+            request.getRequestDispatcher("Payment.jsp").forward(request, response);
+        }
+            
+        IGuest newGuest = new Guest(guestEmail, guestPostcode, guestAddress);
+        List<IBooking> bookings = new LinkedList();
+        for (List<ITicket> tList:  ticketList)
+        {
+            ITicket ticket = tList.get(0);
+            int qty = tList.size();
+            Date date = new Date();
+            IBooking guestBooking = new GuestBooking(ticket, qty, date, newGuest);
+            bookings.add(guestBooking);
         }
         
-       
-       RequestDispatcher view = request.getRequestDispatcher("WEB-INF/FilteredSearchResults.jsp");
-        view.forward(request, response);
-         
+        //IOrder completeOrder = UserWrapper.getInstance().makeBooking(bookings);
+        request.setAttribute("bookingList", bookings);
+        //request.setAttribute("order", completeOrder);
+        session.removeAttribute("tickets");
+        request.getRequestDispatcher("WEB-INF/orderConfirm.jsp").forward(request, response);
        
         
         

@@ -10,18 +10,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Helor :)</title>
     </head>
     <body>
-        ${event}
-        ${artist}
-        ${venue}
-        ${search}
-        ${date}
+       
         
-        
-        <c:forEach items="${fArtists}" var="a">
-            ${a.name}
+    
+        <c:forEach items="${tickets}" var="t">
+            ${t.type}
         </c:forEach>
     </body>
 </html>

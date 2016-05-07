@@ -72,11 +72,14 @@ public class TicketOptionsServlet extends HttpServlet {
         
         String parent = request.getParameter("parent");
         String child = request.getParameter("child");
+        
         int parentID = Integer.parseInt(parent);
         int childID = Integer.parseInt(child);
+        IParentEvent parentEvent = UserWrapper.getInstance().getParentEvent(parentID);
+        IChildEvent purchaseEvent = parentEvent.getChildEvent(childID);
         
-        IChildEvent purchaseEvent = UserWrapper.getInstance().getParentEvent(parentID).getChildEvent(childID);
         request.setAttribute("childEvent", purchaseEvent);
+        request.setAttribute("parentEvent", parentEvent);
  
           List<ITicket> tickets = purchaseEvent.getTickets();
           request.setAttribute("ticketList", tickets);

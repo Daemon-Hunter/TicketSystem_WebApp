@@ -94,7 +94,7 @@
                             <div class="row">
                                 
                                 <div class="col-lg-12">
-                                    <div  class="ticketDetailText"> Event: </div> <span class="ticketActualDetails"> ${childEvent.name} </span> <hr>
+                                    <div  class="ticketDetailText"> Event Name: </div> <span class="ticketActualDetails"> ${childEvent.name} </span> <hr>
                                     <div  class="ticketDetailText"> Start:</div> <span class="ticketActualDetails"> ${childEvent.startDateTime} </span>
                                     <div  class="ticketDetailText"> End: </div> <span class="ticketActualDetails"> ${childEvent.endDateTime} </span> <hr>
                                     <div  class="ticketDetailText"> Description:</div> <span class="ticketActualDetails"> ${childEvent.description}  </span>
@@ -120,23 +120,39 @@
                             
                             <%-- Ticket options data --%>
                             <div class="row">
-                                <c:forEach items="${ticketList}" var="ticket">
-                                    <div class="col-lg-4" class="ticketOptions">
-                                        <div class="ticketDetailText">  ${ticket.type}</div>
-                                    </div>
-                                    <div class="col-lg-4" class="ticketOptions">
-                                        <div class="ticketDetailText"> ${ticket.price}</div>
-                                    </div>
-                                    <div class="col-lg-4" class="ticketOptions">
-                                        <select class="form-control" style="width: 5em" placeholder="Location">
-                                    <option value=one">1</option>
-                                     <option value=two">2</option>
-                                      <option value=three">3</option>
-                                </select>
-                                    </div>
-                                </c:forEach>
+                                <form action="orderSummary.do" method="get">
+                                    <c:forEach items="${ticketList}" var="ticket" varStatus="loop">
+                                        <div class="col-lg-4" class="ticketOptions">
+                                            <div class="ticketDetailText">  ${ticket.type}</div>
+
+                                        </div>
+                                        <div class="col-lg-4" class="ticketOptions">
+                                            <div class="ticketDetailText"> ${ticket.price}</div>
+                                        </div>
+                                        <div class="col-lg-4" class="ticketOptions">
+                                            <select name="hello${loop.count}" class="form-control" style="width: 5em">
+
+                                                <option value="0:${ticket.ID}">0</option>       
+                                                <option value="1:${ticket.ID}">1</option>
+                                                <option value="2:${ticket.ID}">2</option>
+                                                <option value="3:${ticket.ID}">3</option>
+                                                <option value="4:${ticket.ID}">4</option>
+                                                <option value="5:${ticket.ID}">5</option>
+                                                <option value="6:${ticket.ID}">6</option>
+                                                <option value="7:${ticket.ID}">7</option>
+                                                <option value="8:${ticket.ID}">8</option>
+                                            </select>
+                                        </div>
+                                    </c:forEach>
+                                    <input type="hidden"  value="${parentEvent.ID}"  name="parent"/>
+                                    <input type="hidden" value="${childEvent.ID}" name="child"/>
+                                    <input type="submit" value="Checkout" class="btn btn-lg btn-primary" style="margin: 30px;">
+                                    
+                                </form>
                             </div>
-                            <button class="btn btn-lg btn-primary" style="margin-top: 30px;"> Buy ></button>
+                            
+                            
+                            
                         </div>
                     <div>
                 </div>

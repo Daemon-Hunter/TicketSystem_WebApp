@@ -5,12 +5,13 @@
  */
 package com.servlets;
 
-import com.google.gson.Gson;
+
 import events.IParentEvent;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -65,23 +66,18 @@ public class LoadMoreServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        int loadIndex = Integer.parseInt(request.getParameter("indexamount"));
+        //int loadIndex = Integer.parseInt(request.getParameter("indexamount"));
         List<IParentEvent> event = UserWrapper.getInstance().getParentEvents();
         List<IParentEvent> moreEvents = new LinkedList();
-        for (int i = loadIndex; i < loadIndex + 15; i++)
+        /*for (int i = loadIndex; i < loadIndex + 15; i++)
         {
             IParentEvent toAdd = event.get(i);
             moreEvents.add(toAdd);
-        }
-        request.setAttribute("moreEvents", moreEvents);
-        
-       String json = null;
-       json = new Gson().toJson(moreEvents);
+        }*/
+        request.setAttribute("moreEvents", event);
+        request.getRequestDispatcher("d/WEB-INF/includes/moreDetailsTab.jsp").forward(request, response); //
        
-       response.setContentType("application/json");
-       response.setCharacterEncoding("UTF-8");
-       response.getWriter().write(json);
-        
+      
         
     }
 

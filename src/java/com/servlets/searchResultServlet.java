@@ -9,6 +9,7 @@ import events.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -82,7 +83,8 @@ public class searchResultServlet extends HttpServlet {
         List<IArtist> artistList = UserWrapper.getInstance().searchArtists(userInput);
         List<IVenue> venueList = UserWrapper.getInstance().searchVenues(userInput);
         List<IParentEvent> eventList = UserWrapper.getInstance().searchParentEvents(userInput);
-       
+      
+        
         // Retrieve list of ArrayLists which match the users search
        
         // Seperate into lists of appropriate objects

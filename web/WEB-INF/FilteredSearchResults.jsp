@@ -95,7 +95,7 @@
                        <div class="filterBox">
                            <p> Filter </p>
                            <hr>
-                           Search Term: <p>"${user_search}" </p>
+                           <p> Search Term: "${user_search}" </p>
                            <hr>
                            <%-- Category filter --%>
                             <div class="checkbox">
@@ -118,7 +118,7 @@
                            <hr>--%>
                            <%-- Date filter --%>
                            <p> Filter by Date: </p>
-                          
+                           
                            <div class="dateFilter"> <input name="dater"></div>
                            
                            <hr>
@@ -130,25 +130,31 @@
                        </form>
                    </div>
                 <div class="col-lg-9">
-                    <div class="artist">
-                        
-                     <c:forEach items="${artistList}" var="artist" varStatus="loop">
-                         
-                                <a href="artist?artistdata=${artist.ID}" >
-                                    <div class="col-lg-3 newEventGallery" id="${loop.index}"> 
-                                        <img class="eventImage" src="Image?type=artist&id=${artist.ID}">
-                                        <div class="underImageInfo">
-                                            <div class="boxName"> ${artist.name} </div> 
+                    <c:choose> 
+                        <c:when test="${displayArtist eq true}">
+                             <div class="artist">
+                    
+                        <c:forEach items="${fArtists}" var="artist" varStatus="loop">
 
-                                            <div class="boxChildren">  </div>
+                                    <a href="artist?artistdata=${artist.ID}" >
+                                        <div class="col-lg-3 newEventGallery" id="${loop.index}"> 
+                                            <img class="eventImage" src="Image?type=artist&id=${artist.ID}">
+                                            <div class="underImageInfo">
+                                                <div class="boxName"> ${artist.name} </div> 
+
+                                                <div class="boxChildren">  </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>                 
-                    </c:forEach> 
-                        
-                    </div>
+                                    </a>                 
+                        </c:forEach> 
+                      
+                        </div>
+                    </c:when>
+                            
+                             
+                <c:when test="${displayVenue eq true}">
                     <div class="venue" style="color: red">
-                        <c:forEach items="${venueList}" var="venue" varStatus="loop">
+                        <c:forEach items="${fVenues}" var="venue" varStatus="loop">
                             <a href="venue.do?venuedata=${venue.ID}">
                                 <div class="col-lg-3 newEventGallery" id="${loop.index}"> 
                                      <img class="eventImage" src="Image?type=venue&id=${venue.ID}">
@@ -162,26 +168,48 @@
                                 
                             </a>
                         </c:forEach>
-                        <div class="event">
-                        <c:forEach items="${eventList}" var="event" varStatus="loop">
-                            <a href="event.do?eventdata=${event.ID}">
-                                <div class="col-lg-3 newEventGallery" id="${loop.index}"> 
-                                     <img class="eventImage" src="Image?type=event&id=${event.ID}">
-                 
-                                     <div class="underImageInfo">
-                                        <div class="boxName"> ${event.name} </div> 
+                    </c:when>
+                       
+                        <c:when test="${displayEvent eq true}">
+                            <div class="event">
+                            <c:forEach items="${fEvents}" var="event" varStatus="loop">
+                                <a href="event.do?eventdata=${event.ID}">
+                                    <div class="col-lg-3 newEventGallery" id="${loop.index}"> 
+                                         <img class="eventImage" src="Image?type=event&id=${event.ID}">
 
-                                        <div class="boxChildren">  </div>
+                                         <div class="underImageInfo">
+                                            <div class="boxName"> ${event.name} </div> 
+
+                                            <div class="boxChildren">  </div>
+                                        </div>
+
+
                                     </div>
-                                     
-                                    
-                                </div>
-                            </a>
-                        </c:forEach>
+                                </a>
+                            </c:forEach>
+                        </c:when>
+                                
+                    </c:choose>
                         </div>
                     </div>
-
-                   
+                  
+                    
+                    
+                    
+                    <%-- <a href="artist?artistdata=${artistList["1"].ID}" ><div class="col-lg-3 newEventGallery" id="2"> ${artistList["1"].name} </div></a>
+                    <a href="artist?artistdata=${artistList["2"].ID}" ><div class="col-lg-3 newEventGallery" id="3"> ${artistList["2"].name} </div></a>
+                    <a href="artist?artistdata=${artistList["3"].ID}" ><div class="col-lg-3 newEventGallery" id="4"> ${artistList["3"].name} </div></a>
+                    
+                    <a href="artist?artistdata=${artistList["4"].ID}" ><div class="col-lg-3 newEventGallery" id="5"> ${artistList["4"].name} </div></a>
+                    <a href="artist?artistdata=${artistList["5"].ID}" ><div class="col-lg-3 newEventGallery" id="6"> ${artistList["5"].name} </div></a>
+                    <a href="artist?artistdata=${artistList["6"].ID}" ><div class="col-lg-3 newEventGallery" id="7"> ${artistList["6"].name} </div></a>
+                    <a href="artist?artistdata=${artistList["7"].ID}" ><div class="col-lg-3 newEventGallery" id="8"> ${artistList["7"].name} </div></a>
+                    
+                    <a href="artist?artistdata=${artistList["8"].ID}" ><div class="col-lg-3 newEventGallery" id="9"> ${artistList["8"].name} </div></a>
+                    <a href="artist?artistdata=${artistList["9"].ID}" ><div class="col-lg-3 newEventGallery" id="10"> ${artistList["9"].name} </div></a>
+                    <a href="artist?artistdata=${artistList["10"].ID}" ><div class="col-lg-3 newEventGallery" id="11"> ${artistList["10"].name} </div></a>
+                    <a href="artist?artistdata=${artistList["11"].ID}" ><div class="col-lg-3 newEventGallery" id="12"> ${artistList["11"].name} </div></a>
+                   --%>
                 </div>
                
                    

@@ -19,18 +19,12 @@
         <title>Home</title>
         
         <script type="text/javascript"> 
-            $(document).ready(function() {
-                $('#loadMoreButton').click(function(event) {  
-                    var amount = $('#listIndex').val();
-                    $.ajax( {
-                        type: "GET",
-                        url: "/loadMore.do",
-                        data: {indexamount: amount}
-                    }).done(function(data){
-                    
-                 });
-                });
-            }); 
+            
+                    function loadMore() {        // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
+                    $.get("/loadMore.do", function(responseXml) {                // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response XML...
+                         $(".moreData").html($(responseXml).find("data").html()); // Parse XML, find <data> element and append its HTML to HTML DOM element with ID "somediv".
+                    });
+                };
             
         </script>
     </head>
@@ -63,7 +57,7 @@
             <div class="blue col-lg-12"> 
                 <div id="logoImage"> 
                     <a href="index.do">
-                <img class="padding" src="images/LogoWhite.png">
+                <img class="padding" src="images/FINALLOGO.png">
                     </a>
                 </div>
             </div>
@@ -141,15 +135,12 @@
                     <input type="hidden" id="listIndex" value="${amount}">
                     <div class="moreData">
                         
-                        <div class="content">
-                            
-                        </div>
-                        
+                         
                     </div>
                
                 </div>
                 
-                <a href="#" class="loadMoreButton"> Load more</a>
+                    <a id="loadMoreButton" onclick="loadMore();"> Load more </a>
                     
             </div>
                 
@@ -178,7 +169,7 @@
         <script src ="http://code.jquery.com/jquery.js"></script>
         <script src ="js/bootstrap.min.js"></script>
         <script src ="js/less.js"></script>
-        <script src ="js/jQuery.js"></script>
+        <script src ="js/myQuery.js"></script>
     </body>
 </html>
 

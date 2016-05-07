@@ -6,23 +6,15 @@
 package com.servlets;
 
 import events.*;
-import database.APIHandle;
-import database.DatabaseTable;
-
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import wrappers.UserWrapper;
 
 /**
@@ -63,21 +55,25 @@ public class IndexServlet extends HttpServlet {
         List<IParentEvent> list = UserWrapper.getInstance().getParentEvents();
         List<IParentEvent> shortList = new LinkedList();
         int elementAmount = 0;
-        if (list.size() > 11)
+        if (list.size() > 14)
         {
-            for(int i = 0; i < 12; i++)
+            for(int i = 0; i < 14; i++)
             {
                 elementAmount++;
                 IParentEvent toAdd = list.get(i);
                 shortList.add(toAdd);
             }
         }
+        else {
+            request.setAttribute("eventList", list);
+            request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+        }
         
-       request.setAttribute("amount", elementAmount);
+        request.setAttribute("amount", elementAmount);
         request.setAttribute("eventList", shortList);
         
         //Forward request to index JSP page
-        RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/index.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/index.jsp");//
         view.forward(request, response);
     }
     /**

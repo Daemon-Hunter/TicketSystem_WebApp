@@ -167,12 +167,12 @@ img{
     font-size: 25px;
 }
 
-/* not working.... */
+
 .newEventGallery{
-    border: 3px #fff solid;
-    height: 180px;
+    border: 2px #fff solid;
+    height: 215px;
     padding: 0px;
-    margin: 1px;
+    margin: 2px;
     background-color: gray;
     
 }
@@ -185,9 +185,11 @@ img{
 }
 
 .eventImage{
-    max-height: 70%;
-    max-width: 100%;
+    border: #fff double thin;
+    width: 100%;
+    height: 75%;
     text-align: center;
+    
     padding:1px;
     
 }
@@ -195,7 +197,8 @@ img{
 /* buy ticket page text formatting */
 .panel-body .row .col-lg-12 .ticketDetailText{
     font-family: sans-serif;
-    font-size: 25px;
+    font-size: 20px;
+    font-style:  obliqu
 }
 
 .row .col-lg-12 .newEventHeader {
@@ -214,6 +217,7 @@ img{
 .ticketDetailsSmall{
     font-family: cursive; 
     font-size: 30px;
+    
 }
 
 .filterBox{
@@ -223,7 +227,7 @@ img{
     font-family: sans-serif ;
     font-weight: bold;
     font-size: 15px;
-    height: 400px;
+    height: 500px;
 }
 
 .pageHeading{
@@ -311,10 +315,12 @@ img{
 
 .ticketOptions{
     font-size: 20px;
+    border-bottom:  #000066 dashed thin;
+    
 }
 
 .ticketActualDetails{
-    font-size: 20px; 
+    font-size: 16px; 
 }
 
 .newEventGallery:hover {
@@ -325,3 +331,15 @@ img{
   -webkit-box-shadow: 0 0 18px #91bd09;
 }
 
+.paymentBox{
+    padding: 30px;
+    margin-top: 150px;
+    background-color: white;
+    border:  #000066 inset thin;
+    border-radius: 5px;
+}
+
+#logoImage{
+    height: 200px;
+    margin-left: 80px;
+}
