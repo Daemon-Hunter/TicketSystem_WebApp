@@ -67,15 +67,17 @@ public class LoadMoreServlet extends HttpServlet {
             throws ServletException, IOException {
         
         //int loadIndex = Integer.parseInt(request.getParameter("indexamount"));
-        List<IParentEvent> event = UserWrapper.getInstance().getParentEvents();
-        List<IParentEvent> moreEvents = new LinkedList();
+        
+       
+        //List<IParentEvent> moreEvents = new LinkedList();
         /*for (int i = loadIndex; i < loadIndex + 15; i++)
         {
             IParentEvent toAdd = event.get(i);
             moreEvents.add(toAdd);
         }*/
+        List<IParentEvent> event = UserWrapper.getInstance().getParentEvents();
         request.setAttribute("moreEvents", event);
-        request.getRequestDispatcher("d/WEB-INF/includes/moreDetailsTab.jsp").forward(request, response); //
+        request.getRequestDispatcher("WEB-INF/includes/moreDetailsTab.jsp").forward(request, response); //
        
       
         

@@ -154,7 +154,9 @@ img{
 
 .socialLinkBackground{
     background-color: #fff;
-    border: black thin double
+    border: black thin double;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
         
 }
 
@@ -311,9 +313,9 @@ img{
 
 .largeImageBox{
     width: 100%;
-    height: 400px;
+    height: 450px;
     text-align: center;
-    border:  #000066 ridge thick;
+    border: #080808 medium solid ; 
     border-radius: 2px;
     
 }
@@ -353,6 +355,7 @@ img{
 
 .paymentBox{
     padding: 30px;
+    padding-bottom: 100px;
     margin-top: 150px;
     background-color: white;
     border:  #000066 inset thin;
@@ -381,5 +384,7 @@ img{
     font-weight: bold;
     font-style: inherit;
     font-family: Impact, Charcoal, sans-serif;
+    color:   #000066;
+    text-shadow: 3px 0px 2px rgba(150, 150, 150, 1);
         
 }

@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utilities.ImageScale;
 import wrappers.UserWrapper;
 
 /**
@@ -67,9 +68,12 @@ public class ImageServlet extends HttpServlet {
             soc = UserWrapper.getInstance().getVenue(Integer.parseInt(id)).getSocialMedia();
         
         BufferedImage image;
-        if ("largeImage".equals(request.getParameter("imageSize")))
+        if ("large".equals(request.getParameter("image")))
         {
             image = soc.getImage(0);
+            image = ImageScale.resize(image, 400, 400);
+            if (image != null)
+                image=soc.getImage(3);
         }
         else
             image = soc.getImage(0);

@@ -93,7 +93,18 @@ public class OrderSummaryServlet extends HttpServlet {
                 List<ITicket> aList = new LinkedList();
                 for (int j = 0 ; j < qty; j++)
                 {
+                    
                     aList.add(tickets.get(i-1));
+                    
+                    //Check if there are enough tickets for sale
+                    ITicket ticketCheck = aList.get(0);
+                    if (ticketCheck.getRemaining() < qty)
+                    {
+                        String failedTicket = ticketCheck.getType();
+                        request.setAttribute("ticketError", "Not enough tickets for" + failedTicket);
+                        String path = "ticketOption.do?parent="+pId +"&child="+cId;
+                        request.getRequestDispatcher(path);
+                    }
                 }
                 //Add the list to the list of lists
                 listOfTickets.add(aList);

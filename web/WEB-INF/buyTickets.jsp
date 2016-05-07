@@ -121,6 +121,7 @@
                             <%-- Ticket options data --%>
                             <div class="row">
                                 <form action="orderSummary.do" method="get">
+                                    ${ticketError}
                                     <c:forEach items="${ticketList}" var="ticket" varStatus="loop">
                                         <div class="col-lg-4" class="ticketOptions">
                                             <div class="ticketDetailText">  ${ticket.type}</div>

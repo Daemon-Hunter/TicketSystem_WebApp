@@ -3,11 +3,12 @@
     Created on : 06-May-2016, 10:05:27
     Author     : Ruth
 --%>
+
+<%@page contentType="application/xml" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 <data>
-    <c:forEach end="11" items="${loadMoreList}" var="more">
+    <c:forEach items="${moreEvents}" var="more">
                         
         <div class="col-lg-2  newEventGallery"> 
             <a href="event.do?eventdata=${more.ID}">

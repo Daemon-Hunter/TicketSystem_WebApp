@@ -105,8 +105,8 @@
              </div>
                 <div class="col-lg-6">
                     <div class="largeImageBox">
-                        <c:set value="largeImage" var="imageSize"/>
-                         <img class="largeImage" src="Image?type=event&id=${event.ID}">
+                        
+                         <img class="largeImage" src="Image?type=event&id=${event.ID}&image=large">
                     </div>
                     
                     

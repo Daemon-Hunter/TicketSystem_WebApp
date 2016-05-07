@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-         <script src ="js/myQuery.js"></script>
+        
         <link href="css/helper.css" type="text/css" rel="stylesheet">
         <link href="less/myLess.less" type="text/css" rel="stylesheet/less">
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -19,7 +19,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home</title>
         
-        
+        <script src ="http://code.jquery.com/jquery.js"></script>
+        <script src ="js/bootstrap.min.js"></script>
+        <script src ="js/less.js"></script>
+        <script src= "js/myQuery.js"></script>
     </head>
     <body>
         
@@ -50,7 +53,7 @@
             <div class="blue col-lg-12"> 
                 <div id="logoImage"> 
                     <a href="index.do">
-                <img class="padding" src="images/FINALLOGO.png">
+                <img class="padding" src="images/newLogoTicket.png">
                     </a>
                 </div>
             </div>
@@ -126,18 +129,15 @@
                     </c:forEach>
                     
                     <input type="hidden" id="listIndex" value="${amount}">
-                    <div class="moreData">
-                        
-                         
+                    <div id="moreData"> 
                     </div>
-               
                 </div>
                 
-                    <a class="loadMoreButton"> Load more </a>
-                    
+                 <button id="loadMoreButton"> Load more </button>  
+                 
+                 
             </div>
-                
-                
+                   
        </div>
                 
                
@@ -158,11 +158,7 @@
     </container>
         
     
-       
-        <script src ="http://code.jquery.com/jquery.js"></script>
-        <script src ="js/bootstrap.min.js"></script>
-        <script src ="js/less.js"></script>
-        <script src ="js/myQuery.js"></script>
+        
     </body>
 </html>
 

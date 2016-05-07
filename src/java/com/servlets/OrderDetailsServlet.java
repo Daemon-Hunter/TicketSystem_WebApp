@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -113,14 +113,19 @@ public class OrderDetailsServlet extends HttpServlet {
         for (List<ITicket> tList:  ticketList)
         {
             ITicket ticket = tList.get(0);
+            
             int qty = tList.size();
             Date date = new Date();
             IBooking guestBooking = new GuestBooking(ticket, qty, date, newGuest);
             bookings.add(guestBooking);
         }
         
-        //IOrder completeOrder = UserWrapper.getInstance().makeBooking(bookings);
+       //List<IOrder> completeOrder = UserWrapper.getInstance().makeGuestBooking(bookings);
+       
         request.setAttribute("bookingList", bookings);
+        //request.setAttribute("orderList", completeOrder);
+        request.setAttribute("user", newGuest);
+        request.setAttribute("ticketList", ticketList);
         //request.setAttribute("order", completeOrder);
         session.removeAttribute("tickets");
         request.getRequestDispatcher("WEB-INF/orderConfirm.jsp").forward(request, response);

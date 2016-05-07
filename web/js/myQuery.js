@@ -8,27 +8,22 @@
 $(document).ready(function() {
     
     
-     $(document).on("click", "#loadMoreButton", function() { 
-        window.location.reload("debug.jsp");
-    //$.get("loadMore.do", function(responseXml) {                
-        // $(".moreData").html($(responseXml).find("data").html()); 
-    //});
-});
-    
-    $('.logoImage').click(function() {
-        window.location.href="/register.jsp/";
+     $(document.body).on('click', '#loadMoreButton', function() {
+        
+        $.get("loadMore.do", function(responseXml) {                
+         $("#moreData").html($(responseXml).find("data").html()); 
+        });
     });
-    
+  
 
- 
      // Date range filter
    $(function() {
     $('input[name="dater"]').daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
-    }, 
+    });
     
-});
+    });
 
  
   
