@@ -62,8 +62,10 @@
        <div class="container">
            <div class="paymentBox">
                <legend> Thank you for your order! </legend>
+               <c:forEach items="${bookingList}" var="booking">
+                   <p> Booking reference number(s): ${booking.bookingID} </p>
+               </c:forEach>
                
-               <p> Your order reference number is : ${orderList[0].ID}</p>
                <hr>
                
                <p>Your E-Ticket will be sent to the following email address: ${user.email} </p>

@@ -100,15 +100,16 @@ public class RegisterServlet extends HttpServlet {
         
         else {
             Validator v = new Validator();
-            boolean good = v.emailValidator(userName);
-            if (!good)
-            {
+            try{
+                Validator.emailValidator(userName);
+            }
+           catch(IllegalArgumentException e){
+           
                 request.setAttribute("errorMessage", "Email address is already registered");
                 RequestDispatcher view = request.getRequestDispatcher("/register.jsp");
                 view.forward(request, response);
-            }
             
-            else {
+           }
                 
                 //try{
                 IUser user = new Customer(firstName, secondName, userName, address, postcode, password);
@@ -129,9 +130,9 @@ public class RegisterServlet extends HttpServlet {
         }
         
         
+
         
-        
-    }
+    
 
     /**
      * Returns a short description of the servlet.

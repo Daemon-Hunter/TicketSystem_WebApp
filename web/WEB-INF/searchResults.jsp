@@ -140,7 +140,8 @@
                                         <div class="underImageInfo">
                                             <div class="boxName"> ${artist.name} </div> 
 
-                                            <div class="boxChildren">  </div>
+                                            <div class="boxChildren"> 
+                                              ${artistAmount[loop.index]} Shows</div>
                                         </div>
                                     </div>
                                 </a>                 
@@ -155,7 +156,8 @@
                                      <div class="underImageInfo">
                                         <div class="boxName"> ${venue.name} </div> 
 
-                                        <div class="boxChildren">  </div>
+                                        <div class="boxChildren">
+                                          ${venueAmount[loop.index]} Shows</div>
                                     </div>
                                 </div>
                                
@@ -171,7 +173,8 @@
                                      <div class="underImageInfo">
                                         <div class="boxName"> ${event.name} </div> 
 
-                                        <div class="boxChildren">  </div>
+                                        <div class="boxChildren"> 
+                                          ${childEventAmount[loop.index]} Shows</div>
                                     </div>
                                      
                                     

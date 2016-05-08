@@ -123,7 +123,7 @@
                                      <div class="boxName"> ${event.name} </div> 
 
                                 <div class="boxChildren"> 
-                                    ${childAmount[loop.index]} shows
+                                    ${childAmount[loop.index]} Shows
             
                                 </div>
                                 </div>

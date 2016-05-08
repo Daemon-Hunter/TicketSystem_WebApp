@@ -95,43 +95,63 @@ public class OrderDetailsServlet extends HttpServlet {
         String guestAddress = request.getParameter("address");
         String guestPostcode = request.getParameter("postcode");
         
-        if (!Validator.postcodeValidator(guestPostcode)){
-            request.setAttribute("error", "Please enter a valid postcode");
+        try{
+        Validator.postcodeValidator(guestPostcode);
+        }
+        catch(IllegalArgumentException e){
+            
+            request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("Payment.jsp").forward(request, response);
         }
-        if (!Validator.emailValidator(guestEmail)){
+        
+        try{
+            Validator.emailValidator(guestEmail);
+        }
+        catch(IllegalArgumentException e){
             request.setAttribute("error", "Please enter a valid email");
             request.getRequestDispatcher("Payment.jsp").forward(request, response);
         }
-        if (!Validator.addressValidator(guestAddress)){
-            request.setAttribute("error", "Please enter a valid address");
+        try{
+            Validator.addressValidator(guestAddress);
+        }
+        catch(IllegalArgumentException e){
+            request.setAttribute("error", "Please enter a valid email");
             request.getRequestDispatcher("Payment.jsp").forward(request, response);
         }
-            
-        IGuest newGuest = new Guest(guestEmail, guestPostcode, guestAddress);
-        List<IBooking> bookings = new LinkedList();
+        IGuest newGuest;
+        try{    
+        newGuest = new Guest(guestEmail, guestPostcode, guestAddress);
+       
+        
+        List<GuestBooking> bookings = new LinkedList();
         for (List<ITicket> tList:  ticketList)
         {
             ITicket ticket = tList.get(0);
             
             int qty = tList.size();
             Date date = new Date();
-            IBooking guestBooking = new GuestBooking(ticket, qty, date, newGuest);
+            GuestBooking guestBooking = new GuestBooking(ticket, qty, date, newGuest);
             bookings.add(guestBooking);
-        }
-        
-       //List<IOrder> completeOrder = UserWrapper.getInstance().makeGuestBooking(bookings);
+            
+             List<GuestBooking> completeOrder = UserWrapper.getInstance().makeGuestBookings(bookings);
        
         request.setAttribute("bookingList", bookings);
-        //request.setAttribute("orderList", completeOrder);
-        request.setAttribute("user", newGuest);
+          request.setAttribute("user", newGuest);
+        }
+         } catch (IllegalArgumentException e){
+           request.setAttribute("error", e.getMessage());
+            request.getRequestDispatcher("Payment.jsp").forward(request, response); 
+        
+      
+       
+      
         request.setAttribute("ticketList", ticketList);
         //request.setAttribute("order", completeOrder);
         session.removeAttribute("tickets");
         request.getRequestDispatcher("WEB-INF/orderConfirm.jsp").forward(request, response);
        
         
-        
+         } 
     }
 
     /**

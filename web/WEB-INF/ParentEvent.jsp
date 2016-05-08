@@ -148,7 +148,8 @@
                         <span class="pageHeading">
                             <p>Event Information</p>
                         </span>
-                            <c:set var="cVenue" value="${childEvents[0]}" />
+                        
+                        <c:set value="${cEvent['venue']}" var="cVenue"/>
                         <p> @<c:out value="${cVenue.name}" default="Venue not available"/> </p>
                     </div>
                     <div class="panel-body panelBodyBox">
@@ -158,15 +159,15 @@
                         <hr>
                         <span class="googleMap">
                             
-                            <%--
+                            
                             <c:out value="${cVenue.address}"/>
                             <c:out value="${cVenue.postcode}"/>
-                            --%>
+                            
                             <iframe
                                 width="320"
                                 height="350"
                                 frameborder="0" style="border:0"
-                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCnCjhuB-7cFDL9ZdArYQSq1qlOEtU1IOQ&q=${event.name}<%--+${cVenue.postcode}--%>" allowfullscreen>
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCnCjhuB-7cFDL9ZdArYQSq1qlOEtU1IOQ&q=${cVenue.postcode}" allowfullscreen>
                             </iframe>
                         </span>
                         <hr>

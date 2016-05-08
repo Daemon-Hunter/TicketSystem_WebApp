@@ -83,7 +83,30 @@ public class searchResultServlet extends HttpServlet {
         List<IArtist> artistList = UserWrapper.getInstance().searchArtists(userInput);
         List<IVenue> venueList = UserWrapper.getInstance().searchVenues(userInput);
         List<IParentEvent> eventList = UserWrapper.getInstance().searchParentEvents(userInput);
+        
+         ArrayList<Integer> childEventAmount = new ArrayList();
+        for (IParentEvent parent: eventList)
+        {
+            List<IChildEvent> child = parent.getChildEvents();
+            int size = child.size();
+            childEventAmount.add(size);
+        }
       
+        ArrayList<Integer> artistAmount = new ArrayList();
+        for (IArtist artist : artistList)
+        {
+            List<IChildEvent> artistL = artist.getChildEvents();
+            int artistSize = artistL.size();
+             artistAmount.add(artistSize);
+        }
+        
+        ArrayList<Integer> venueAmount = new ArrayList();
+        for (IVenue venue: venueList)
+        {
+            List<IChildEvent> venueL = venue.getChildEvents();
+            int venueSize = venueL.size();
+            venueAmount.add(venueSize);
+        }
         
         // Retrieve list of ArrayLists which match the users search
        
@@ -93,6 +116,10 @@ public class searchResultServlet extends HttpServlet {
         request.setAttribute("artistList", artistList);
         request.setAttribute("venueList", venueList);
         request.setAttribute("eventList", eventList);
+        
+        request.setAttribute("eventAmount", childEventAmount);
+        request.setAttribute("artistAmount", artistAmount);
+        request.setAttribute("venueAmount", venueAmount);
     
         // Send re-direct to search result page
         RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/searchResults.jsp");
