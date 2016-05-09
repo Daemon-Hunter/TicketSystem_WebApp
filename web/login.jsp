@@ -73,7 +73,7 @@
            <div class="paymentBox">
                <form class="form-horizontal" role="form" action="SignIn" method="post">
     <fieldset>
-        <legend> Login</legend>
+        <legend><strong> Login</strong></legend>
         <label class="errorMessage"> <c:out value="${loginFail}" default=""/> </label>
         <div class="form-group">
         <label class="col-sm-3 control-label" for="usernameSignIn">Username</label>
@@ -82,7 +82,7 @@
         </div>
       </div>
         <div class="form-group">
-        <label class="col-sm-3 control-label" for="passwordSignIn">Postcode</label>
+        <label class="col-sm-3 control-label" for="passwordSignIn">Password</label>
         <div class="col-sm-9">
           <input type="text" class="form-control" name="passwordSignIn"  placeholder="password">
         </div>

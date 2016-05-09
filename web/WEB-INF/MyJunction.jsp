@@ -78,7 +78,7 @@
                   <li role="navigation"><a href="#subscriptions" data-toggle="tab">Subscriptions</a></li>
                   <li role="navigation"><a href="#orders" data-toggle="tab">Orders</a></li>
             </ul>
-            
+            <div class="tab-content">
             <div class="tab-pane active" id="profile">
             <h2>Profile</h2>
             <hr>
@@ -96,16 +96,40 @@
             
              <label for="postcode"> Postcode: </label>
             <input type="text" class="form-control" name="postcode" id="postcode" placeholder="${currentUser.postcode}" disabled="true">
-             <button id="profileEditButton">  Edit  </button>
+            <br><button id="profileEditButton">  Edit  </button>
                 </div>
+            
+            
+            <div class="tab-pane" id="orders" role="tabpanel">
+                <h2> Your Orders </h2>
+                <table>
+                    <tr>
+                        <td> <strong> Order ID </strong></td>
+                        <td><strong> Ticket Type </strong></td>
+                        <td> <strong>Quantity </strong></td>
+                        <td> <strong> Date & Time </strong></td>
+                    
+                    </tr>
+                <c:set value="${currentUser['orders']}" var="orderList"/>
+                <c:forEach items="${orderList}" var="order">
+                    <c:set value="${order['bookingList']}" var="bookingList"/>
+                    <c:forEach items="${bookingList}" var="booking">
+                    <tr>
+                        <td> ${order.orderID} </td>
+                        <td> ${booking['ticket'].type} </td>
+                        <td> ${booking.ticketQuantity} </td>
+                        <td> ${booking.bookingDateTime}  </td>
+                    </tr>
+                    </c:forEach>
+                </c:forEach>
+                </table>
             </div>
+            </div>
+           </div>
             
            
 </div> 
             
-            <div class="tab-pane active" id="orders">
-                <h2> Your Orders </h2>
-            </div>
         
        
                 
