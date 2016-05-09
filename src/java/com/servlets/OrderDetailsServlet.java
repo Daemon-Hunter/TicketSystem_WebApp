@@ -8,11 +8,13 @@ package com.servlets;
 import bookings.GuestBooking;
 import bookings.IBooking;
 import bookings.IOrder;
+import events.IChildEvent;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -92,75 +94,93 @@ public class OrderDetailsServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         List<List<ITicket>> ticketList = (List)session.getAttribute("tickets");
-        String guestEmail = request.getParameter("email");
-        String guestAddress = request.getParameter("address");
-        String guestPostcode = request.getParameter("postcode");
-        
-        //Validate postcode
-        try{
-        Validator.postcodeValidator(guestPostcode);
-        }
-        catch(IllegalArgumentException e){
-            
-            request.setAttribute("error", e.getMessage());
-            request.getRequestDispatcher("Payment.jsp").forward(request, response);
-        }
-        
-        //Validate email
-        try{
-            Validator.emailValidator(guestEmail);
-        }
-        catch(IllegalArgumentException e){
-            request.setAttribute("error", "Please enter a valid email");
-            request.getRequestDispatcher("Payment.jsp").forward(request, response);
-        }
-        
-        //Validate address
-        try{
-            Validator.addressValidator(guestAddress);
-        }
-        catch(IllegalArgumentException e){
-            request.setAttribute("error", "Please enter a valid email");
-            request.getRequestDispatcher("Payment.jsp").forward(request, response);
-        }
+        IChildEvent cId = (IChildEvent)session.getAttribute("child");
         
         
-        IGuest newGuest;
-        try{    
-            //Create the new guest
-        newGuest = new Guest(guestEmail, guestAddress, guestPostcode);
+       if (!(Boolean)session.getAttribute("loggedIn")) {
+           
+                String guestEmail = request.getParameter("email");
+                String guestAddress = request.getParameter("address");
+                String guestPostcode = request.getParameter("postcode");
+                //Validate postcode
+                try{
+                Validator.postcodeValidator(guestPostcode);
+                }
+                catch(IllegalArgumentException e){
+
+                    request.setAttribute("error", e.getMessage());
+                    request.getRequestDispatcher("Payment.jsp").forward(request, response);
+                }
+
+                //Validate email
+                try{
+                    Validator.emailValidator(guestEmail);
+                }
+                catch(IllegalArgumentException e){
+                    request.setAttribute("error", "Please enter a valid email");
+                    request.getRequestDispatcher("Payment.jsp").forward(request, response);
+                }
+
+                //Validate address
+                try{
+                    Validator.addressValidator(guestAddress);
+                }
+                catch(IllegalArgumentException e){
+                    request.setAttribute("error", "Please enter a valid email");
+                    request.getRequestDispatcher("Payment.jsp").forward(request, response);
+                }
+
+
+                IGuest newGuest;
+                try{    
+                    //Create the new guest
+                newGuest = new Guest(guestEmail, guestAddress, guestPostcode);
+
+                // create booking list
+                //Iterate through the list of tickets 
+                List<GuestBooking> bookings = new LinkedList();
+               List<String> newTicketList = new LinkedList();
+                for (List<ITicket> tList:  ticketList)
+                {
+
+
+                    ITicket ticket = tList.get(0);
+                    int qty = tList.size();
+                    Date date = new Date();
+                    GuestBooking guestBooking = new GuestBooking(ticket, qty, date, newGuest);
+                    bookings.add(guestBooking);
+                    newTicketList.add(tList.get(0).getType() + "  x " + qty);
+                }
+
+                List<GuestBooking> completeOrder = UserWrapper.getInstance().makeGuestBookings(bookings);
+                request.setAttribute("ticketList", newTicketList);
+                request.setAttribute("bookingList", completeOrder);
+                request.setAttribute("user", newGuest);
+                request.setAttribute("order", completeOrder);  
+                request.setAttribute("child", cId);
+
+                 } catch (IllegalArgumentException e){
+                        request.setAttribute("error", Arrays.toString(e.getStackTrace()));
+                        request.getRequestDispatcher("Payment.jsp").forward(request, response); 
+                     }
+       }
        
-        // create booking list
-        //Iterate through the list of tickets 
-        List<GuestBooking> bookings = new LinkedList();
-        for (List<ITicket> tList:  ticketList)
-        {
-            ITicket ticket = tList.get(0);
-            
-            int qty = tList.size();
-            Date date = new Date();
-            GuestBooking guestBooking = new GuestBooking(ticket, qty, date, newGuest);
-            bookings.add(guestBooking);
-        }
-        
-        //request.setAttribute("bookings", bookings);
-         //request.getRequestDispatcher("debug.jsp").forward(request, response); 
-        
-        List<GuestBooking> completeOrder = UserWrapper.getInstance().makeGuestBookings(bookings);
-        request.setAttribute("bookingList", completeOrder);
-        request.setAttribute("user", newGuest);
-          
-         } catch (IllegalArgumentException e){
-                request.setAttribute("error", Arrays.toString(e.getStackTrace()));
-                request.getRequestDispatcher("Payment.jsp").forward(request, response); 
-             }
-       
+       else {
+           
+           try {
+               
+           }
+           
+           catch(IllegalArgumentException e)
+           {
+               
+           }
+           
+       }
       
-      /*  request.setAttribute("ticketList", ticketList);
-        //request.setAttribute("order", completeOrder);
         session.removeAttribute("tickets");
         request.getRequestDispatcher("WEB-INF/orderConfirm.jsp").forward(request, response);
-       */
+       
         
        
     }

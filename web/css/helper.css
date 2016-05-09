@@ -16,9 +16,9 @@
 }
 
 body{
+    
     background: url("../images/background.jpg") no-repeat;
     background-size: cover;
-    
 } 
 
 
@@ -154,9 +154,13 @@ img{
 
 .socialLinkBackground{
     background-color: #fff;
-    border: black thin double;
+    
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
+   -webkit-box-shadow: -1px 22px 54px 26px rgba(0,0,0,1);
+-moz-box-shadow: -1px 22px 54px 26px rgba(0,0,0,1);
+box-shadow: -1px 22px 54px 26px rgba(0,0,0,1);
+
         
 }
 
@@ -289,6 +293,7 @@ img{
     margin: 5px;
     margin-bottom: 15px;
     border: #31b0d5 double;
+    border-radius: 10px;
     background-image: 
         linear-gradient(#B8B8B8, #F7F7F7);
 }
@@ -395,5 +400,27 @@ img{
 }
 
 .allEventData{
-    background: url("../images/LogoWhite.jpg") no-repeat;
+                margin-top: 60px;
+                margin-bottom: 120px;
+                
+               padding-left: 40px;
+               padding-right: 40px;
+               padding-top: 1px;
+               padding-bottom: 10px;
+               
+                text-align: center;
+		background-image:
+		linear-gradient(
+                to bottom,
+                #000080, #191919);
+                border-radius: 100px;
+                -webkit-box-shadow: 13px -8px 48px 31px rgba(0,0,0,1);
+                -moz-box-shadow: 13px -8px 48px 31px rgba(0,0,0,1);
+                box-shadow: 13px -8px 48px 31px rgba(0,0,0,1);
+
+}
+
+.completeInfo{
+    font-size: 30px;
+    font-style:  initial;
 }

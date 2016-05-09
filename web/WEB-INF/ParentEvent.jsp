@@ -88,12 +88,13 @@
          
         
         <%-- content --%>
-        <div class="container" style="position:relative;">
-           <div class="allEventData">
+        
            
+        <div class="container" >
+           <div class="allEventData">
             
             <div class="row contentPosition">
-                <div class="col-lg-10">
+                <div class="col-lg-12">
                     <div class="socialLinkBackground socialLinkTopRadius">
                     
                         
@@ -142,7 +143,7 @@
                 
                 </div>
                 
-                 <div class="col-lg-4">
+                 <div class="col-lg-6">
                  <div class="panel panel-default">
                     <div class="panel-heading">
                         <span class="pageHeading">
@@ -165,14 +166,14 @@
                         </span>
                         <hr>
                         <span class="googleMap">
-                           
+                        
+                            
                             <iframe
                                 width="320"
-                                height="350"
+                                height="320"
                                 frameborder="0" style="border:0"
-                                src="https://www.google.com
-                                /maps/embed/v1/place?key=AIzaSyCnCjhuB-7cFDL9ZdArYQSq1qlOEtU1IOQ&q=${venue.postcode}" allowfullscreen>
-                            </iframe>
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCnCjhuB-7cFDL9ZdArYQSq1qlOEtU1IOQ&q=${address},${venue.postcode}" allowfullscreen>
+                              </iframe>
                         </span>
                         <hr>
                         
@@ -187,7 +188,7 @@
                     
                     <div class="availableTickets">
                                 <div class="row" style ="margin-top: 20px;">
-                                    <div class="col-lg-10">
+                                    <div class="col-lg-12">
                                         <div class="panel"> 
                                                  <div class="panel-heading">
                                                      Available Tickets
@@ -209,7 +210,7 @@
                         <c:forEach var="cEvent" items="${childEvents}">
                             <%--<c:set var="venue" value="${event.venue}"/> --%>
                             
-                            <div class="col-lg-10 eventRow"> 
+                            <div class="col-lg-12 eventRow"> 
                                 <div class="col-lg-3 eventRowSegment"> <c:out value="${cEvent.startDateTime}"/></div>
                                 <div class="col-lg-3 eventRowSegment"> <c:out value="${cEvent.name}"/></div>
                                 <div class="col-lg-3 eventRowSegment"> <c:out value="${cEvent['venue'].name}"/></div>

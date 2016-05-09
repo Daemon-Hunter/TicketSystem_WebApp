@@ -61,27 +61,32 @@
        <div class="container">
            <div class="paymentBox">
                <form class="form-horizontal" role="form" action="orderDetails.do" method="post">
-    <fieldset>
-        <legend> Checkout as guest</legend>
-        <label class="errorMessage"> <c:out value="${error}" default=""/> </label>
-        <div class="form-group">
-        <label class="col-sm-3 control-label" for="address">Address line 1</label>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" name="address" id="address" placeholder="15 Grand-canary Street">
-        </div>
-      </div>
-        <div class="form-group">
-        <label class="col-sm-3 control-label" for="postcode">Postcode</label>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" name="postcode" id="postcode" placeholder="15 Grand-canary Street">
-        </div>
-      </div>
-        <div class="form-group">
-        <label class="col-sm-3 control-label" for="email">Email Address</label>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" name="email" id="email" placeholder="Joebloggs@gmail.com">
-        </div>
-      </div>
+            <c:choose>          
+                <c:when test="${loggedIn eq false}">
+                    <fieldset>
+                   <legend> Checkout as guest</legend>
+                   <label class="errorMessage"> <c:out value="${error}" default=""/> </label>
+                   <div class="form-group">
+                   <label class="col-sm-3 control-label" for="address">Address line 1</label>
+                   <div class="col-sm-9">
+                     <input type="text" class="form-control" name="address" id="address" placeholder="15 Grand-canary Street">
+                   </div>
+                 </div>
+                   <div class="form-group">
+                   <label class="col-sm-3 control-label" for="postcode">Postcode</label>
+                   <div class="col-sm-9">
+                     <input type="text" class="form-control" name="postcode" id="postcode" placeholder="15 Grand-canary Street">
+                   </div>
+                 </div>
+                   <div class="form-group">
+                   <label class="col-sm-3 control-label" for="email">Email Address</label>
+                   <div class="col-sm-9">
+                     <input type="text" class="form-control" name="email" id="email" placeholder="Joebloggs@gmail.com">
+                   </div>
+                 </div>
+                    </c:when>
+            </c:choose>
+            
         <hr>
       <legend>Payment</legend>
       <div class="form-group">

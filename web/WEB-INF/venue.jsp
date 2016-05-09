@@ -87,8 +87,8 @@
          
         
         <%-- content --%>
-        <div class="container" style="position:relative;">
-           
+        <div class="container">
+           <div class="allEventData">
            
             
             <div class="row contentPosition">
@@ -140,7 +140,7 @@
                 
                 </div>
                 
-                 <div class="col-lg-4">
+                 <div class="col-lg-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <span id="heading">
@@ -182,7 +182,7 @@
                                          
              <div class="availableTickets">
                 <div class="row" style ="margin-top: 20px;">
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         <div class="panel"> 
                                  <div class="panel-heading">
                                      Available Tickets
@@ -202,7 +202,7 @@
 
 
                             <c:forEach var="event" items="${venueEvents}">
-                                <div class="col-lg-10">
+                                <div class="col-lg-12">
 
                                     <div class="eventRow" style="border: 4px; border-color: red;">
                                                     <div class="col-lg-3 eventRowSegment"> <c:out value="${event.startDateTime}"/></div>
@@ -220,7 +220,7 @@
                 
                 <c:when test="${currentEvent eq false}">
                     
-                    <div class="col-lg-8 noTickets">
+                    <div class="col-lg-12 noTickets">
                         Currently no scheduled events
                     </div>
                     
@@ -229,7 +229,8 @@
             
                  
                
-            
+           </div>
+        </div>
               
             
                

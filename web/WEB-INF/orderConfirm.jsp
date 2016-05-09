@@ -61,19 +61,27 @@
         
        <div class="container">
            <div class="paymentBox">
-               <legend> Thank you for your order! </legend>
-               <c:forEach items="${bookingList}" var="booking">
-                   <p> Booking reference number(s): ${booking.bookingID} </p>
+               <legend> Thank you for your order! </legend><br>
+               <div class="completeInfo"> 
+                   Booking reference number(s):
+                    <c:forEach items="${bookingList}" var="booking">
+                         <strong>${booking.bookingID}</strong> </p>
+                    </c:forEach>
+               
+                    <p>Your E-Ticket will be sent to the following email address: <strong>${user.email}</strong> </p>
+               </div>
+               <hr>
+               
+               <legend> Order Summary </legend>
+                <div id="completeInfo">
+               <strong>${child.name}</strong><hr>
+               
+               <c:forEach items="${ticketList}" var="ticket">
+                   
+                   <c:out value="${ticket}" default="None"/><br>
+                   
                </c:forEach>
-               
-               <hr>
-               
-               <p>Your E-Ticket will be sent to the following email address: ${user.email} </p>
-               
-               <hr>
-               
-               
-               </p>
+                   </div>
                
               
            </div>

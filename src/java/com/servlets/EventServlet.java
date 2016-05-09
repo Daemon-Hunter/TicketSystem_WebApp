@@ -99,10 +99,13 @@ public class EventServlet extends HttpServlet {
       
       if (childEvents.size() > 0){
       IVenue ve = childEvents.get(0).getVenue();
+      String address = ve.getAddress();
+      String formattedAddress = address.replaceAll(",", "+").replaceAll("\\s", "+");
+      request.setAttribute("address", formattedAddress);
        request.setAttribute("venue", ve);
       }
       String name = event.getName();
-      String newName =  name.replaceAll("\\s+","");
+      String newName =  name.replaceAll("\\s+","+");
       
      
      

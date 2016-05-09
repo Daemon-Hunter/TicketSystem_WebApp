@@ -113,7 +113,7 @@ public class OrderSummaryServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         session.setAttribute("parent", pId);
-        session.setAttribute("child", cId);
+        session.setAttribute("child", childEvent);
         session.setAttribute("tickets", listOfTickets);
         request.getRequestDispatcher("Payment.jsp").forward(request, response);
         

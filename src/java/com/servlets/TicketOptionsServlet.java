@@ -16,6 +16,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import people.IUser;
 import tickets.ITicket;
 import tickets.Ticket;
 import wrappers.UserWrapper;
@@ -69,7 +71,16 @@ public class TicketOptionsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            
+        }
         
+        else {
+            if ((Boolean)session.getAttribute("loggedIn")){
+                    IUser currentUser = (IUser)session.getAttribute("currentUser");
+            }
+        }
         String parent = request.getParameter("parent");
         String child = request.getParameter("child");
         

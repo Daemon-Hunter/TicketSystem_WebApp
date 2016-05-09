@@ -89,12 +89,12 @@
 
 
         <%-- content --%>
-        <div class="container" style="position:relative;">
-
+        <div class="container">
+        <div class ="allEventData">
 
 
             <div class="row contentPosition">
-                <div class="col-lg-10">
+                <div class="col-lg-12">
                     <div class="socialLinkBackground socialLinkTopRadius">
                      <div class="infoPageTitle"> ${currentArtist.name}</div>
                     </div>
@@ -142,7 +142,7 @@
 
                 </div>
 
-                 <div class="col-lg-4">
+                 <div class="col-lg-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <span class="pageHeading">
@@ -173,7 +173,7 @@
             <%-- buy tickets --%>
             <div class="availableTickets">
                 <div class="row" style ="margin-top: 20px;">
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         <div class="panel"> 
                                  <div class="panel-heading">
                                      Available Tickets
@@ -191,7 +191,7 @@
                         <c:forEach var="event" items="${childList}">
                             <%--<c:set var="venue" value="${event.venue}"/> --%>
 
-                            <div class="col-lg-10 eventRow">
+                            <div class="col-lg-12 eventRow">
                                 <c:set var="eventVenue" value="${event.venue}"/>
                                 <div class="col-lg-3 eventRowSegment"> <c:out value="${event.startDateTime}"/></div>
                                 <div class="col-lg-3 eventRowSegment"> <c:out value="${event.name}"/></div>
@@ -211,7 +211,7 @@
 
                     <c:when test="${multiple eq false}">
 
-                         <div class="col-lg-8 noTickets">
+                         <div class="col-lg-12 noTickets">
                         Currently no scheduled events 
                         </div>  
 
@@ -220,6 +220,7 @@
                 </c:choose>
 
             </div>
+        </div>
       <%-- footer --%>          
     <div class="container">
         <nav class="navbar navbar-inverse navbar-fixed-bottom">
