@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <link href="font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="css/helper.css" type="text/css" rel="stylesheet">
         <link href="less/myLess.less" type="text/css" rel="stylesheet/less">
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -28,7 +28,9 @@
         
         <nav class="navbar navbar-inverse navbar-static-top">
             <ul class="nav navbar-nav pull-right" style="margin-right: 15%; font-size: 23px;">
-                
+                <c:choose>
+                    
+                    <c:when test="${loggedIn eq false}">
                 <li>
                     <a class="nav-link" href="register.jsp" >Register <span class="sr-only">(current)</span></a>
                   </li>
@@ -45,7 +47,16 @@
                                  </form>
                             </div>
                         </li>
-                  
+                    </c:when>
+                    <c:when test="${loggedIn eq true}">
+                        <div class="myJunction">
+                            <a href="myJunction.do"><i class="fa fa-home fa-inverse fa-lg">
+                            MyJunction
+                        </i>
+                            </a>
+                        </div>
+                    </c:when>
+                </c:choose>
                 </ul> 
         </nav>
         

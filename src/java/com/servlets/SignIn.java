@@ -71,6 +71,7 @@ public class SignIn extends HttpServlet {
             if (loggedIn){
                 IUser currentUser = UserWrapper.getInstance().getUser();
                 HttpSession session = request.getSession();
+                session.setMaxInactiveInterval(600);
                 session.setAttribute("currentUser", currentUser);
                 session.setAttribute("loggedIn", loggedIn);
                 request.getRequestDispatcher("WEB-INF/MyJunction.jsp").forward(request, response);

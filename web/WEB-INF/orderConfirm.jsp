@@ -23,9 +23,11 @@
     </head>
     <body>
         
-        <nav class="navbar navbar-inverse navbar-static-top">
+         <nav class="navbar navbar-inverse navbar-static-top">
             <ul class="nav navbar-nav pull-right" style="margin-right: 15%; font-size: 23px;">
-                
+                <c:choose>
+                    
+                    <c:when test="${loggedIn eq false}">
                 <li>
                     <a class="nav-link" href="register.jsp" >Register <span class="sr-only">(current)</span></a>
                   </li>
@@ -35,14 +37,23 @@
                                 <p class="">Sign in<b class="caret"></b></p>      
                             </a>
                             <div class="dropdown-menu" style="padding: 30px;">
-                                <form action="signIn" method="post" accept-charset="UTF-8">
+                                <form action="SignIn" method="post" accept-charset="UTF-8">
                                     <input class="form-control" id="user_username" style="margin-bottom: 15px;" type="text" name="usernameSignIn" size="50" placeholder="Username/Email"/>
                                     <input class="form-control" id="user_password" style="margin-bottom: 15px;" type="password" name="passwordSignIn" size="50" placeholder="Password"/>
                                     <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
                                  </form>
                             </div>
                         </li>
-                  
+                    </c:when>
+                    <c:when test="${loggedIn eq true}">
+                        <div class="myJunction">
+                            <a href="myJunction.do"><i class="fa fa-home fa-inverse fa-lg">
+                            MyJunction
+                        </i>
+                            </a>
+                        </div>
+                    </c:when>
+                </c:choose>
                 </ul> 
         </nav>
         
@@ -61,20 +72,35 @@
         
        <div class="container">
            <div class="paymentBox">
-               <legend> Thank you for your order! </legend><br>
                <div class="completeInfo"> 
-                   Booking reference number(s):
-                    <c:forEach items="${bookingList}" var="booking">
-                         <strong>${booking.bookingID}</strong> </p>
-                    </c:forEach>
-               
-                    <p>Your E-Ticket will be sent to the following email address: <strong>${user.email}</strong> </p>
+               <legend> Thank you for your order! </legend><br>
+               <c:choose>
+                   <c:when test="${loggedIn eq false}">
+                        
+                        Booking reference number(s):
+                        <c:forEach items="${bookingList}" var="booking">
+                             <strong>${booking.bookingID}</strong> </p>
+                        </c:forEach>
+
+                        <p>Your E-Ticket will be sent to the following email address: <strong>${user.email}</strong> </p>
                </div>
+                    </c:when>
+                   
+                   <c:when test="${loggedIn eq true}">
+                        <div class="completeInfo"> 
+                        Order ID:
+                        
+                             <strong>${order.orderID}</strong> 
+                        
+
+                        <p>Your E-Ticket will be sent to the following email address: <strong>${currentUser.email}</strong> </p>
+                   </c:when>
+               </c:choose>
                <hr>
-               
+               <div id="completeInfo">
                <legend> Order Summary </legend>
-                <div id="completeInfo">
-               <strong>${child.name}</strong><hr>
+                
+               ${child.name}<hr>
                
                <c:forEach items="${ticketList}" var="ticket">
                    

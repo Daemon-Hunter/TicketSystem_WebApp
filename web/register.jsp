@@ -21,26 +21,37 @@
     </head>
     <body>
         
-        <nav class="navbar navbar-inverse navbar-static-top">
+         <nav class="navbar navbar-inverse navbar-static-top">
             <ul class="nav navbar-nav pull-right" style="margin-right: 15%; font-size: 23px;">
-                
+                <c:choose>
+                    
+                    <c:when test="${loggedIn eq false}">
                 <li>
                     <a class="nav-link" href="register.jsp" >Register <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="divider-vertical"> </li>
                   <li class="dropdown">
-                            <a data-target="#" href="index.jsp" data-toggle="dropdown" class="dropdown-toggle">
+                            <a data-target="#" href="index" data-toggle="dropdown" class="dropdown-toggle">
                                 <p class="">Sign in<b class="caret"></b></p>      
                             </a>
                             <div class="dropdown-menu" style="padding: 30px;">
-                                <form action="" method="post" accept-charset="UTF-8">
-                                    <input id="user_username" style="margin-bottom: 15px;" type="text" name="user[username]" size="35" />
-                                    <input id="user_password" style="margin-bottom: 15px;" type="password" name="user[password]" size="35" />
+                                <form action="SignIn" method="post" accept-charset="UTF-8">
+                                    <input class="form-control" id="user_username" style="margin-bottom: 15px;" type="text" name="usernameSignIn" size="50" placeholder="Username/Email"/>
+                                    <input class="form-control" id="user_password" style="margin-bottom: 15px;" type="password" name="passwordSignIn" size="50" placeholder="Password"/>
                                     <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
                                  </form>
                             </div>
                         </li>
-                  
+                    </c:when>
+                    <c:when test="${loggedIn eq true}">
+                        <div class="myJunction">
+                            <a href="myJunction.do"><i class="fa fa-home fa-inverse fa-lg">
+                            MyJunction
+                        </i>
+                            </a>
+                        </div>
+                    </c:when>
+                </c:choose>
                 </ul> 
         </nav>
         

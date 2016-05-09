@@ -25,7 +25,9 @@
         
         <nav class="navbar navbar-inverse navbar-static-top">
             <ul class="nav navbar-nav pull-right" style="margin-right: 15%; font-size: 23px;">
-                
+                <c:choose>
+                    
+                    <c:when test="${loggedIn eq false}">
                 <li>
                     <a class="nav-link" href="register.jsp" >Register <span class="sr-only">(current)</span></a>
                   </li>
@@ -35,14 +37,23 @@
                                 <p class="">Sign in<b class="caret"></b></p>      
                             </a>
                             <div class="dropdown-menu" style="padding: 30px;">
-                                <form action="signIn" method="post" accept-charset="UTF-8">
+                                <form action="SignIn" method="post" accept-charset="UTF-8">
                                     <input class="form-control" id="user_username" style="margin-bottom: 15px;" type="text" name="usernameSignIn" size="50" placeholder="Username/Email"/>
                                     <input class="form-control" id="user_password" style="margin-bottom: 15px;" type="password" name="passwordSignIn" size="50" placeholder="Password"/>
                                     <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
                                  </form>
                             </div>
                         </li>
-                  
+                    </c:when>
+                    <c:when test="${loggedIn eq true}">
+                        <div class="myJunction">
+                            <a href="myJunction.do"><i class="fa fa-home fa-inverse fa-lg">
+                            MyJunction
+                        </i>
+                            </a>
+                        </div>
+                    </c:when>
+                </c:choose>
                 </ul> 
         </nav>
         
@@ -63,33 +74,38 @@
            <div class="paymentBox">
                <legend> Welcome to your Junction ${currentUser.firstName} </legend>
             <ul class="nav nav-tabs nav-justified">
-                  <li role="presentation" class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
-                  <li role="presentation"><a href="#" data-toggle="tab">Subscriptions</a></li>
-                  <li role="presentation"><a href="#" data-toggle="tab">Orders</a></li>
+                  <li role="navigation" class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+                  <li role="navigation"><a href="#subscriptions" data-toggle="tab">Subscriptions</a></li>
+                  <li role="navigation"><a href="#orders" data-toggle="tab">Orders</a></li>
             </ul>
             
             <div class="tab-pane active" id="profile">
-            <h1>Profile</h1>
+            <h2>Profile</h2>
             <hr>
             <label for="firstName"> First name: </label>
             <input type="text" class="form-control" name="firstName" id="firstName" placeholder="${currentUser.firstName}" disabled="true">
             
             <label for="lastName"> Last name: </label>
-            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="${currentUser.lastName}" disabled="true">>
+            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="${currentUser.lastName}" disabled="true">
             
             <label for="email"> Email: </label>
-            <input type="text" class="form-control" name="email" id="email" placeholder="${currentUser.email}" disabled="true">>
+            <input type="text" class="form-control" name="email" id="email" placeholder="${currentUser.email}" disabled="true">
             
             <label for="address"> Address: </label>
-            <input type="text" class="form-control" name="address" id="address" placeholder="${currentUser.address}" disabled="true">>
+            <input type="text" class="form-control" name="address" id="address" placeholder="${currentUser.address}" disabled="true">
             
-             <label for="postcode"> Email: </label>
-            <input type="text" class="form-control" name="postcode" id="postcode" placeholder="${currentUser.postcode}" disabled="true">>
+             <label for="postcode"> Postcode: </label>
+            <input type="text" class="form-control" name="postcode" id="postcode" placeholder="${currentUser.postcode}" disabled="true">
+             <button id="profileEditButton">  Edit  </button>
+                </div>
             </div>
             
-            <button id="profileEditButton">  Edit  </button>
-                </div>
+           
 </div> 
+            
+            <div class="tab-pane active" id="orders">
+                <h2> Your Orders </h2>
+            </div>
         
        
                 

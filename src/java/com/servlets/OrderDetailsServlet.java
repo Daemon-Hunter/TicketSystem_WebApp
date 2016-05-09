@@ -6,15 +6,12 @@
 package com.servlets;
 
 import bookings.GuestBooking;
-import bookings.IBooking;
 import bookings.IOrder;
 import events.IChildEvent;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -139,7 +136,7 @@ public class OrderDetailsServlet extends HttpServlet {
                 // create booking list
                 //Iterate through the list of tickets 
                 List<GuestBooking> bookings = new LinkedList();
-               List<String> newTicketList = new LinkedList();
+                List<String> newTicketList = new LinkedList();
                 for (List<ITicket> tList:  ticketList)
                 {
 
@@ -168,7 +165,22 @@ public class OrderDetailsServlet extends HttpServlet {
        else {
            
            try {
+               List<ITicket> ticketz = new LinkedList();
+               List<Integer> quantity = new LinkedList();
+               List<String> newTicketList = new LinkedList();
+               for (List<ITicket> t : ticketList)
+               {
+                   ITicket ticket = t.get(0);
+                   int qty = t.size();
+                   
+                   ticketz.add(ticket);
+                   quantity.add(qty);
+                   newTicketList.add(ticket.getType() + "  x " + qty);
+               }
                
+               IOrder order = UserWrapper.getInstance().makeCustomerBooking(ticketz, quantity);
+               request.setAttribute("order", order);
+               request.setAttribute("ticketList", newTicketList);
            }
            
            catch(IllegalArgumentException e)
