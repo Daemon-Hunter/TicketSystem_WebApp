@@ -1,14 +1,9 @@
-<%-- 
-    Document   : moreDetailsTab
-    Created on : 06-May-2016, 10:05:27
-    Author     : Ruth
---%>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <%@page contentType="application/xml" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <data>
-    <c:forEach items="${moreEvents}" var="more">
+     <c:forEach items="${moreEvents}" var="more">
                         
         <div class="col-lg-2  newEventGallery"> 
             <a href="event.do?eventdata=${more.ID}">
@@ -21,7 +16,7 @@
             </a>  
         </div>
     </c:forEach>
-
+   
 </data>
 
 

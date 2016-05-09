@@ -196,7 +196,7 @@
                                 <div class="col-lg-3 eventRowSegment"> <c:out value="${event.startDateTime}"/></div>
                                 <div class="col-lg-3 eventRowSegment"> <c:out value="${event.name}"/></div>
                                 <div class="col-lg-3 eventRowSegment"> <c:out value="${eventVenue.name}."/></div>
-                                <div class="col-lg-3 eventRowBuy"> <a href="event.do?eventdata=${event.ID}"><img src="images/buyTicket.png"></a></div>
+                                <div class="col-lg-3 eventRowBuy"> <a href="event.do?eventdata=${event.parentEventID}"><img src="images/buyTicket.png"></a></div>
 
                             </div>
 

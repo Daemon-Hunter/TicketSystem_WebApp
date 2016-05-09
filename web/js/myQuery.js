@@ -11,7 +11,7 @@ $(document).ready(function() {
      $(document.body).on('click', '#loadMoreButton', function() {
         
         $.get("loadMore.do", function(responseXml) {                
-         $("#moreData").html($(responseXml).find("data").html()); 
+         $("#moreData").append($(responseXml).find("data").html()); 
         });
     });
   

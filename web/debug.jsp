@@ -15,6 +15,10 @@
     <body>
        
         
-    ${id}
+        <c:forEach items="${bookings}" var="booking">
+            ${booking.bookingID} <br>
+            ${booking.ticketID} <br>
+            ${booking['guest'].email}
+        </c:forEach>
     </body>
 </html>

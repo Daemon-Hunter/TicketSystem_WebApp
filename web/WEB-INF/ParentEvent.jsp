@@ -89,7 +89,7 @@
         
         <%-- content --%>
         <div class="container" style="position:relative;">
-           
+           <div class="allEventData">
            
             
             <div class="row contentPosition">
@@ -148,26 +148,30 @@
                         <span class="pageHeading">
                             <p>Event Information</p>
                         </span>
-                        
-                        <c:set value="${cEvent['venue']}" var="cVenue"/>
-                        <p> @<c:out value="${cVenue.name}" default="Venue not available"/> </p>
+                       
                     </div>
                     <div class="panel-body panelBodyBox">
+                        
+                         <span class="venueDescription">
+                             <label> Venue(s):  </label><br>
+                             <c:forEach items="${venueNamez}" var="ven">
+                                 <c:out value="- ${ven}" default="No venue available"/> <br>
+                             </c:forEach>
+                            
+                        </span>
+                        <hr>
                         <span class="address">
                             <c:out value="${event.description}" default="None"/>
                         </span>
                         <hr>
                         <span class="googleMap">
-                            
-                            
-                            <c:out value="${cVenue.address}"/>
-                            <c:out value="${cVenue.postcode}"/>
-                            
+                           
                             <iframe
                                 width="320"
                                 height="350"
                                 frameborder="0" style="border:0"
-                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCnCjhuB-7cFDL9ZdArYQSq1qlOEtU1IOQ&q=${cVenue.postcode}" allowfullscreen>
+                                src="https://www.google.com
+                                /maps/embed/v1/place?key=AIzaSyCnCjhuB-7cFDL9ZdArYQSq1qlOEtU1IOQ&q=${venue.postcode}" allowfullscreen>
                             </iframe>
                         </span>
                         <hr>
@@ -208,7 +212,7 @@
                             <div class="col-lg-10 eventRow"> 
                                 <div class="col-lg-3 eventRowSegment"> <c:out value="${cEvent.startDateTime}"/></div>
                                 <div class="col-lg-3 eventRowSegment"> <c:out value="${cEvent.name}"/></div>
-                                <div class="col-lg-3 eventRowSegment"> <c:out value="Venue name, fix null pointer.."/></div>
+                                <div class="col-lg-3 eventRowSegment"> <c:out value="${cEvent['venue'].name}"/></div>
                                 <div class="col-lg-3 eventRowBuy"> <a href="ticketOption.do?parent=${event.ID}&child=${cEvent.ID}"><img class="ticketImage" src="images/buyTicket.png"></a></div>
                                
                             </div> 
@@ -226,7 +230,8 @@
                 </c:when>
                 </c:choose>
                         
-                    
+           </div>
+        </div>
 
                 
            

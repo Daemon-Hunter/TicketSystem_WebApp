@@ -6,9 +6,11 @@
 package com.servlets;
 
 
+import events.IChildEvent;
 import events.IParentEvent;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -66,21 +68,27 @@ public class LoadMoreServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //int loadIndex = Integer.parseInt(request.getParameter("indexamount"));
         
-       
-        //List<IParentEvent> moreEvents = new LinkedList();
-        /*for (int i = loadIndex; i < loadIndex + 15; i++)
+        /*List<IParentEvent> loadMoreList = UserWrapper.getInstance().loadMoreParentEvents();
+        
+        ArrayList<Integer> childEventAmount = new ArrayList();
+        for (IParentEvent parent: loadMoreList)
         {
-            IParentEvent toAdd = event.get(i);
-            moreEvents.add(toAdd);
-        }*/
-        List<IParentEvent> event = UserWrapper.getInstance().getParentEvents();
-        request.setAttribute("moreEvents", event);
-        request.getRequestDispatcher("WEB-INF/includes/moreDetailsTab.jsp").forward(request, response); //
-       
-      
+            List<IChildEvent> child = parent.getChildEvents();
+            int size = child.size();
+            childEventAmount.add(size);
+        }
         
+        request.setAttribute("eventList", loadMoreList);
+        request.setAttribute("childAmount", childEventAmount);
+        
+        RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/index.jsp");//
+        view.forward(request, response);*/
+        List<IParentEvent> event = UserWrapper.getInstance().loadMoreParentEvents();
+        request.setAttribute("moreEvents", event);
+        request.getRequestDispatcher("/WEB-INF/includes/moreDetailsTab.jsp").forward(request, response);
+        
+     
     }
 
     /**

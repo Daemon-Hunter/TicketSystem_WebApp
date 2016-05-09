@@ -393,3 +393,7 @@ img{
     color: #0000ff;
     padding-bottom: 5px;
 }
+
+.allEventData{
+    background: url("../images/LogoWhite.jpg") no-repeat;
+}

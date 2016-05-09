@@ -55,6 +55,11 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        
+        
+        
+            UserWrapper.getInstance().setAmountToLoad(15);
+
         List<IParentEvent> list = UserWrapper.getInstance().getParentEvents();
         ArrayList<Integer> childEventAmount = new ArrayList();
         for (IParentEvent parent: list)
@@ -64,21 +69,6 @@ public class IndexServlet extends HttpServlet {
             childEventAmount.add(size);
         }
         
-        /*List<IParentEvent> shortList = new LinkedList();
-        int elementAmount = 0;
-        if (list.size() > 14)
-        {
-            for(int i = 0; i < 14; i++)
-            {
-                elementAmount++;
-                IParentEvent toAdd = list.get(i);
-                shortList.add(toAdd);
-            }
-        }
-        else {
-            request.setAttribute("eventList", list);
-            request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-        }*/
         
         //request.setAttribute("amount", elementAmount);
         request.setAttribute("eventList", list);

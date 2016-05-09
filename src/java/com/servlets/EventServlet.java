@@ -10,6 +10,8 @@ import events.IParentEvent;
 import events.IVenue;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -73,13 +75,42 @@ public class EventServlet extends HttpServlet {
         IParentEvent event = UserWrapper.getInstance().getParentEvent(integerID);
         List<IChildEvent> childEvents = event.getChildEvents();
         
-        
+        // Check for more than 0 child Events
         Boolean multiple;
         if (childEvents.size() > 0)
             multiple = true;
         else 
             multiple = false;
-  
+        
+      
+       // get a list of venue names without duplicates
+      List<String> venueNames = new LinkedList();
+      for (IChildEvent child: childEvents)
+      {
+          venueNames.add(child.getVenue().getName());
+      }
+      List<String> venueNamez = new LinkedList();
+      for (String venue : venueNames)
+      {
+          if (!venueNamez.contains(venue))
+              venueNamez.add(venue);
+      }
+      
+      
+      if (childEvents.size() > 0){
+      IVenue ve = childEvents.get(0).getVenue();
+       request.setAttribute("venue", ve);
+      }
+      String name = event.getName();
+      String newName =  name.replaceAll("\\s+","");
+      
+     
+     
+          
+      
+        request.setAttribute("name", newName);
+       
+        request.setAttribute("venueNamez", venueNamez);
         request.setAttribute("event", event);
         request.setAttribute("childEvents", childEvents);
         request.setAttribute("multipleChildren", multiple);

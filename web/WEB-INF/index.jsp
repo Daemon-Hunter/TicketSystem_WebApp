@@ -136,12 +136,11 @@
                     </div>
                 </div>
                 
-                 <button id="loadMoreButton"> Load more </button>  
-                 
-                 
+                    <button id="loadMoreButton"> Load more </button> 
             </div>
                    
        </div>
+                    
                 
                
                 

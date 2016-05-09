@@ -11,6 +11,7 @@ import bookings.IOrder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -95,6 +96,7 @@ public class OrderDetailsServlet extends HttpServlet {
         String guestAddress = request.getParameter("address");
         String guestPostcode = request.getParameter("postcode");
         
+        //Validate postcode
         try{
         Validator.postcodeValidator(guestPostcode);
         }
@@ -104,6 +106,7 @@ public class OrderDetailsServlet extends HttpServlet {
             request.getRequestDispatcher("Payment.jsp").forward(request, response);
         }
         
+        //Validate email
         try{
             Validator.emailValidator(guestEmail);
         }
@@ -111,6 +114,8 @@ public class OrderDetailsServlet extends HttpServlet {
             request.setAttribute("error", "Please enter a valid email");
             request.getRequestDispatcher("Payment.jsp").forward(request, response);
         }
+        
+        //Validate address
         try{
             Validator.addressValidator(guestAddress);
         }
@@ -118,11 +123,15 @@ public class OrderDetailsServlet extends HttpServlet {
             request.setAttribute("error", "Please enter a valid email");
             request.getRequestDispatcher("Payment.jsp").forward(request, response);
         }
+        
+        
         IGuest newGuest;
         try{    
-        newGuest = new Guest(guestEmail, guestPostcode, guestAddress);
+            //Create the new guest
+        newGuest = new Guest(guestEmail, guestAddress, guestPostcode);
        
-        
+        // create booking list
+        //Iterate through the list of tickets 
         List<GuestBooking> bookings = new LinkedList();
         for (List<ITicket> tList:  ticketList)
         {
@@ -132,26 +141,28 @@ public class OrderDetailsServlet extends HttpServlet {
             Date date = new Date();
             GuestBooking guestBooking = new GuestBooking(ticket, qty, date, newGuest);
             bookings.add(guestBooking);
-            
-             List<GuestBooking> completeOrder = UserWrapper.getInstance().makeGuestBookings(bookings);
-       
-        request.setAttribute("bookingList", bookings);
-          request.setAttribute("user", newGuest);
         }
-         } catch (IllegalArgumentException e){
-           request.setAttribute("error", e.getMessage());
-            request.getRequestDispatcher("Payment.jsp").forward(request, response); 
         
-      
+        //request.setAttribute("bookings", bookings);
+         //request.getRequestDispatcher("debug.jsp").forward(request, response); 
+        
+        List<GuestBooking> completeOrder = UserWrapper.getInstance().makeGuestBookings(bookings);
+        request.setAttribute("bookingList", completeOrder);
+        request.setAttribute("user", newGuest);
+          
+         } catch (IllegalArgumentException e){
+                request.setAttribute("error", Arrays.toString(e.getStackTrace()));
+                request.getRequestDispatcher("Payment.jsp").forward(request, response); 
+             }
        
       
-        request.setAttribute("ticketList", ticketList);
+      /*  request.setAttribute("ticketList", ticketList);
         //request.setAttribute("order", completeOrder);
         session.removeAttribute("tickets");
         request.getRequestDispatcher("WEB-INF/orderConfirm.jsp").forward(request, response);
-       
+       */
         
-         } 
+       
     }
 
     /**
