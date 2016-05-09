@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="css/helper.css" type="text/css" rel="stylesheet">
         <link href="less/myLess.less" type="text/css" rel="stylesheet/less">
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">

@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="css/helper.css" type="text/css" rel="stylesheet">
         <link href="less/myLess.less" type="text/css" rel="stylesheet/less">
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -72,11 +73,13 @@
         
        <div class="container">
            <div class="paymentBox">
-               <legend> Welcome to your Junction ${currentUser.firstName} </legend>
+               <legend> Welcome to your Junction ${currentUser.firstName} <a href="SignOut.do" style="float: right;"> Log out </a> </legend>
+               
             <ul class="nav nav-tabs nav-justified">
                   <li role="navigation" class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
-                  <li role="navigation"><a href="#subscriptions" data-toggle="tab">Subscriptions</a></li>
                   <li role="navigation"><a href="#orders" data-toggle="tab">Orders</a></li>
+                  <li role="navigation" style="color: black;"><a href="#subscriptions" data-toggle="tab">Subscriptions</a></li>
+                  
             </ul>
             <div class="tab-content">
             <div class="tab-pane active" id="profile">

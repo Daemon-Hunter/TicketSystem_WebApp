@@ -63,7 +63,8 @@ public class IndexServlet extends HttpServlet {
         }
         else {
             session = request.getSession();
-            session.setAttribute("loggedIn", "false");
+            Boolean loggedIn = false;
+            session.setAttribute("loggedIn", loggedIn);
         }
             
         

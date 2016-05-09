@@ -1,4 +1,4 @@
-<<%-- 
+<%-- 
     Document   : buyTickets
     Created on : 13-Mar-2016, 20:45:01
     Author     : Ruth
@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="css/helper.css" type="text/css" rel="stylesheet">
         <link href="less/myLess.less" type="text/css" rel="stylesheet/less">
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -105,6 +106,7 @@
                             <div class="row">
                                 
                                 <div class="col-lg-12">
+                                    
                                     <div  class="ticketDetailText"> Event Name: </div> <span class="ticketActualDetails"> ${childEvent.name} </span> <hr>
                                     <div  class="ticketDetailText"> Start:</div> <span class="ticketActualDetails"> ${childEvent.startDateTime} </span>
                                     <div  class="ticketDetailText"> End: </div> <span class="ticketActualDetails"> ${childEvent.endDateTime} </span> <hr>
@@ -158,8 +160,15 @@
                                     </c:forEach>
                                     <input type="hidden"  value="${parentEvent.ID}"  name="parent"/>
                                     <input type="hidden" value="${childEvent.ID}" name="child"/>
-                                    <input type="submit" value="Checkout" class="btn btn-lg btn-primary" style="margin: 30px;">
                                     
+                                    <c:if test="${noEvents eq true}">
+                                        <div class="ticketDetailtext">
+                                            <strong>No Tickets available for this event</strong>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${noEvents eq false}">
+                                    <input type="submit" value="Checkout" class="btn btn-lg btn-primary" style="margin: 30px;">
+                                    </c:if>
                                 </form>
                             </div>
                             

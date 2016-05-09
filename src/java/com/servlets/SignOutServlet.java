@@ -5,29 +5,21 @@
  */
 package com.servlets;
 
-import events.IChildEvent;
-import events.IParentEvent;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import people.IUser;
-import tickets.ITicket;
-import tickets.Ticket;
-import wrappers.UserWrapper;
 
 /**
  *
  * @author Ruth
  */
-@WebServlet(name = "TicketOptionsServlet", urlPatterns = {"/ticketOption.do"})
-public class TicketOptionsServlet extends HttpServlet {
+@WebServlet(name = "SignOutServlet", urlPatterns = {"/SignOut.do"})
+public class SignOutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +39,10 @@ public class TicketOptionsServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet TicketOptionsServlet</title>");            
+            out.println("<title>Servlet SignOutServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet TicketOptionsServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SignOutServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
@@ -70,42 +62,14 @@ public class TicketOptionsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        HttpSession session = request.getSession(false);
-        if (session == null) {
-            
-        }
         
-        else {
-            if ((Boolean)session.getAttribute("loggedIn")){
-                    IUser currentUser = (IUser)session.getAttribute("currentUser");
-            }
-        }
-        String parent = request.getParameter("parent");
-        String child = request.getParameter("child");
+        HttpSession session = request.getSession();
+        session.removeAttribute("currentUser");
+        session.removeAttribute("loggedIn");
+        Boolean loggedIn = false;
+        session.setAttribute("loggedIn", loggedIn);
         
-        int parentID = Integer.parseInt(parent);
-        int childID = Integer.parseInt(child);
-        IParentEvent parentEvent = UserWrapper.getInstance().getParentEvent(parentID);
-        IChildEvent purchaseEvent = parentEvent.getChildEvent(childID);
-        
-        request.setAttribute("childEvent", purchaseEvent);
-        request.setAttribute("parentEvent", parentEvent);
- 
-          List<ITicket> tickets = purchaseEvent.getTickets();
-          if(tickets.isEmpty()){
-              Boolean noEvents = true;
-              request.setAttribute("noEvents", noEvents);
-          }
-          else{
-          Boolean noEvents = false;
-          request.setAttribute("noEvents", noEvents);
-          }
-          
-          request.setAttribute("ticketList", tickets);
-                    
-        RequestDispatcher view = request.getRequestDispatcher("WEB-INF/buyTickets.jsp"); //
-        view.forward(request, response);
+        request.getRequestDispatcher("index.do").forward(request, response);
     }
 
     /**
