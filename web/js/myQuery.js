@@ -7,13 +7,18 @@
 
 $(document).ready(function() {
     
+    alert("Running Document Ready....");
     
-     $(document.body).on('click', '#loadMoreButton', function() {
-        
-        $.get("loadMore.do", function(responseXml) {                
-         $("#moreData").append($(responseXml).find("data").html()); 
-        });
-    });
+//    var btnMore = $( "#loadMoreButton" );
+//    btnMore.click(function (){alert("HELLO FROM ROY");});
+    
+//     $(document.body).on('click', '#loadMoreButton', function() {
+//        
+//        alert("its working");
+//        //$.get("loadMore.do", function(responseXml) {                
+//         //$("#moreData").append($(responseXml).find("data").html()); 
+//        //});
+//    });
   
 
      // Date range filter
@@ -21,10 +26,8 @@ $(document).ready(function() {
     $('input[name="dater"]').daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
-    });
-    
+        });
     });
 
  
-  
 });

@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -111,6 +112,15 @@ public class FilterServlet extends HttpServlet {
                  List<IArtist> artists = UserWrapper.getInstance().searchArtists(search);
                  request.setAttribute("fArtists", artists); 
                  request.setAttribute("displayArtist", "true");
+                 //Child events amounts
+                 List<Integer> childEventAmount = new ArrayList();
+                  for (IArtist a: artists)
+                {
+                    List<IChildEvent> child = a.getChildEvents();
+                    int size = child.size();
+                    childEventAmount.add(size);
+                 }
+                  request.setAttribute("artistChildren", childEventAmount);
              }
        }
        
@@ -119,6 +129,14 @@ public class FilterServlet extends HttpServlet {
                  List<IVenue> venues = UserWrapper.getInstance().searchVenues(search);
                  request.setAttribute("fVenues", venues);
                  request.setAttribute("displayVenue", "true");
+                 List<Integer> childEventAmountVenue = new ArrayList();
+                  for (IVenue v: venues)
+                    {
+                        List<IChildEvent> child = v.getChildEvents();
+                        int size = child.size();
+                        childEventAmountVenue.add(size);
+                        request.setAttribute("venueChildren", childEventAmountVenue);
+                    }
              }
        }
        
@@ -135,6 +153,13 @@ public class FilterServlet extends HttpServlet {
                             IChildEvent child = e.getChildEvents().get(0);
                             if (child.getStartDateTime().after(date))
                                 events.add(e);
+                            
+                            List<IChildEvent> chi = e.getChildEvents();
+                            List<Integer> childEventAmountEvent = new ArrayList();
+                            int size = chi.size();
+                             childEventAmountEvent.add(size);
+                            request.setAttribute("eventChildren", childEventAmountEvent);
+                            
                         }
                 }
                 request.setAttribute("fEvents", events);

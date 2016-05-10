@@ -23,6 +23,7 @@
         <script src ="js/bootstrap.min.js"></script>
         <script src ="js/less.js"></script>
         <script src= "js/myQuery.js"></script>
+        <script src="js/load.js"> </script>
     </head>
     <body>
         
@@ -40,7 +41,7 @@
                                 <p class="">Sign in<b class="caret"></b></p>      
                             </a>
                             <div class="dropdown-menu" style="padding: 30px;">
-                                <form action="SignIn" method="post" accept-charset="UTF-8">
+                                <form action="SignIn" method="post" accept-charset="UTF-8" class="SignInBox">
                                     <input class="form-control" id="user_username" style="margin-bottom: 15px;" type="text" name="usernameSignIn" size="50" placeholder="Username/Email"/>
                                     <input class="form-control" id="user_password" style="margin-bottom: 15px;" type="password" name="passwordSignIn" size="50" placeholder="Password"/>
                                     <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
@@ -145,9 +146,11 @@
                     <input type="hidden" id="listIndex" value="${amount}">
                     <div id="moreData"> 
                     </div>
+                    
+                     
                 </div>
-                
                     <button id="loadMoreButton"> Load more </button> 
+                   
             </div>
                    
        </div>

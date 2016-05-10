@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <data>
+    <div>This is some text</div>
+    <%--
      <c:forEach items="${moreEvents}" var="more">
                         
         <div class="col-lg-2  newEventGallery"> 
@@ -16,7 +18,7 @@
             </a>  
         </div>
     </c:forEach>
-   
+    --%>
 </data>
 
 

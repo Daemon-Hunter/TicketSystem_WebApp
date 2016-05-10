@@ -71,6 +71,7 @@ public class searchResultServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
+        UserWrapper.getInstance().setAmountToLoad(15);
         String userInput = request.getParameter("user_search");
         
         if (userInput.equals(""))

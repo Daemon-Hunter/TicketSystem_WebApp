@@ -148,7 +148,10 @@ img{
 
 
 .panelBodyBox{
-    height: 600px;
+    height: 460px;
+}
+.panelBodyBoxEvent{
+    height: 650px;
 }
 
 
@@ -157,9 +160,9 @@ img{
     
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
-   -webkit-box-shadow: -1px 22px 54px 26px rgba(0,0,0,1);
+   -webkit-box-shadow: -1px 50px 54px 26px rgba(0,0,0,1);
 -moz-box-shadow: -1px 22px 54px 26px rgba(0,0,0,1);
-box-shadow: -1px 22px 54px 26px rgba(0,0,0,1);
+box-shadow: -1px 22px 114px 36px rgba(0,0,0,1);
 
         
 }
@@ -217,7 +220,7 @@ box-shadow: -1px 22px 54px 26px rgba(0,0,0,1);
 
 .row .col-lg-12 .newEventHeader {
     color: white;
-    font-size: 40px;
+    font-size: 55px;
     border: 2px;
     border-color: #fff;
     font-family: Impact, Charcoal, sans-serif;
@@ -262,7 +265,7 @@ box-shadow: -1px 22px 54px 26px rgba(0,0,0,1);
     padding: 20px;
     font-size: 40px;
     color : whitesmoke;
-    margin-bottom: 40px;
+    margin-bottom: 120px;
 }
 
 .eventRowSegment{
@@ -308,20 +311,25 @@ box-shadow: -1px 22px 54px 26px rgba(0,0,0,1);
     border-bottom: #fff dashed thin;
 }
 
-.loadMoreButton{
-    font-size: 20px;
+#loadMoreButton{
+    font-size: 17px;
     font-style:  italic;
     text-align:  center;
+    align-content: center;
     color: white;
     margin-top: 10px;
+    
+    background-color: black;
+   
 }
 
 .largeImageBox{
-    width: 100%;
-    height: 450px;
+    width: 540px;
+    height: 480px;
     text-align: center;
-    border: #080808 medium solid ; 
+    border: #080808 double thick;
     border-radius: 2px;
+    
     
 }
 
@@ -377,8 +385,10 @@ box-shadow: -1px 22px 54px 26px rgba(0,0,0,1);
     background-color: white;
 }
 
-.googleMap{
+#googleMap{
     text-align: center;
+    width: 380px;
+    height: 320px;
 }
 
 .infoPageTitle{
@@ -449,4 +459,8 @@ table {
     margin-top: 20px;
     width: 100%;
     text-align: center;
+}
+
+.SignInBox{
+    width: 200px;
 }

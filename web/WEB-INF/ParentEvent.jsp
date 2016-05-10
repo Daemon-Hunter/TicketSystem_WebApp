@@ -38,7 +38,7 @@
                                 <p class="">Sign in<b class="caret"></b></p>      
                             </a>
                             <div class="dropdown-menu" style="padding: 30px;">
-                                <form action="SignIn" method="post" accept-charset="UTF-8">
+                                <form class="SignInBox" action="SignIn" method="post" accept-charset="UTF-8">
                                     <input class="form-control" id="user_username" style="margin-bottom: 15px;" type="text" name="usernameSignIn" size="50" placeholder="Username/Email"/>
                                     <input class="form-control" id="user_password" style="margin-bottom: 15px;" type="password" name="passwordSignIn" size="50" placeholder="Password"/>
                                     <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
@@ -122,7 +122,7 @@
                     </div>
                     
                     
-                    <div class="row socialLinkBackground">
+                    <div class="socialLinkBackground">
                         <div class="col-lg-4">
                              <div class="">
                                  <a href="${facebook}" class="btn btn-group-justified">
@@ -133,20 +133,20 @@
                         </div>
                         <div class="col-lg-4">
                              <div class="">
-                                <a href="${twitter}" class="btn btn-group-justified" style="background-color: white;">
+                                <a href="${twitter}" class="btn btn-group-justified">
                                     <i class="fa fa-twitter fa-2x"> </i>
                                     ${twitter}
                                  </a>
                              </div>
                         </div>
                                  
-                                  <div class="col-lg-4">
+                        <div class="col-lg-4">
                              <div class="">
-                    <a href="" class="btn btn-group-justified">
-                        <i class="fa fa-plus-circle fa-2x"> Track</i>
+                                <a href="" class="btn btn-group-justified">
+                                <i class="fa fa-plus-circle fa-2x"> Track</i>
                         
-                    </a>
-                    </div>
+                                </a>
+                             </div>
                         </div>
                     </div>
                     
@@ -162,7 +162,7 @@
                         </span>
                        
                     </div>
-                    <div class="panel-body panelBodyBox">
+                    <div class="panel-body panelBodyBoxEvent">
                         
                          <span class="venueDescription">
                              <label> Venue(s):  </label><br>
@@ -176,16 +176,16 @@
                             <c:out value="${event.description}" default="None"/>
                         </span>
                         <hr>
-                        <span class="googleMap">
+                        <div id="googleMap">
                         
                             
                             <iframe
-                                width="320"
+                                width="380"
                                 height="320"
                                 frameborder="0" style="border:0"
-                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCnCjhuB-7cFDL9ZdArYQSq1qlOEtU1IOQ&q=${address},${venue.postcode}" allowfullscreen>
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCnCjhuB-7cFDL9ZdArYQSq1qlOEtU1IOQ&q=${address}" allowfullscreen>
                               </iframe>
-                        </span>
+                        </div>
                         <hr>
                         
 
@@ -217,7 +217,7 @@
                 <c:when test="${multipleChildren eq 'true'}">
                 <%-- buy tickets --%>
                 
-                <div class="row" style="margin-top: 10px; padding-bottom: 100px;">
+                <div class="row" style="margin: 20px; padding-bottom: 100px;">
                         <c:forEach var="cEvent" items="${childEvents}">
                             <%--<c:set var="venue" value="${event.venue}"/> --%>
                             
@@ -235,7 +235,7 @@
                 
                 <c:when test="${multipleChildren eq false}">
                     
-                    <div class="col-lg-8 noTickets">
+                    <div class="col-lg-12 noTickets">
                         Currently no scheduled events
                     </div>
                     
@@ -266,11 +266,22 @@
     </div>
         
        
-       
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnCjhuB-7cFDL9ZdArYQSq1qlOEtU1IOQ"
+         async defer></script>
+         <script>
+             
+           
+                
+               
+            
+            
+         </script>
+         
         <script src ="http://code.jquery.com/jquery.js"></script>
         <script src ="js/bootstrap.min.js"></script>
         <script src ="js/less.js"></script>
         <script src ="js/jQuery.js"></script>
+        
     </body>
 </html>
 

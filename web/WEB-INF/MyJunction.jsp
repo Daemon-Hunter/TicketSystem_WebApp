@@ -77,8 +77,8 @@
                
             <ul class="nav nav-tabs nav-justified">
                   <li role="navigation" class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
-                  <li role="navigation"><a href="#orders" data-toggle="tab">Orders</a></li>
-                  <li role="navigation" style="color: black;"><a href="#subscriptions" data-toggle="tab">Subscriptions</a></li>
+                  <li role="navigation"><a href="#orders" data-toggle="tab" style="color: black;">Orders</a></li>
+                  <li role="navigation"><a href="#subscriptions" data-toggle="tab">Subscriptions</a></li>
                   
             </ul>
             <div class="tab-content">

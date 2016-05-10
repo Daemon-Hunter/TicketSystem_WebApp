@@ -16,7 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import utilities.ImageScale;
+
 import wrappers.UserWrapper;
 
 /**
@@ -70,10 +70,9 @@ public class ImageServlet extends HttpServlet {
         BufferedImage image;
         if ("large".equals(request.getParameter("image")))
         {
-            image = soc.getImage(0);
-            image = ImageScale.resize(image, 400, 400);
-            if (image != null)
-                image=soc.getImage(3);
+            image = soc.getImage(4);
+            //image = ImageScale.resize(image, 550, 510);
+            
         }
         else
             image = soc.getImage(0);

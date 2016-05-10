@@ -5,7 +5,6 @@
  */
 package com.servlets;
 
-
 import events.IChildEvent;
 import events.IParentEvent;
 import java.io.IOException;
@@ -44,7 +43,7 @@ public class LoadMoreServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoadMoreServlet</title>");            
+            out.println("<title>Servlet LoadMoreServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet LoadMoreServlet at " + request.getContextPath() + "</h1>");
@@ -67,8 +66,7 @@ public class LoadMoreServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
         /*List<IParentEvent> loadMoreList = UserWrapper.getInstance().loadMoreParentEvents();
         
         ArrayList<Integer> childEventAmount = new ArrayList();
@@ -84,11 +82,32 @@ public class LoadMoreServlet extends HttpServlet {
         
         RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/index.jsp");//
         view.forward(request, response);*/
+        System.out.println("Starting the request despatcher...");
         List<IParentEvent> event = UserWrapper.getInstance().loadMoreParentEvents();
         request.setAttribute("moreEvents", event);
-        request.getRequestDispatcher("/WEB-INF/includes/moreDetailsTab.jsp").forward(request, response);
-        
-     
+        response.setContentType("text/plain");
+        PrintWriter writer = response.getWriter();
+        String template = "<div class=\"col-lg-2  newEventGallery\"> \n"
+                + "            <a href=\"event.do?eventdata=theId\">\n"
+                + "                <img class=\"eventImage\" src=\"Image?type=event&id=theId\">\n"
+                + "                 <div class=\"underImageInfo\">\n"
+                + "                     <div class=\"boxName\"> theName </div> \n"
+                + "\n"
+                + "                <div class=\"boxChildren\">  </div>\n"
+                + "                </div>\n"
+                + "            </a>  \n"
+                + "        </div>";
+        for (IParentEvent currEvent : event) {
+            String output = template;
+            Integer id = currEvent.getID();
+            String name = currEvent.getName();
+            output = output.replaceAll("theId", id.toString());
+            output = output.replaceAll("theName", name);
+            writer.println(output);
+        }
+        //writer.println("<div>Test div from servlet</div>");
+        //request.getRequestDispatcher("/WEB-INF/includes/moreDetailsTab.jsp").forward(request, response);
+
     }
 
     /**

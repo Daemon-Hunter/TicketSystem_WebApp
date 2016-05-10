@@ -100,7 +100,7 @@ public class EventServlet extends HttpServlet {
       if (childEvents.size() > 0){
       IVenue ve = childEvents.get(0).getVenue();
       String address = ve.getAddress();
-      String formattedAddress = address.replaceAll(",", "+").replaceAll("\\s", "+").replaceAll("\\+\\+", "+");
+      String formattedAddress = address.replaceAll(",", ",").replaceAll("\\s", "+").replaceAll("\\+\\+", "+");
       request.setAttribute("address", formattedAddress);
        request.setAttribute("venue", ve);
       }

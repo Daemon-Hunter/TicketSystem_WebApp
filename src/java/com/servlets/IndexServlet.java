@@ -68,7 +68,7 @@ public class IndexServlet extends HttpServlet {
         }
             
         
-        UserWrapper.getInstance().setAmountToLoad(15);
+        UserWrapper.getInstance().setAmountToLoad(20);
 
         List<IParentEvent> list = UserWrapper.getInstance().getParentEvents();
         ArrayList<Integer> childEventAmount = new ArrayList();

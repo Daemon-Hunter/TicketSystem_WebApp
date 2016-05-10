@@ -37,7 +37,7 @@
                                 <p class="">Sign in<b class="caret"></b></p>      
                             </a>
                             <div class="dropdown-menu" style="padding: 30px;">
-                                <form action="SignIn" method="post" accept-charset="UTF-8">
+                                <form class="SignInBox" action="SignIn" method="post" accept-charset="UTF-8">
                                     <input class="form-control" id="user_username" style="margin-bottom: 15px;" type="text" name="usernameSignIn" size="50" placeholder="Username/Email"/>
                                     <input class="form-control" id="user_password" style="margin-bottom: 15px;" type="password" name="passwordSignIn" size="50" placeholder="Password"/>
                                     <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
@@ -103,7 +103,7 @@
            
             
             <div class="row contentPosition">
-                <div class="col-lg-10">
+                <div class="col-lg-12">
                     <div class="socialLinkBackground socialLinkTopRadius">
                      <div class="infoPageTitle"> ${venue.name}</div>
                     </div>
@@ -118,20 +118,20 @@
                     
                     
                     
-                    <div class="row">
+                    <div class="socialLinkBackground">
                         <div class="col-lg-4">
-                             <div class="socialLinkBackground">
+                             <div class="">
                                  <a href="${facebook}" class="btn btn-group-justified">
                                     <i class="fa fa-facebook fa-2x"></i>
-                                    ${facebook}
+                                    
                                  </a>
                              </div>
                         </div>
                         <div class="col-lg-4">
-                             <div class="socialLinkBackground">
-                                <a href="${twitter}" class="btn btn-group-justified" style="background-color: white;">
+                             <div class="">
+                                <a href="${twitter}" class="btn btn-group-justified">
                                     <i class="fa fa-twitter fa-2x"> </i>
-                                    ${twitter}
+                                    
                                  </a>
                              </div>
                         </div>
@@ -147,6 +147,7 @@
                     </div>
                     
                     
+                    
                      
                 
                 </div>
@@ -155,10 +156,10 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <span id="heading">
-                            <p>Venue Information</p>
+                            <strong>Venue Information</strong>
                         </span>
                     </div>
-                    <div class="panel-body panelBodyBox">
+                    <div class="panel-body panelBodyBoxEvent">
                         <span class="description">
                             ${venue.description}
                         </span>
