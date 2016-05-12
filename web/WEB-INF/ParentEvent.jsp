@@ -73,19 +73,26 @@
         <div class="row">
             <div class="col-lg-3 leftSearch col-lg-offset-1">
                 <div id="searchBarLeft"><div class="form-inline" >
-                    <form class="form-inline">
+                        <form class="form-inline" action="SearchCategory.do" method="get">
                         <div class="form-group">
-                            <select class="form-control" style="width: 12em" placeholder="Location">
-                                <option value=plymouth">Plymouth</option>
-                                 <option value=plymouth">Plymouth</option>
-                                  <option value=plymouth">Plymouth</option>
+                            <select class="form-control" style="width: 12em" placeholder="Category" name="categories">
+                                <option value="event">Event's</option>
+                                 <option value="venue">Venue's</option>
+                                  <option value="artist">Artist's</option>
+                                  
                             </select>
                         </div>
                         <div class="form-group">
-                            <select class="form-control" style="width: 12em">
-                                <option value=plymouth">Sports</option>
-                                 <option value=plymouth">Music</option>
-                                  <option value=plymouth">Pooplop</option>
+                            <select class="form-control" style="width: 12em" name="locations" placeholdr="Location">
+                                <option value="south-east">South East</option>
+                                 <option value="london">London</option>
+                                  <option value="north-west">North West</option>
+                                  <option value="east-england">East of England</option>
+                                  <option value="west-midlandst">West Midlands</option>
+                                  <option value="south-west">South West</option>
+                                  <option value="yorkshire">Yorkshire and Humber</option>
+                                  <option value="east-midlands">East Midlands</option>
+                                  <option value="north-east">North East</option>
                             </select>
                         </div>
                         
@@ -95,6 +102,7 @@
                 </div>
              </div>
         </div>
+        
         
          
         

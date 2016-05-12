@@ -15,6 +15,7 @@
     <body>
        
         
-       ${name}
+       ${location}
+       ${category}
     </body>
 </html>

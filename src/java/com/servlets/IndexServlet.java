@@ -55,7 +55,7 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        UserWrapper.getInstance().setAmountToLoad(15);
         HttpSession session = request.getSession(false);
         
         if (session != null){
@@ -68,7 +68,7 @@ public class IndexServlet extends HttpServlet {
         }
             
         
-        UserWrapper.getInstance().setAmountToLoad(20);
+        
 
         List<IParentEvent> list = UserWrapper.getInstance().getParentEvents();
         ArrayList<Integer> childEventAmount = new ArrayList();

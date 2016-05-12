@@ -5,15 +5,15 @@
  */
 package com.servlets;
 
-import events.IChildEvent;
+import events.IArtist;
 import events.IParentEvent;
+import events.IVenue;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,9 +21,10 @@ import wrappers.UserWrapper;
 
 /**
  *
- * @author Ruth
+ * @author nickrudden
  */
-public class LoadMoreServlet extends HttpServlet {
+@WebServlet(name = "LoadMoreSearchResultsServlet", urlPatterns = {"/loadMoreSearch.do"})
+public class LoadMoreSearchResultsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,20 +38,17 @@ public class LoadMoreServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoadMoreServlet</title>");
+            out.println("<title>Servlet LoadMoreSearchResultsServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoadMoreServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LoadMoreSearchResultsServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {
-            out.close();
         }
     }
 
@@ -66,40 +64,47 @@ public class LoadMoreServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         
-        List<IParentEvent> event = UserWrapper.getInstance().loadMoreParentEvents();
-        request.setAttribute("moreEvents", event);
+        request.setAttribute("user_search", "");
+        UserWrapper instance = UserWrapper.getInstance();
+        List<IParentEvent> events = instance.loadMoreParentEvents();
+        List<IVenue> venues = instance.loadMoreVenues();
+        List<IArtist> artists = instance.loadMoreArtists();
         
+        String templateArtist = "";
         
-        response.setContentType("text/plain");
-        PrintWriter writer = response.getWriter();
-        String template = "<div class=\"col-lg-2  newEventGallery\"> \n"
-                + "            <a href=\"event.do?eventdata=theId\">\n"
-                + "                <img class=\"eventImage\" src=\"Image?type=event&id=theId\">\n"
-                + "                 <div class=\"underImageInfo\">\n"
-                + "                     <div class=\"boxName\"> theName </div> \n"
+        String templateVenue = "";
+        
+        String templateEvent = " <a href=\"event.do?eventdata=theId\">\n"
+                + "                                <div class=\"col-lg-3 newEventGallery\" id=\"${loop.index}\"> \n"
+                + "                                     <img class=\"eventImage\" src=\"Image?type=event&id=theId\">\n"
+                + "                 \n"
+                + "                                     <div class=\"underImageInfo\">\n"
+                + "                                        <div class=\"boxName\"> theName </div> \n"
                 + "\n"
-                + "                <div class=\"boxChildren\"> showAmount  Shows </div>\n"
-                + "                </div>\n"
-                + "            </a>  \n"
-                + "        </div>";
-        
-        
-        
-        for (IParentEvent currEvent : event) {
-            String output = template;
+                + "                                        <div class=\"boxChildren\"> \n"
+                + "                                          childShows Shows</div>\n"
+                + "                                    </div>\n"
+                + "                                     \n"
+                + "                                    \n"
+                + "                                </div>\n"
+                + "                            </a>";
+
+            PrintWriter writer = response.getWriter();
+            response.setContentType("text/plain");
+            for (IParentEvent currEvent : events) {
             
+            String output = templateEvent;
             Integer children = currEvent.getChildEvents().size();
             Integer id = currEvent.getID();
             String name = currEvent.getName();
+            
+            output = output.replaceAll("childShows", children.toString());
             output = output.replaceAll("theId", id.toString());
             output = output.replaceAll("theName", name);
-            output = output.replaceAll("showAmount", children.toString());
+             
             writer.println(output);
         }
-        
-
     }
 
     /**

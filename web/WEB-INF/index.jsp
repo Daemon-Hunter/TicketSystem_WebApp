@@ -76,20 +76,26 @@
         <div class="row">
             <div class="col-lg-3 leftSearch col-lg-offset-1">
                 <div id="searchBarLeft"><div class="form-inline" >
-                    <form class="form-inline">
+                        <form class="form-inline" action="SearchCategory.do" method="get">
                         <div class="form-group">
-                            <select class="form-control" style="width: 12em" placeholder="Location">
-                                <option value=plymouth">Plymouth</option>
-                                 <option value=plymouth">Plymouth</option>
-                                  <option value=plymouth">Plymouth</option>
-                                  <option value="hello"> ${creationTime} </option>
+                            <select class="form-control" style="width: 12em" placeholder="Category" name="categories">
+                                <option value="event">Event's</option>
+                                 <option value="venue">Venue's</option>
+                                  <option value="artist">Artist's</option>
+                                  
                             </select>
                         </div>
                         <div class="form-group">
-                            <select class="form-control" style="width: 12em">
-                                <option value=plymouth">Sports</option>
-                                 <option value=plymouth">Music</option>
-                                  <option value=plymouth">Pooplop</option>
+                            <select class="form-control" style="width: 12em" name="locations" placeholdr="Location">
+                                <option value="south-east">South East</option>
+                                 <option value="london">London</option>
+                                  <option value="north-west">North West</option>
+                                  <option value="east-england">East of England</option>
+                                  <option value="west-midlandst">West Midlands</option>
+                                  <option value="south-west">South West</option>
+                                  <option value="yorkshire">Yorkshire and Humber</option>
+                                  <option value="east-midlands">East Midlands</option>
+                                  <option value="north-east">North East</option>
                             </select>
                         </div>
                         
@@ -107,7 +113,7 @@
                 <div class="col-lg-12 "> 
                     <form action="searchResult" method="POST" class="topPadding form-inline">
                         <lavel class="errorMessage">${ErrorMessage}</label>
-                        <h1 style="font-size: 60px; font-family: Impact, Charcoal, sans-serif;" id="searchBarLeft"><span class="label">Complete Listings</span></h1>    
+                        <h1 style="font-size: 75px; font-family: Impact, Charcoal, sans-serif;" id="searchBarMain"><span class="label">Complete Listings</span></h1>    
                                 
                                 <div class="input-group-addon" id="mainSearchBar">    
                                     <input type="text" name="user_search" class="form-control" placeholder="Artist/Venue/Event/Tag" style="height:70px; font-size: 30px; width:96%" >
@@ -122,7 +128,7 @@
             
             
             <%-- tabbed pane --%>
-            <div class="row" style="border: 2px #fff; padding-bottom: 100px;">
+            <div class="row " style="border: 2px #fff; padding-bottom: 100px;">
                 <div class="col-lg-12">
                     <div class="newEventHeader"> New Events <hr></div>
                     
@@ -143,14 +149,14 @@
                         </div>
                     </c:forEach>
                     
-                    <input type="hidden" id="listIndex" value="${amount}">
+                    
                     <div id="moreData"> 
                     </div>
                     
                      
-                </div>
+                </div> <div class="eventData">
                     <button id="loadMoreButton"> Load more </button> 
-                   
+                </div>
             </div>
                    
        </div>

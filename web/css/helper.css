@@ -25,8 +25,8 @@ body{
 
 .leftSearch {
    padding-bottom: 15px;
-    border-bottom-right-radius: 70px;
-    border-bottom-left-radius: 70px;
+    border-bottom-right-radius: 90px;
+    border-bottom-left-radius: 90px;
     background-image: 
         linear-gradient(#2E2E2E, #555555);
     
@@ -43,6 +43,13 @@ body{
 		linear-gradient(
                 to bottom,
                 #0000ff, #000066);
+        
+-webkit-box-shadow: 2px 37px 54px 79px rgba(0,0,0,0.75);
+-moz-box-shadow: 2px 37px 54px 79px rgba(0,0,0,0.75);
+box-shadow: 2px 37px 54px 79px rgba(0,0,0,0.75), inset -1px -6px 4px 9px #2E2E2E;
+
+  
+
 }     
 
 .leftPadding{
@@ -102,9 +109,15 @@ button.right {
 #searchBarLeft{
    
     text-align: center;
-    padding-top:  10px;
+    padding-top:  px;
+    
   
 }
+    #searchBarMain{
+        text-align: center;
+    padding-top:  10px;
+    padding-bottom: 19px;
+    }
 
 .divider-vertical {
 height: 55px;
@@ -186,6 +199,7 @@ box-shadow: -1px 22px 114px 36px rgba(0,0,0,1);
     margin: 2px;
     background-color: gray;
     
+    
 }
 
 .eventBoxInfo{
@@ -245,6 +259,7 @@ box-shadow: -1px 22px 114px 36px rgba(0,0,0,1);
     font-weight: bold;
     font-size: 15px;
     height: 500px;
+  
 }
 
 .pageHeading{
@@ -312,12 +327,26 @@ box-shadow: -1px 22px 114px 36px rgba(0,0,0,1);
 }
 
 #loadMoreButton{
+    text-align: match-parent;
     font-size: 17px;
     font-style:  italic;
-    text-align:  center;
-    align-content: center;
+    
     color: white;
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 50px;
+    
+    background-color: black;
+   
+}
+
+.loadMoreSearchButton{
+     text-align: match-parent;
+    font-size: 17px;
+    font-style:  italic;
+    
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 50px;
     
     background-color: black;
    
@@ -363,7 +392,7 @@ box-shadow: -1px 22px 114px 36px rgba(0,0,0,1);
   -webkit-animation-name: greenPulse;
   -webkit-animation-duration: 4s;
   -webkit-animation-iteration-count: 1;
-  -webkit-box-shadow: 0 0 18px #91bd09;
+  -webkit-box-shadow: 0 0 35px #2E2E2E;
 }
 
 .paymentBox{
@@ -464,3 +493,12 @@ table {
 .SignInBox{
     width: 200px;
 }
+
+#registerComplete{
+    text-align: center;
+}
+
+.eventData{
+    text-align: center;
+}
+

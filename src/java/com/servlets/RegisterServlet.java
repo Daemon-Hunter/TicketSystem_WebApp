@@ -12,7 +12,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import people.Customer;
+import people.ICustomer;
 import people.IUser;
 import utilities.HashString;
 import utilities.Validator;
@@ -108,26 +110,29 @@ public class RegisterServlet extends HttpServlet {
                 request.setAttribute("errorMessage", "Email address is already registered");
                 RequestDispatcher view = request.getRequestDispatcher("/register.jsp");
                 view.forward(request, response);
-            
+            }
            }
                 
-                //try{
+                try{
                 IUser user = new Customer(firstName, secondName, userName, address, postcode, password);
                 UserWrapper.getInstance().registerUser(user);
                 request.setAttribute("username", userName);
                 request.setAttribute("name", firstName);
-                RequestDispatcher view = request.getRequestDispatcher("/registerComplete.jsp");
+               
+                
+                
+                RequestDispatcher view = request.getRequestDispatcher("registerComplete.jsp");
                 view.forward(request, response);
-                //}
-                //catch(Exception ex)
-                //{
+                }
+                catch(Exception ex)
+                {
                     request.setAttribute("errorMessage", "An undefined error has occured");
-                //RequestDispatcher view = request.getRequestDispatcher("/register.jsp");
+                RequestDispatcher view = request.getRequestDispatcher("/register.jsp");
                 view.forward(request, response);
-                //}
+                }
             }
             
-        }
+        
         
         
 

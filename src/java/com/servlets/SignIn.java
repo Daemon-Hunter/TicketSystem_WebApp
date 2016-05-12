@@ -65,7 +65,7 @@ public class SignIn extends HttpServlet {
         
         String username = request.getParameter("usernameSignIn");
         String password = request.getParameter("passwordSignIn");
-        
+        String newUser = request.getParameter("newUser");
         try {
             Boolean loggedIn = UserWrapper.getInstance().loginUser(username, password);
             if (loggedIn){
@@ -74,6 +74,8 @@ public class SignIn extends HttpServlet {
                 session.setMaxInactiveInterval(600);
                 session.setAttribute("currentUser", currentUser);
                 session.setAttribute("loggedIn", loggedIn);
+                
+                
                 request.getRequestDispatcher("WEB-INF/MyJunction.jsp").forward(request, response);
             }
             else

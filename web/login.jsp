@@ -38,7 +38,8 @@
                             <div class="dropdown-menu" style="padding: 30px;">
                                 <form action="SignIn" method="post" accept-charset="UTF-8">
                                     <input class="form-control" id="user_username" style="margin-bottom: 15px;" type="text" name="usernameSignIn" size="50" placeholder="Username/Email"/>
-                                    <input class="form-control" id="user_password" style="margin-bottom: 15px;" type="password" name="passwordSignIn" size="50" placeholder="Password"/>
+                                    <input class="form-control" id="user_password" style="margin-bottom: 15px;" type="password" name="passwordSignIn" size="50"/>
+                                    
                                     <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
                                  </form>
                             </div>
@@ -78,13 +79,13 @@
         <div class="form-group">
         <label class="col-sm-3 control-label" for="usernameSignIn">Username</label>
         <div class="col-sm-9">
-          <input type="text" class="form-control" name="usernameSignIn" placeholder="username">
+          <input type="text" class="form-control" name="usernameSignIn" placeholder="Username / Email">
         </div>
       </div>
         <div class="form-group">
         <label class="col-sm-3 control-label" for="passwordSignIn">Password</label>
         <div class="col-sm-9">
-          <input type="text" class="form-control" name="passwordSignIn"  placeholder="password">
+          <input class="form-control"  type="password" name="passwordSignIn"  placeholder="password">
         </div>
       </div>
         
