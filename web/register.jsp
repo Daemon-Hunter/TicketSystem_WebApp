@@ -3,7 +3,7 @@
     Created on : 25-Feb-2016, 12:21:22
     Author     : Nick
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -23,7 +23,7 @@
     <body>
         
          <nav class="navbar navbar-inverse navbar-static-top">
-            <ul class="nav navbar-nav pull-right" style="margin-right: 15%; font-size: 23px;">
+            <ul class="nav navbar-nav pull-right" style="margin-right: 15%; margin-top: 5px; font-size: 21px;">
                 <c:choose>
                     
                    <c:when test="${loggedIn eq false}">
@@ -58,10 +58,12 @@
         
         <div class="row">
             <div class="blue col-lg-12"> 
-                <div id="logoImage">
-                <a href="index.do">
-                <img class="padding" src="images/Drawing.png">
+                <div id="logoImage"> 
+                    <a href="index.do">
+                <img class="padding" src="images/logo/logologo.png">
+               
                     </a>
+                     <span class="logotext"> Function Junction </span>
                 </div>
             </div>
                       

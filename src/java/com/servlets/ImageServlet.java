@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import wrappers.UserWrapper;
+import utilities.WebWrapper;
 
 /**
  *
@@ -61,11 +61,11 @@ public class ImageServlet extends HttpServlet {
         ISocial soc = null;
         
         if (type.equals("event"))
-            soc = UserWrapper.getInstance().getParentEvent(Integer.parseInt(id)).getSocialMedia();
+            soc = WebWrapper.getInstance().getParentEvent(Integer.parseInt(id)).getSocialMedia();
         else if(type.equals("artist"))
-            soc = UserWrapper.getInstance().getArtist(Integer.parseInt(id)).getSocialMedia();
+            soc = WebWrapper.getInstance().getArtist(Integer.parseInt(id)).getSocialMedia();
         else if(type.equals("venue")) 
-            soc = UserWrapper.getInstance().getVenue(Integer.parseInt(id)).getSocialMedia();
+            soc = WebWrapper.getInstance().getVenue(Integer.parseInt(id)).getSocialMedia();
         
         BufferedImage image;
         if ("large".equals(request.getParameter("image")))

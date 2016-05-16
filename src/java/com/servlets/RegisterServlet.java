@@ -18,7 +18,7 @@ import people.ICustomer;
 import people.IUser;
 import utilities.HashString;
 import utilities.Validator;
-import wrappers.UserWrapper;
+import utilities.WebWrapper;
 
 /**
  *
@@ -115,7 +115,7 @@ public class RegisterServlet extends HttpServlet {
                 
                 try{
                 IUser user = new Customer(firstName, secondName, userName, address, postcode, password);
-                UserWrapper.getInstance().registerUser(user);
+                WebWrapper.getInstance().registerUser(user);
                 request.setAttribute("username", userName);
                 request.setAttribute("name", firstName);
                

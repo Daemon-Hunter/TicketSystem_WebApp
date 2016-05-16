@@ -11,12 +11,12 @@ $(document).ready(function() {
 
 
 // var btnMoreSearch = $("#loadMoreButton");
-//    btnMoreSearch.click(function () {
+//  btnMoreSearch.click(function () {
+//     
+//      $.get("loadMoreSearch.do", function(responseXml){
+//           
+//           $('#moreData').html(responseXml);
+//       });
 //       
-//        $.get("loadMoreSearch.do", function(responseXml){
-//            
-//            $('#moreData').html(responseXml);
-//        });
-//        
-//       
-//    });
+//      
+//   });

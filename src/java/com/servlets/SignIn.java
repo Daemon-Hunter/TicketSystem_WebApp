@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import people.IUser;
-import wrappers.UserWrapper;
+import utilities.WebWrapper;
 
 /**
  *
@@ -67,9 +67,9 @@ public class SignIn extends HttpServlet {
         String password = request.getParameter("passwordSignIn");
         String newUser = request.getParameter("newUser");
         try {
-            Boolean loggedIn = UserWrapper.getInstance().loginUser(username, password);
+            Boolean loggedIn = WebWrapper.getInstance().loginUser(username, password);
             if (loggedIn){
-                IUser currentUser = UserWrapper.getInstance().getUser();
+                IUser currentUser = WebWrapper.getInstance().getUser();
                 HttpSession session = request.getSession();
                 session.setMaxInactiveInterval(600);
                 session.setAttribute("currentUser", currentUser);

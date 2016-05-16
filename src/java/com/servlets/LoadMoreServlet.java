@@ -17,7 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import wrappers.UserWrapper;
+import utilities.WebWrapper;
 
 /**
  *
@@ -68,7 +68,7 @@ public class LoadMoreServlet extends HttpServlet {
             throws ServletException, IOException {
 
         
-        List<IParentEvent> event = UserWrapper.getInstance().loadMoreParentEvents();
+        List<IParentEvent> event = WebWrapper.getInstance().loadMoreParentEvents();
         request.setAttribute("moreEvents", event);
         
         

@@ -17,7 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import wrappers.UserWrapper;
+import utilities.WebWrapper;
 
 /**
  *
@@ -65,18 +65,45 @@ public class LoadMoreSearchResultsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        request.setAttribute("user_search", "");
-        UserWrapper instance = UserWrapper.getInstance();
+         System.out.println("iN SERVLET");
+         response.setContentType("text/plain");
+         PrintWriter writer = response.getWriter();
+        WebWrapper instance = WebWrapper.getInstance();
         List<IParentEvent> events = instance.loadMoreParentEvents();
         List<IVenue> venues = instance.loadMoreVenues();
-        List<IArtist> artists = instance.loadMoreArtists();
+//        List<IArtist> artists = instance.loadMoreArtists();
         
-        String templateArtist = "";
+        String templateArtist = " <a href=\"artist?artistdata=theId\" >\n"
+                + "                                    <div class=\"col-lg-3 newEventGallery\"> \n"
+                + "                                        <img class=\"eventImage\" src=\"Image?type=artist&id=theId\">\n"
+                + "                                        <div class=\"underImageInfo\">\n"
+                + "                                            <div class=\"boxName\"> theName </div> \n"
+                + "\n"
+                + "                                            <div class=\"boxChildren\"> \n"
+                + "                                              childShows Shows</div>\n"
+                + "                                        </div>\n"
+                + "                                    </div>\n"
+                + "                                </a>                 ";
+
+        String templateVenue = " <a href=\"venue.do?venuedata=theId\">\n"
+                + "                                <div class=\"col-lg-3 newEventGallery\"> \n"
+                + "                                     <img class=\"eventImage\" src=\"Image?type=venue&id=theId\">\n"
+                + "                                     <div class=\"underImageInfo\">\n"
+                + "                                        <div class=\"boxName\"> theName </div> \n"
+                + "\n"
+                + "                                        <div class=\"boxChildren\">\n"
+                + "                                          childShows Shows</div>\n"
+                + "                                    </div>\n"
+                + "                                </div>\n"
+                + "                                                   </a>\n"
+                + " ";
         
-        String templateVenue = "";
+        
+         
+        
         
         String templateEvent = " <a href=\"event.do?eventdata=theId\">\n"
-                + "                                <div class=\"col-lg-3 newEventGallery\" id=\"${loop.index}\"> \n"
+                + "                                <div class=\"col-lg-3 newEventGallery\"> \n"
                 + "                                     <img class=\"eventImage\" src=\"Image?type=event&id=theId\">\n"
                 + "                 \n"
                 + "                                     <div class=\"underImageInfo\">\n"
@@ -90,8 +117,8 @@ public class LoadMoreSearchResultsServlet extends HttpServlet {
                 + "                                </div>\n"
                 + "                            </a>";
 
-            PrintWriter writer = response.getWriter();
-            response.setContentType("text/plain");
+            
+            
             for (IParentEvent currEvent : events) {
             
             String output = templateEvent;
@@ -105,8 +132,35 @@ public class LoadMoreSearchResultsServlet extends HttpServlet {
              
             writer.println(output);
         }
+            
+            for (IVenue ven : venues){
+                String output = templateVenue;
+            Integer children = ven.getChildEvents().size();
+            Integer id = ven.getID();
+            String name = ven.getName();
+            
+            output = output.replaceAll("childShows", children.toString());
+            output = output.replaceAll("theId", id.toString());
+            output = output.replaceAll("theName", name);
+            writer.println(output);
+            }
+//            
+//            for (IArtist art : artists){
+//                String output = templateArtist;
+//            Integer children = art.getChildEvents().size();
+//            Integer id = art.getID();
+//            String name = art.getName();
+//            
+//            output = output.replaceAll("childShows", children.toString());
+//            output = output.replaceAll("theId", id.toString());
+//            output = output.replaceAll("theName", name);
+//            writer.println(output);
+//            }
+//            
+             
     }
-
+    
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *

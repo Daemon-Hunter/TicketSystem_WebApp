@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import utilities.DateFilter;
-import wrappers.UserWrapper;
+import utilities.WebWrapper;
 
 /**
  *
@@ -109,7 +109,7 @@ public class FilterServlet extends HttpServlet {
         Date date = df.getDate(dateString);
        if (artist != null){
             if (artist.equals("artist")) {
-                 List<IArtist> artists = UserWrapper.getInstance().searchArtists(search);
+                 List<IArtist> artists = WebWrapper.getInstance().searchArtists(search);
                  request.setAttribute("fArtists", artists); 
                  request.setAttribute("displayArtist", "true");
                  //Child events amounts
@@ -126,7 +126,7 @@ public class FilterServlet extends HttpServlet {
        
        if (venue != null){
             if (venue.equals("venue")){
-                 List<IVenue> venues = UserWrapper.getInstance().searchVenues(search);
+                 List<IVenue> venues = WebWrapper.getInstance().searchVenues(search);
                  request.setAttribute("fVenues", venues);
                  request.setAttribute("displayVenue", "true");
                  List<Integer> childEventAmountVenue = new ArrayList();
@@ -146,7 +146,7 @@ public class FilterServlet extends HttpServlet {
         if (event != null){
             if(event.equals("event")){
                 List<IParentEvent> events = new LinkedList();
-                for (IParentEvent e : UserWrapper.getInstance().searchParentEvents(search))
+                for (IParentEvent e : WebWrapper.getInstance().searchParentEvents(search))
                 {
                     if (e.getChildEvents().size() > 0)
                         {

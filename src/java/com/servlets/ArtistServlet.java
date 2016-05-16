@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import utilities.ChildToParent;
 
-import wrappers.UserWrapper;
+import utilities.WebWrapper;
 
 /**
  *
@@ -62,7 +62,7 @@ public class ArtistServlet extends HttpServlet {
        String artistIndex = request.getParameter("artistdata");
        int artistIntIndex = Integer.parseInt(artistIndex);
        
-       IArtist displayArtist = UserWrapper.getInstance().getArtist(artistIntIndex);
+       IArtist displayArtist = WebWrapper.getInstance().getArtist(artistIntIndex);
         Boolean currentEvent = false;
        List<IChildEvent> children = displayArtist.getChildEvents();
         if (children.size() >= 1)

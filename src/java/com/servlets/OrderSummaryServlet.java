@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import tickets.ITicket;
-import wrappers.UserWrapper;
+import utilities.WebWrapper;
 
 /**
  *
@@ -72,20 +72,23 @@ public class OrderSummaryServlet extends HttpServlet {
         String parent = request.getParameter("parent");
         int pId = Integer.parseInt(parent);
         int cId = Integer.parseInt(child);
-        IChildEvent childEvent = UserWrapper.getInstance().getParentEvent(pId).getChildEvent(cId);
+        IChildEvent childEvent = WebWrapper.getInstance().getParentEvent(pId).getChildEvent(cId);
         List<ITicket> tickets = childEvent.getTickets();
         
         // List of lists of tickets for different types of tickets
         List<List<ITicket>> listOfTickets = new LinkedList();
         ITicket tick;
         String selectedValue;
+        double amount = 0;
+        double price = 0;
         for (int i = 1; i < tickets.size()+1 ; i++)
         {
             selectedValue = request.getParameter("hello"+i);
             String[] parts = selectedValue.split(":");
             int qty = Integer.parseInt(parts[0]);
             int ticketID = Integer.parseInt(parts[1]);
-          
+            price = childEvent.getTicket(ticketID).getPrice();
+            amount += qty * price;
             // if purchase amount is less than 1 do nothing
             if (qty > 0)
             {   
@@ -115,6 +118,7 @@ public class OrderSummaryServlet extends HttpServlet {
         session.setAttribute("parent", pId);
         session.setAttribute("child", childEvent);
         session.setAttribute("tickets", listOfTickets);
+        session.setAttribute("total", amount);
         request.getRequestDispatcher("Payment.jsp").forward(request, response);
         
         

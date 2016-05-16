@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import wrappers.UserWrapper;
-import wrappers.UserWrapper;
+import utilities.WebWrapper;
+import utilities.WebWrapper;
 
 
 /**
@@ -71,7 +71,7 @@ public class searchResultServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-        UserWrapper.getInstance().setAmountToLoad(15);
+        WebWrapper.getInstance().setAmountToLoad(15);
         String userInput = request.getParameter("user_search");
         
         if (userInput.equals(""))
@@ -81,9 +81,9 @@ public class searchResultServlet extends HttpServlet {
         }
         else {
         
-        List<IArtist> artistList = UserWrapper.getInstance().searchArtists(userInput);
-        List<IVenue> venueList = UserWrapper.getInstance().searchVenues(userInput);
-        List<IParentEvent> eventList = UserWrapper.getInstance().searchParentEvents(userInput);
+        List<IArtist> artistList = WebWrapper.getInstance().searchArtists(userInput);
+        List<IVenue> venueList = WebWrapper.getInstance().searchVenues(userInput);
+        List<IParentEvent> eventList = WebWrapper.getInstance().searchParentEvents(userInput);
         
          ArrayList<Integer> childEventAmount = new ArrayList();
         for (IParentEvent parent: eventList)

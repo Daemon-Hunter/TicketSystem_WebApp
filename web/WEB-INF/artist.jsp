@@ -26,7 +26,7 @@
     <body>
 
          <nav class="navbar navbar-inverse navbar-static-top">
-            <ul class="nav navbar-nav pull-right" style="margin-right: 15%; font-size: 23px;">
+            <ul class="nav navbar-nav pull-right" style="margin-right: 15%; margin-top: 5px; font-size: 21px;">
                 <c:choose>
                     
                     <c:when test="${loggedIn eq false}">
@@ -61,10 +61,12 @@
 
         <div class="row">
             <div class="blue col-lg-12"> 
-                <div id="logoImage">
-                <a href="index.do">
-                <img class="padding" src="images/Drawing.png">
+                <div id="logoImage"> 
+                    <a href="index.do">
+                <img class="padding" src="images/logo/logologo.png">
+               
                     </a>
+                     <span class="logotext"> Function Junction </span>
                 </div>
             </div>
 
@@ -165,7 +167,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <span class="pageHeading">
-                            <p>Artist Information</p>
+                            <strong>Artist Information</strong>
                         </span>
                     </div>
                     <div class="panel-body panelBodyBox">
@@ -174,6 +176,7 @@
                         </span>
                         <hr>
                         <span class="social">
+                            <strong class="displayDetailstextSize"> Social Media </strong> <br>
                             <i class="fa fa-facebook fa-2x"></i> <c:out value="${facebook}" default="Not available for this artist"/><br>
                             <i class="fa fa-twitter fa-2x"></i> <c:out value="${twitter}" default="Not available for this artist"/> <br>
                                 <i class="fa fa-spotify fa-2x"></i> <c:out value="${currentArtist.spotify}" default="Not available for this artist"/><br>
@@ -181,6 +184,7 @@
                         </span>
                         <hr>
                           <span class="tags">
+                              <strong class="displayDetailstextSize"> Tags </strong> <br>
                               <c:set value="${currentArtist['tags']}" var="tagList"/>
                               <c:forEach items="${tagList}" var="tag">
                                   <c:out value="- ${tag}" default="No Tags"/> <br>

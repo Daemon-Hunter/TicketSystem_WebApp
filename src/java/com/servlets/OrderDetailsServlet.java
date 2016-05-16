@@ -24,7 +24,7 @@ import people.Guest;
 import people.IGuest;
 import tickets.ITicket;
 import utilities.Validator;
-import wrappers.UserWrapper;
+import utilities.WebWrapper;
 
 /**
  *
@@ -149,7 +149,7 @@ public class OrderDetailsServlet extends HttpServlet {
                     newTicketList.add(tList.get(0).getType() + "  x " + qty);
                 }
 
-                List<GuestBooking> completeOrder = UserWrapper.getInstance().makeGuestBookings(bookings);
+                List<GuestBooking> completeOrder = WebWrapper.getInstance().makeGuestBookings(bookings);
                 request.setAttribute("ticketList", newTicketList);
                 request.setAttribute("bookingList", completeOrder);
                 request.setAttribute("user", newGuest);
@@ -178,7 +178,7 @@ public class OrderDetailsServlet extends HttpServlet {
                    newTicketList.add(ticket.getType() + "  x " + qty);
                }
                
-               IOrder order = UserWrapper.getInstance().makeCustomerBooking(ticketz, quantity);
+               IOrder order = WebWrapper.getInstance().makeCustomerBooking(ticketz, quantity);
                request.setAttribute("order", order);
                request.setAttribute("ticketList", newTicketList);
            }

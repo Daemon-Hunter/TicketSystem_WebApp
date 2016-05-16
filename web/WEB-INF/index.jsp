@@ -22,13 +22,12 @@
         <script src ="http://code.jquery.com/jquery.js"></script>
         <script src ="js/bootstrap.min.js"></script>
         <script src ="js/less.js"></script>
-        <script src= "js/myQuery.js"></script>
         <script src="js/load.js"> </script>
     </head>
     <body>
         
-        <nav class="navbar navbar-inverse navbar-static-top">
-            <ul class="nav navbar-nav pull-right" style="margin-right: 15%; font-size: 23px;">
+        <nav class="navbar navbar-inverse navbar-static-top mynav">
+            <ul class="nav navbar-nav pull-right" style="margin-right: 15%; margin-top: 5px; font-size: 21px;">
                 <c:choose>
                     
                     <c:when test="${loggedIn eq false}">
@@ -65,8 +64,10 @@
             <div class="blue col-lg-12"> 
                 <div id="logoImage"> 
                     <a href="index.do">
-                <img class="padding" src="images/newLogoTicket.png">
+                <img class="padding" src="images/logo/logologo.png">
+               
                     </a>
+                     <span class="logotext"> Function Junction </span>
                 </div>
             </div>
                       
@@ -130,8 +131,8 @@
             <%-- tabbed pane --%>
             <div class="row " style="border: 2px #fff; padding-bottom: 100px;">
                 <div class="col-lg-12">
-                    <div class="newEventHeader"> New Events <hr></div>
-                    
+                    <div class="newEventHeader"> Latest Events <hr></div>
+                    <div class="galleryContainer">
                     <c:forEach items="${eventList}" var="event" varStatus="loop">
                         
                         <div class="col-lg-2  newEventGallery"> 
@@ -148,6 +149,7 @@
                             </a>  
                         </div>
                     </c:forEach>
+                    </div>
                     
                     
                     <div id="moreData"> 

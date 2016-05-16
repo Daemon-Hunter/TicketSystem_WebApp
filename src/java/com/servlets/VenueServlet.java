@@ -16,7 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import wrappers.UserWrapper;
+import utilities.WebWrapper;
 
 /**
  *
@@ -68,7 +68,7 @@ public class VenueServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String venueID = request.getParameter("venuedata");
-        IVenue venue = UserWrapper.getInstance().getVenue(Integer.parseInt(venueID));
+        IVenue venue = WebWrapper.getInstance().getVenue(Integer.parseInt(venueID));
         
          //check if venue has any current events
         Boolean currentEvent = false;

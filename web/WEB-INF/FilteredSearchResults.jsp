@@ -23,7 +23,7 @@
     <body>
         
          <nav class="navbar navbar-inverse navbar-static-top">
-            <ul class="nav navbar-nav pull-right" style="margin-right: 15%; font-size: 23px;">
+            <ul class="nav navbar-nav pull-right" style="margin-right: 15%; margin-top: 5px; font-size: 21px;">
                 <c:choose>
                     
                     <c:when test="${loggedIn eq false}">
@@ -58,10 +58,12 @@
         
         <div class="row">
             <div class="blue col-lg-12"> 
-                <div id="logoImage">
-                <a href="index.do">
-                <img class="padding" src="images/Drawing.png">
+                <div id="logoImage"> 
+                    <a href="index.do">
+                <img class="padding" src="images/logo/logologo.png">
+               
                     </a>
+                     <span class="logotext"> Function Junction </span>
                 </div>
             </div>
                       

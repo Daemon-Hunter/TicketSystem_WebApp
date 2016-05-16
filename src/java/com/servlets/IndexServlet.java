@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import wrappers.UserWrapper;
+import utilities.WebWrapper;
 
 /**
  *
@@ -55,7 +55,7 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UserWrapper.getInstance().setAmountToLoad(15);
+        WebWrapper.getInstance().setAmountToLoad(15);
         HttpSession session = request.getSession(false);
         
         if (session != null){
@@ -70,7 +70,7 @@ public class IndexServlet extends HttpServlet {
         
         
 
-        List<IParentEvent> list = UserWrapper.getInstance().getParentEvents();
+        List<IParentEvent> list = WebWrapper.getInstance().getParentEvents();
         ArrayList<Integer> childEventAmount = new ArrayList();
         for (IParentEvent parent: list)
         {

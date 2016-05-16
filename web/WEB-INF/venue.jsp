@@ -24,7 +24,7 @@
     <body>
         
          <nav class="navbar navbar-inverse navbar-static-top">
-            <ul class="nav navbar-nav pull-right" style="margin-right: 15%; font-size: 23px;">
+            <ul class="nav navbar-nav pull-right" style="margin-right: 15%; margin-top: 5px; font-size: 21px;">
                 <c:choose>
                     
                     <c:when test="${loggedIn eq false}">
@@ -59,10 +59,12 @@
         
         <div class="row">
             <div class="blue col-lg-12"> 
-                <div id="logoImage">
-                <a href="index.do">
-                <img class="padding" src="images/Drawing.png">
+                 <div id="logoImage"> 
+                    <a href="index.do">
+                <img class="padding" src="images/logo/logologo.png">
+               
                     </a>
+                     <span class="logotext"> Function Junction </span>
                 </div>
             </div>
                       
@@ -175,7 +177,7 @@
                         <span class="googleMap">
                             
                             <iframe
-                                width="320"
+                                width="480"
                                 height="350"
                                 frameborder="0" style="border:0"
                                 src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCnCjhuB-7cFDL9ZdArYQSq1qlOEtU1IOQ&q=${venue.postcode}

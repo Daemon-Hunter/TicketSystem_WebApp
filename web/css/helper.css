@@ -1,7 +1,10 @@
 
 
 
-
+nav{
+    background-image: 
+        linear-gradient(#2E2E2E, #3D3D3D) !important;
+}
 
 .headerDivider {
      border-left:1px solid #38546d; 
@@ -52,6 +55,17 @@ box-shadow: 2px 37px 54px 79px rgba(0,0,0,0.75), inset -1px -6px 4px 9px #2E2E2E
 
 }     
 
+.logotext{
+    font-size: 39px;
+    font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+    
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    left: 0px;
+    top: 15px;
+}
+
 .leftPadding{
     padding-left: 300px;
 }
@@ -75,7 +89,7 @@ img.padding {
 }
 
 .topPadding{
-    padding-top: 60px;
+    padding-top: 80px;
 }
 
 .padd
@@ -120,10 +134,10 @@ button.right {
     }
 
 .divider-vertical {
-height: 55px;
-margin: 0 9px;
-border-left: 1px solid #31b0d5;
-border-right: 1px solid #31b0d5;
+height: 30px;
+margin-top: 10px;
+border-left: 1px solid #fff;
+border-right: 1px solid #fff;
 }
 
 
@@ -161,7 +175,7 @@ img{
 
 
 .panelBodyBox{
-    height: 460px;
+    height: 475px;
 }
 .panelBodyBoxEvent{
     height: 650px;
@@ -195,11 +209,15 @@ box-shadow: -1px 22px 114px 36px rgba(0,0,0,1);
 .newEventGallery{
     border: 2px #fff solid;
     height: 215px;
-    padding: 0px;
-    margin: 2px;
+    
     background-color: gray;
+    margin: 2px;
     
     
+}
+
+.galleryContainer{
+   /*margin-left: 120px;*/
 }
 
 .eventBoxInfo{
@@ -406,7 +424,8 @@ box-shadow: -1px 22px 114px 36px rgba(0,0,0,1);
 
 #logoImage{
     height: 200px;
-    margin-left: 80px;
+    margin-left: 60px;
+    padding-bottom: 16px;
 }
 
 .infoBoxSize{
@@ -416,7 +435,7 @@ box-shadow: -1px 22px 114px 36px rgba(0,0,0,1);
 
 #googleMap{
     text-align: center;
-    width: 380px;
+    width: 400px;
     height: 320px;
 }
 
@@ -439,7 +458,7 @@ box-shadow: -1px 22px 114px 36px rgba(0,0,0,1);
 }
 
 .allEventData{
-                margin-top: 60px;
+                margin-top: 140px;
                 margin-bottom: 120px;
                 
                padding-left: 40px;
@@ -466,7 +485,7 @@ box-shadow: -1px 22px 114px 36px rgba(0,0,0,1);
 .myJunction{
     font-size: 15px;
     padding: 5px;
-    margin: 7px;
+    margin: 4px;
     color : white;
     font-weight:  bold;
     border:  #ffffff thick groove;
@@ -477,8 +496,8 @@ box-shadow: -1px 22px 114px 36px rgba(0,0,0,1);
    
 }
 
-table, td, tr {
-    border:  #0000ff double thick;
+.OrdersTable {
+    border:   double thick;
     padding: 15px;
     font-size: 21px;
     
@@ -502,3 +521,11 @@ table {
     text-align: center;
 }
 
+.containerPosition{
+    margin-top: 70px;
+    
+}
+
+.displayDetailstextSize{
+    font-size: 25px;
+}

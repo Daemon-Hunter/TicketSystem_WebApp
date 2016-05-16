@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 import people.IUser;
 import tickets.ITicket;
 import tickets.Ticket;
-import wrappers.UserWrapper;
+import utilities.WebWrapper;
 
 /**
  *
@@ -86,22 +86,24 @@ public class TicketOptionsServlet extends HttpServlet {
         
         int parentID = Integer.parseInt(parent);
         int childID = Integer.parseInt(child);
-        IParentEvent parentEvent = UserWrapper.getInstance().getParentEvent(parentID);
+        IParentEvent parentEvent = WebWrapper.getInstance().getParentEvent(parentID);
         IChildEvent purchaseEvent = parentEvent.getChildEvent(childID);
         
         request.setAttribute("childEvent", purchaseEvent);
         request.setAttribute("parentEvent", parentEvent);
- 
+        Boolean noEvents = false;
           List<ITicket> tickets = purchaseEvent.getTickets();
-          if(tickets.isEmpty()){
-              Boolean noEvents = true;
-              request.setAttribute("noEvents", noEvents);
+          for (ITicket tick : tickets){
+              if (tick.getRemaining() < 1)
+              noEvents = true;
+              else{
+                  noEvents = false;
+              }
           }
-          else{
-          Boolean noEvents = false;
-          request.setAttribute("noEvents", noEvents);
-          }
+         
           
+          
+          request.setAttribute("noEvents", noEvents);
           request.setAttribute("ticketList", tickets);
                     
         RequestDispatcher view = request.getRequestDispatcher("WEB-INF/buyTickets.jsp"); //
