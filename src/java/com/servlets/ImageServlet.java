@@ -60,6 +60,7 @@ public class ImageServlet extends HttpServlet {
         String id = request.getParameter("id");
         ISocial soc = null;
         
+
         if (type.equals("event"))
             soc = WebWrapper.getInstance().getParentEvent(Integer.parseInt(id)).getSocialMedia();
         else if(type.equals("artist"))
@@ -71,11 +72,11 @@ public class ImageServlet extends HttpServlet {
         if ("large".equals(request.getParameter("image")))
         {
             image = soc.getImage(4);
-            //image = ImageScale.resize(image, 550, 510);
+            
             
         }
         else
-            image = soc.getImage(0);
+            image = soc.getImage(4);
           
             
             ByteArrayOutputStream byteStream = new ByteArrayOutputStream();

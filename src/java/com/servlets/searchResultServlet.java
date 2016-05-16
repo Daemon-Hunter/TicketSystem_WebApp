@@ -85,6 +85,11 @@ public class searchResultServlet extends HttpServlet {
         List<IVenue> venueList = WebWrapper.getInstance().searchVenues(userInput);
         List<IParentEvent> eventList = WebWrapper.getInstance().searchParentEvents(userInput);
         
+        if (artistList.isEmpty() && venueList.isEmpty() && eventList.isEmpty())
+        {
+            request.setAttribute("noResults", "No results matching this search");
+        }
+        
          ArrayList<Integer> childEventAmount = new ArrayList();
         for (IParentEvent parent: eventList)
         {

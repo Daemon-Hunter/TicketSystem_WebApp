@@ -160,7 +160,12 @@
                         </div>
                        </form>
                    </div>
+                           
+                           
                 <div class="col-lg-10">
+                    <div style="float: inside; margin-top: 40px; color: #fff; font-size: 25px;font-weight: bold;">
+                    ${noResults}
+                     </div>
                     <div class="artist">
                         
                      <c:forEach items="${artistList}" var="artist" varStatus="loop">

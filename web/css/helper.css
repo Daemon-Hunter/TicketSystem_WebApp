@@ -13,6 +13,14 @@ nav{
      
 }
 
+#noResults {
+    text-align:  center !important;
+    padding-top: 30px;
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+}
+
 
 .navbar{
     margin-bottom:  0 !important;
@@ -479,7 +487,7 @@ box-shadow: -1px 22px 114px 36px rgba(0,0,0,1);
 }
 
 .completeInfo{
-    font-size: 30px;
+    font-size: 20px;
     font-style:  initial;
 }
 .myJunction{
@@ -529,3 +537,5 @@ table {
 .displayDetailstextSize{
     font-size: 25px;
 }
+
+

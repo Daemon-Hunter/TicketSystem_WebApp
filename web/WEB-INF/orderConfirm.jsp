@@ -79,14 +79,15 @@
                <legend> Thank you for your order! </legend><br>
                <c:choose>
                    <c:when test="${loggedIn eq false}">
-                        
+                        <div id="completeInfo">
                         Booking reference number(s):
                         <c:forEach items="${bookingList}" var="booking">
                              <strong>${booking.bookingID}</strong> </p>
                         </c:forEach>
-
+                        
                         <p>Your E-Ticket will be sent to the following email address: <strong>${user.email}</strong> </p>
-               </div>
+                        </div>
+                        </div>
                     </c:when>
                    
                    <c:when test="${loggedIn eq true}">

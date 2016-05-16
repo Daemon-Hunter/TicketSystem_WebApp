@@ -9,12 +9,12 @@ $(document).ready(function () {
 
     $(function () {
        
-        alert("entering jquery");
+        
         var buttonMore = $("#loadMoreSearchButton");
         buttonMore.click(function () {
-            alert("We are now inside the click function");
+           
             $.get("loadMoreSearch.do", function (responseXml) {
-                alert(responseXml.toString());
+                
                 $('#moreData').html(responseXml);
             });
         });
